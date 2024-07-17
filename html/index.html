@@ -4,25 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Seguros Sayazu</title>
-    <link rel="stylesheet" href="css\login.css">
+    <href rel="stylesheet" href="..\assets\styles\login.css">
+    <style>
+       body {
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 200px;
+    height: auto;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+}
+    </style>
 </head>
 <body>
+    
     <div class="container">
         <div class="logo">
-            <img src="assets/images/logo-sayazu-blanco.png" alt="Seguros Sayazu">
+            <img src="..\assets\images\logo-color-ss.png" alt="Seguros Sayazu">
         </div>
         <div class="login-form">
             <h2>Ingresar</h2>
             <form action="#">
                 <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
+
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
+
                 <button type="submit">Ingresar</button>
             </form>
             <p><a href="#">¿Olvidó su contraseña?</a></p>
         </div>
+        
     </div>
-    <script src="main.js"></script>
+    <footer>
+        <p>&copy; Seguros Sayazu</p>
+    <script> src = "..\js\main.js" </script>
 </body>
 </html>
