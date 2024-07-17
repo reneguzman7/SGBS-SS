@@ -4,91 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Seguros Sayazu</title>
-    <href rel="stylesheet" href="..\assets\styles\login.css">
+    <link rel="stylesheet" href="../assets/styles/login.css">
     <style>
-       body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
-}
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+        }
 
-.container {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-.logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-.logo img {
-    width: 200px;
-    height: auto;
-}
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
 
-.login-form {
-    padding: 20px;
-}
+        .login-form, .register-form {
+            padding: 20px;
+            display: none; /* Ocultar el formulario de registro por defecto */
+        }
 
-.login-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        .login-form h2, .register-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-.login-form label {
-    display: block;
-    margin-bottom: 5px;
-}
+        .login-form label, .register-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-.login-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+        .login-form input, .register-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
 
-.login-form button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
+        .login-form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
 
-.login-form a {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #007bff;
-}
+        .register-form button {
+            background-color: #28a745; /* Botón verde para registrarse */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .login-form a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #007bff;
+        }
+
+        .login-form .message, .register-form .message {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-form .message.success, .register-form .message.success {
+            color: green;
+        }
+
+        .login-form .message.error, .register-form .message.error {
+            color: red;
+        }
     </style>
 </head>
 <body>
     
     <div class="container">
         <div class="logo">
-            <img src="..\assets\images\logo-color-ss.png" alt="Seguros Sayazu">
+            <img src="../assets/images/logo-color-ss.png" alt="Seguros Sayazu">
         </div>
-        <div class="login-form">
-            <h2>Ingresar</h2>
+        
+        <div class="login-form" id="login-form" style="display: block;">
+            <h2>Inicio de sesión</h2>
             <form action="#">
                 <label for="usuario">Usuario:</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Ingrese su usuario">
 
-                <label for="contrasena">ContraseÃ±a:</label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseÃ±a">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña">
 
                 <button type="submit">Ingresar</button>
+                <p class="message"></p> 
             </form>
-            <p><a href="#">Â¿OlvidÃ³ su contraseÃ±a?</a></p>
+            <p><a href="#">¿Olvidó su contraseña?</a></p>
+            <button class="register-button">Registrarse</button>
         </div>
         
+        <div class="register-form" id="register-form">
+            <h2>Registro</h2>
+            <form action="#">
+                <label for="new-usuario">Nuevo Usuario:</label>
+                <input type="text" id="new-usuario" name="new-usuario" placeholder="Ingrese su nuevo usuario">
+
+                <label for="new-contrasena">Nueva Contraseña:</label>
+                <input type="password" id="new-contrasena" name="new-contrasena" placeholder="Ingrese su nueva contraseña">
+
+                <button type="submit">Registrar</button>
+                <p class="message"></p> 
+            </form>
+            <button class="login-button">Volver a Iniciar Sesión</button>
+        </div>
     </div>
+    
     <footer>
         <p>&copy; Seguros Sayazu</p>
-    <script> src = "..\js\main.js" </script>
+    </footer>
+    
+    <script src="../js/main.js"></script>
 </body>
 </html>
