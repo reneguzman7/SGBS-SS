@@ -4,12 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <href="css/style.css" rel="stylesheet">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-panel {
+            width: 30%;
+            background-color: #008F8C;
+            padding: 20px;
+        }
+
+        .right-panel {
+            width: 70%;
+            background-color: #0FC2C0;
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select {
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 700; word-wrap: break-word">Clientes</div>
-    <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Aseguradoras</div>
-    <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Gestión de Pagos</div>
-    <div style="color: black; font-size: 24px; font-family: Inter; font-weight: 400; word-wrap: break-word">Manejo de <br/>Incidentes</div>
+    <body>
+        <div class="container">
+            <div class="left-panel">
+                <img src="..\assets\images\logo-color-ss.png" alt="logo" width="200px" height="auto">
+                <h2>Módulos</h2>
+                <h3 bold>Clientes</h3>
+                <h3>Aseguradoras</h3>
+                <h3>Gestión de Pagos</h3>
+                <h3>Manejo de Incidentes</h3>
+            </div>
+            <div class="right-panel">
+                <h1>Registrar Cliente Natural</h1>
+                <p>Contenido del panel derecho.</p>
+                <form action="">
+                    <label for="nombres">Nombres:</label>
+                    <img src="..\assets\images\letraS.png" alt="imagen" width="100px" height="100px">
+        <input type="text" id="nombres" name="nombres" placeholder="Ingrese sus nombres">
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" placeholder="Ingrese sus apellidos">
+
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+
+        <label for="ciudadResidencia">Ciudad de Residencia:</label>
+        <input type="text" id="ciudadResidencia" name="ciudadResidencia" placeholder="Ingrese su ciudad de residencia">
+
+        <label for="tipoDocumento">Tipo de Documento:</label>
+        <select name="tipoDocumento" id="tipoDocumento">
+            <option value="Cedula de Ciudadania">Cédula de Ciudadanía</option>
+            <option value="Pasaporte">Pasaporte</option>
+        </select>
+
+        <label for="numeroDocumento">Número de Documento:</label>
+        <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="Ingrese su número de documento">
+
+        <label for="genero">Género:</label>
+        <select name="genero" id="genero">
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+        </select>
+
+        <label for="numeroTelefono">Número de Teléfono:</label>
+        <input type="text" id="numeroTelefono" name="numeroTelefono" placeholder="Ingrese su número de teléfono">
+
+        <label for="correoElectronico">Correo Electrónico:</label>
+        <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Ingrese su correo electrónico">
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección">
+
+        <label for="tipoSeguro">Tipo de Seguro:</label>
+        <select name="tipoSeguro" id="tipoSeguro">
+            <option value="Salud">Salud</option>
+            <option value="Vida">Vida</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Vehiculo">Vehículo</option>
+        </select>
+
+        <label for="nombreAseguradora">Nombre Aseguradora:</label>
+        <select name="nombreAseguradora" id="nombreAseguradora">
+            <option value="Sura">Sura</option>
+            <option value="Colpatria">Colpatria</option>
+            <option value="Liberty">Liberty</option>
+            <option value="Allianz">Allianz</option>
+        </select>
+
+        <label for="codigoContrato">Código de Contrato:</label>
+        <input type="text" id="codigoContrato" name="codigoContrato" placeholder="Ingrese el código de contrato">
+
+        <label for="fechaInicio">Fecha de Inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio">
+
+        <label for="fechaFin">Fecha de Fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin">
+
+        <button type="submit">Enviar</button>
+                
+            </div>
+        </div>
+        
+    </body>
     
     
 </body>
