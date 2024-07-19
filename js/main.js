@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.querySelector('#register-form form');
     const userField = document.getElementById('usuario');
     const passwordField = document.getElementById('contrasena');
-    const message = document.querySelector('.login-form .message');
+    const loginMessage = document.querySelector('.login-form .message');
+    const registerMessage = document.querySelector('.register-form .message');
 
     const registerSection = document.getElementById('register-form');
     const loginSection = document.getElementById('login-form');
@@ -27,14 +28,49 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = userField.value;
         const password = passwordField.value;
 
-        if (user === 'root' && password === '1234') {
-            message.textContent = 'Ingreso Satisfactorio';
-            message.className = 'message success';
+        if (!user || !password) {
+            loginMessage.textContent = 'Usuario y contraseña no pueden estar vacíos';
+            loginMessage.className = 'message error';
+        } else if (user === 'root' && password === '1234') {
+            loginMessage.textContent = 'Ingreso Satisfactorio';
+            loginMessage.className = 'message success';
         } else {
-            message.textContent = 'Ingreso fallido';
-            message.className = 'message error';
+            loginMessage.textContent = 'Ingreso fallido';
+            loginMessage.className = 'message error';
         }
     });
 
-    // Puedes añadir la lógica de registro aquí si es necesario
+    // Lógica de registro
+    registerForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Previene el envío del formulario
+
+        const newUser = document.getElementById('new-usuario').value;
+        const newPassword = document.getElementById('new-contrasena').value;
+        const confirmPassword = document.getElementById('conf-contrasena').value;
+
+        if (!newUser) {
+            registerMessage.textContent = 'El nombre de usuario no puede estar vacío';
+            registerMessage.className = 'message error';
+        } else if (!newPassword || !confirmPassword) {
+            registerMessage.textContent = 'Las contraseñas no pueden estar vacías';
+            registerMessage.className = 'message error';
+        } else if (newPassword !== confirmPassword) {
+            registerMessage.textContent = 'Las contraseñas no coinciden';
+            registerMessage.className = 'message error';
+        } else {
+            registerMessage.textContent = 'Registro exitoso';
+            registerMessage.className = 'message success';
+            
+            // Esperar 3 segundos y luego volver al inicio de sesión
+            await sleep(1500);
+            registerSection.style.display = 'none';
+            loginSection.style.display = 'block';
+            registerMessage.textContent = '';
+        }
+    });
+
+    // Función sleep
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 });
