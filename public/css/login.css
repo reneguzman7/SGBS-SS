@@ -21,21 +21,23 @@ body {
     height: auto;
 }
 
-.login-form {
+.login-form, .register-form {
     padding: 20px;
+    display: none; /* Ocultar el formulario de registro por defecto */
 }
 
-.login-form h2 {
+.login-form h2, .register-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.login-form label {
+.login-form label, .register-form label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
-.login-form input {
+.login-form input, .register-form input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -48,6 +50,18 @@ body {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+.register-form button {
+    background-color: #28a745; /* Bot�n verde para registrarse */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
 }
 
 .login-form a {
@@ -55,4 +69,17 @@ body {
     text-align: center;
     margin-top: 10px;
     color: #007bff;
+}
+
+.login-form .message, .register-form .message {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-form .message.success, .register-form .message.success {
+    color: green;
+}
+
+.login-form .message.error, .register-form .message.error {
+    color: red;
 }

@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Clientes</title>
-    <link rel="stylesheet" href="../css/clientes.css">
+    <title>Gestión de Aseguradoras</title>
+    <link rel="stylesheet" href="../css/aseguradoras.css">
 </head>
 <body>
     <div class="container">
         <div class="left-panel">
             <img src="../images/logo-color-ss.png" alt="logo" width="200px" height="auto">
             <h2>Módulos</h2>
-            <h3 bold>Clientes</h3>
-            <h3>Aseguradoras</h3>
+            <h3>Clientes</h3>
+            <h3 bold>Aseguradoras</h3>
             <h3>Gestión de Pagos</h3>
             <h3>Manejo de Incidentes</h3>
         </div>
         <div class="right-panel">
-            <h1>Gestión de Clientes</h1>
+            <h1>Gestión de Aseguradoras</h1>
             <div>
                 <button onclick="showSection('register')">Registrar</button>
                 <button onclick="showSection('consult')">Consultar</button>
                 <button onclick="showSection('update')">Actualizar</button>
             </div>
             <div id="selection-bar">
-                <label for="client-type">Tipo de Cliente:</label>
-                <select id="client-type" onchange="updateForm()">
-                    <option value="natural">Natural</option>
-                    <option value="juridico">Jurídico</option>
-                </select>
+                
             </div>
-            <div id="form-container">
+            <div id="form-container2">
                 <!-- Formulario dinámico se actualizará aquí -->
             </div>
         </div>
     </div>
 
-    <script src="../js/clientes.js"></script>
+    <script src="../js/aseguradoras.js"></script>
 </body>
 </html>
