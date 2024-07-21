@@ -83,3 +83,13 @@ body {
 .login-form .message.error, .register-form .message.error {
     color: red;
 }
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+footer {
+    margin-top: auto;
+    text-align: center;
+}
