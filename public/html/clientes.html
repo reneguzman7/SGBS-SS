@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de Clientes</title>
+    <title>Gestión de Clientes</title>
     <link rel="stylesheet" href="../css/clientes.css">
+    <style>
+        /* Aquí se incluirá el CSS anterior ajustado para el botón */
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left-panel">
             <img src="../images/logo-color-ss.png" alt="logo" width="200px" height="auto">
-            <h2>MÃ³dulos</h2>
-            <h3 bold>Clientes</h3>
-            <h3>Aseguradoras</h3>
-            <h3>GestiÃ³n de Pagos</h3>
-            <h3>Manejo de Incidentes</h3>
+            <h2>Módulos</h2>
+            <h3><a href="clientes.html">Clientes</a></h3>
+            <h3><a href="aseguradoras.html">Aseguradoras</a></h3>
+            <h3><a href="gestionPagos.html">Gestión de Pagos</a></h3>
+            <h3><a href="manejoIncidentes.html">Manejo de Incidentes</a></h3>
+            <div class="logout-button-container">
+                <button onclick="window.location.href='index.html'">Cerrar sesión</button>
+            </div>
         </div>
         <div class="right-panel">
-            <h1>GestiÃ³n de Clientes</h1>
+            <h1>Gestión de Clientes</h1>
             <div>
                 <button onclick="showSection('register')">Registrar</button>
                 <button onclick="showSection('consult')">Consultar</button>
                 <button onclick="showSection('update')">Actualizar</button>
             </div>
-            <div id="selection-bar">
-                <label for="client-type">Tipo de Cliente:</label>
-                <select id="client-type" onchange="updateForm()">
+            <div id="selection-bar" class="mt-4">
+                <label for="client-type" class="block text-gray-700">Tipo de Cliente:</label>
+                <select id="client-type" class="border border-gray-300 rounded-md p-2" onchange="updateForm()">
                     <option value="natural">Natural</option>
-                    <option value="juridico">JurÃ­dico</option>
+                    <option value="juridico">Jurídico</option>
                 </select>
             </div>
-            <div id="form-container">
-                <!-- Formulario dinÃ¡mico se actualizarÃ¡ aquÃ­ -->
+            <div id="form-container" class="mt-6">
+                <!-- Formulario dinámico se actualizará aquí -->
             </div>
         </div>
     </div>
