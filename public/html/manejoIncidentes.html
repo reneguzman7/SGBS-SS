@@ -3,18 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GestiÃ³n de Clientes</title>
+    <title>Manejo de Incidentes</title>
     <link rel="stylesheet" href="../css/manejoIncidentes.css">
+    <style>
+        /* Estilos para el botón de cerrar sesión */
+        .logout-button-container {
+            position: absolute;
+            /* bottom: px; Ajustar según sea necesario */
+            left: 20px; /* Ajustar según sea necesario */
+            width: 100%; /* Ocupa el ancho completo del contenedor */
+        }
+
+        .logout-button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f44336; /* Color de fondo rojo */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logout-button-container button:hover {
+            background-color: #d32f2f; /* Color más oscuro al pasar el ratón */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="left-panel">
             <img src="../images/logo-color-ss.png" alt="logo" width="200px" height="auto">
-            <h2>MÃ³dulos</h2>
-            <h3>Clientes</h3>
-            <h3 >Aseguradoras</h3>
-            <h3>GestiÃ³n de Pagos</h3>
-            <h3 bold>Manejo de Incidentes</h3>
+            <h2>Módulos</h2>
+            <h3><a href="clientes.html">Clientes</a></h3>
+            <h3><a href="aseguradoras.html">Aseguradoras</a></h3>
+            <h3><a href="gestionPagos.html">Gestión de Pagos</a></h3>
+            <h3><a href="manejoIncidentes.html">Manejo de Incidentes</a></h3>
+            <div class="logout-button-container">
+                <button onclick="window.location.href='index.html'">Cerrar sesión</button>
+            </div>
         </div>
         <div class="right-panel">
             <h1>Manejo de Incidentes</h1>
@@ -24,10 +50,10 @@
                 <button onclick="showSection('update')">Actualizar</button>
             </div>
             <div id="selection-bar">
-                <!-- SelecciÃ³n de tipo de cliente si es necesario -->
+                <!-- Selección de tipo de cliente si es necesario -->
             </div>
             <div id="form-container1">
-                <!-- Formulario dinÃ¡mico se actualizarÃ¡ aquÃ­ -->
+                <!-- Formulario dinámico se actualizará aquí -->
             </div>
         </div>
     </div>

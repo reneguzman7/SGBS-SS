@@ -15,62 +15,61 @@ document.addEventListener('DOMContentLoaded', () => {
         registerSection.style.display = 'block';
     });
 
-    // Volver al formulario de inicio de sesiï¿½n
+    // Volver al formulario de inicio de sesión
     document.querySelector('.login-button').addEventListener('click', () => {
         registerSection.style.display = 'none';
         loginSection.style.display = 'block';
     });
 
-    // Lï¿½gica de inicio de sesiï¿½n
+    // Lógica de inicio de sesión
     loginForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Previene el envï¿½o del formulario
+        event.preventDefault(); // Previene el envío del formulario
 
         const user = userField.value;
         const password = passwordField.value;
 
         if (!user || !password) {
-            loginMessage.textContent = 'Usuario y contraseï¿½a no pueden estar vacï¿½os';
+            loginMessage.textContent = 'Usuario y contraseña no pueden estar vacíos';
             loginMessage.className = 'message error';
         } else if (user === 'root' && password === '1234') {
             loginMessage.textContent = 'Ingreso Satisfactorio';
             loginMessage.className = 'message success';
+            setTimeout(() => {
+                window.location.href = 'clientes.html'; // Redirigir a la página principal
+            }, 1500); // Esperar 1.5 segundos antes de redirigir
         } else {
             loginMessage.textContent = 'Ingreso fallido';
             loginMessage.className = 'message error';
         }
     });
 
-    // Lï¿½gica de registro
+    // Lógica de registro
     registerForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el envï¿½o del formulario
+        event.preventDefault(); // Previene el envío del formulario
 
         const newUser = document.getElementById('new-usuario').value;
         const newPassword = document.getElementById('new-contrasena').value;
         const confirmPassword = document.getElementById('conf-contrasena').value;
 
         if (!newUser) {
-            registerMessage.textContent = 'El nombre de usuario no puede estar vacÃ­o';
+            registerMessage.textContent = 'El nombre de usuario no puede estar vacío';
             registerMessage.className = 'message error';
         } else if (!newPassword || !confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no pueden estar vacÃ­as';
+            registerMessage.textContent = 'Las contraseñas no pueden estar vacías';
             registerMessage.className = 'message error';
         } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no coinciden';
+            registerMessage.textContent = 'Las contraseñas no coinciden';
             registerMessage.className = 'message error';
         } else {
             registerMessage.textContent = 'Registro exitoso';
             registerMessage.className = 'message success';
             
-            // Esperar 3 segundos y luego volver al inicio de sesiï¿½n
-            await sleep(1500);
-            registerSection.style.display = 'none';
-            loginSection.style.display = 'block';
-            registerMessage.textContent = '';
+            // Esperar 1.5 segundos y luego volver al inicio de sesión
+            setTimeout(() => {
+                registerSection.style.display = 'none';
+                loginSection.style.display = 'block';
+                registerMessage.textContent = '';
+            }, 1500);
         }
     });
-
-    // Funciï¿½n sleep
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 });
