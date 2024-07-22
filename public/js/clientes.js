@@ -25,7 +25,7 @@ function showSection(section) {
                 <form id="consult-form">
                     <label for="searchId">Ingrese Cédula/RUC:</label>
                     <input type="text" id="searchId" name="searchId" placeholder="Ingrese la cédula o RUC">
-                    <button type="button" onclick="consultClient()">Consultar</button>
+                    <button type="button" onclick="consultClient() ">Consultar</button>
                     <div id="client-fields"></div>
                 </form>
             `;

@@ -1,63 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manejo de Incidentes</title>
-    <link rel="stylesheet" href="../css/manejoIncidentes.css">
-    <style>
-        /* Estilos para el botón de cerrar sesión */
-        .logout-button-container {
-            position: absolute;
-            /* bottom: px; Ajustar según sea necesario */
-            left: 20px; /* Ajustar según sea necesario */
-            width: 100%; /* Ocupa el ancho completo del contenedor */
-        }
-
-        .logout-button-container button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #f44336; /* Color de fondo rojo */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-button-container button:hover {
-            background-color: #d32f2f; /* Color más oscuro al pasar el ratón */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manejo de Incidentes</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <div class="left-panel">
-            <img src="../images/logo-color-ss.png" alt="logo" width="200px" height="auto">
-            <h2>Módulos</h2>
-            <h3><a href="clientes.html">Clientes</a></h3>
-            <h3><a href="aseguradoras.html">Aseguradoras</a></h3>
-            <h3><a href="gestionPagos.html">Gestión de Pagos</a></h3>
-            <h3><a href="manejoIncidentes.html">Manejo de Incidentes</a></h3>
-            <div class="logout-button-container">
-                <button onclick="window.location.href='index.html'">Cerrar sesión</button>
-            </div>
+<body class="bg-gray-50">
+  <div class="container mx-auto flex">
+    <!-- Panel Izquierdo -->
+    <aside class="w-64 bg-blue-800 text-white shadow-lg h-screen">
+      <div class="flex items-center justify-center p-6 bg-blue-900">
+        <img src="../images/logo-color-ss.png" alt="Logo" class="w-32 h-auto">
+      </div>
+      <div class="p-6">
+        <h2 class="text-xl font-semibold mb-4">MÃ³dulos</h2>
+        <ul class="space-y-2">
+          <li><a href="clientes.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
+          <li><a href="aseguradoras.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
+          <li><a href="gestionPagos.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">GestiÃ³n de Pagos</a></li>
+          <li><a href="manejoIncidentes.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
+        </ul>
+        <div class="mt-6">
+          <button onclick="window.location.href='index.html'" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesiÃ³n</button>
         </div>
-        <div class="right-panel">
-            <h1>Manejo de Incidentes</h1>
-            <div>
-                <button onclick="showSection('register')">Registrar</button>
-                <button onclick="showSection('consult')">Consultar</button>
-                <button onclick="showSection('update')">Actualizar</button>
-            </div>
-            <div id="selection-bar">
-                <!-- Selección de tipo de cliente si es necesario -->
-            </div>
-            <div id="form-container1">
-                <!-- Formulario dinámico se actualizará aquí -->
-            </div>
-        </div>
-    </div>
+      </div>
+    </aside>
 
-    <script src="../js/manejoIncidentes.js"></script>
+    <!-- Panel Derecho -->
+    <main class="flex-grow p-8">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Manejo de Incidentes</h1>
+      <div class="mb-6 flex flex-wrap gap-4">
+        <button onclick="showSection('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+        <button onclick="showSection('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
+        <button onclick="showSection('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
+      </div>
+
+      <div id="form-container1" class="space-y-4">
+        <!-- Formulario dinÃ¡mico se actualizarÃ¡ aquÃ­ -->
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/manejoIncidentes.js"></script>
 </body>
 </html>
