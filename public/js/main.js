@@ -21,6 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSection.style.display = 'block';
     });
 
+    // Función de validación de contraseña
+    function validatePassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasNoSpaces = !/\s/.test(password);
+
+        return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasNoSpaces;
+    }
+
     // Lógica de inicio de sesión
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault(); // Previene el envío del formulario
@@ -30,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!user || !password) {
             loginMessage.textContent = 'Usuario y contraseña no pueden estar vacíos';
+            loginMessage.className = 'message error';
+        } else if (!validatePassword(password)) {
+            loginMessage.textContent = 'La contraseña no cumple con los requisitos de seguridad';
             loginMessage.className = 'message error';
         } else if (user === 'root' && password === '1234') {
             loginMessage.textContent = 'Ingreso Satisfactorio';
@@ -56,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             registerMessage.className = 'message error';
         } else if (!newPassword || !confirmPassword) {
             registerMessage.textContent = 'Las contraseñas no pueden estar vacías';
+            registerMessage.className = 'message error';
+        } else if (!validatePassword(newPassword)) {
+            registerMessage.textContent = 'La contraseña no cumple con los requisitos de seguridad';
             registerMessage.className = 'message error';
         } else if (newPassword !== confirmPassword) {
             registerMessage.textContent = 'Las contraseñas no coinciden';
