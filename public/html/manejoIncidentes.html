@@ -7,40 +7,35 @@
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
-  <div class="container mx-auto flex">
-    <!-- Panel Izquierdo -->
-    <aside class="w-64 bg-blue-800 text-white shadow-lg h-screen">
-      <div class="flex items-center justify-center p-6 bg-blue-900">
-        <img src="../images/logo-color-ss.png" alt="Logo" class="w-32 h-auto">
-      </div>
-      <div class="p-6">
-        <h2 class="text-xl font-semibold mb-4">Módulos</h2>
-        <ul class="space-y-2">
-          <li><a href="clientes.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
-          <li><a href="aseguradoras.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
-          <li><a href="manejoIncidentes.html" class="block text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
+  <!-- Barra de Navegación Horizontal -->
+  <header class="bg-blue-800 text-white shadow-lg">
+    <div class="container mx-auto flex items-center justify-between p-6">
+      <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
+          <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
+          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
+          <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
+          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button></li>
         </ul>
-        <div class="mt-6">
-          <button onclick="window.location.href='index.html'" class="w-full bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button>
-        </div>
-      </div>
-    </aside>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Panel Derecho -->
-    <main class="flex-grow p-8">
-      <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Manejo de Incidentes</h1>
-      <div class="mb-6 flex flex-wrap gap-4">
-        <button onclick="showSection('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-        <button onclick="showSection('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-        <button onclick="showSection('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
-      </div>
+  <!-- Contenido Principal -->
+  <main class="container mx-auto p-8">
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Manejo de Incidentes</h1>
+    <div class="mb-6 flex flex-wrap gap-4">
+      <button onclick="showSection('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+      <button onclick="showSection('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
+      <button onclick="showSection('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
+    </div>
 
-      <div id="form-container1" class="space-y-4">
-        <!-- Formulario dinámico se actualizará aquí -->
-      </div>
-    </main>
-  </div>
+    <div id="form-container1" class="space-y-4">
+      <!-- Formulario dinámico se actualizará aquí -->
+    </div>
+  </main>
 
   <script src="../js/manejoIncidentes.js"></script>
 </body>

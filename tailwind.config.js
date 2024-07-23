@@ -8,7 +8,13 @@ module.exports = {
     "./public/css/**/*.css"
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'color_header': '#0d9488',
+        'secondary': '#00FF00',
+        'tertiary': '#0000FF',
+      },
+    },
   },
   plugins: [addDynamicIconSelectors()]
 }
