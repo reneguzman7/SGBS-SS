@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesti贸n de Aseguradoras</title>
+  <title>Gesti髇 de Aseguradoras</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body class="bg-gray-50">
   <header class="bg-blue-800 text-white shadow-lg">
@@ -14,14 +19,121 @@
         <ul class="flex space-x-6">
           <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti贸n de Pagos</a></li>
+          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti髇 de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci贸n del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi贸n</button></li>
+          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci髇 del Sistema</a></li>
+          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi髇</button></li>
         </ul>
       </nav>
     </div>
   </header>
     
+  <main class="container mx-auto p-8">
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Administraci髇 del Sistema</h1>
+    
+    <div class="mb-6 flex flex-wrap gap-4">
+      <button onclick="showForm('user-management')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Gesti髇 de usuarios</button>
+      <button onclick="showForm('parameter-management')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Gesti髇 de par醡etros</button>
+      <button onclick="showForm('auditory')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Auditor韆</button>
+    </div>
+
+    <!-- Formulario de Gesti髇 de Usuarios -->
+    <form id="user-management" class="hidden space-y-4">
+      <div>
+        <button type="button" onclick="showForm('create-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Crear Usuario</button>
+      </div>
+      
+      <div>
+        <button type="button" onclick="showForm('update-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Actualizar Usuario</button>
+      </div>
+      
+      <div>
+        <button type="button" onclick="showForm('show-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Ver Usuarios</button>
+      </div>
+    </form>
+
+    <!-- Formulario para Ver Usuarios -->
+    <form id="show-user-form" class="hidden space-y-4 mt-4">
+      <h3 class="text-2xl font-bold mb-4">Ver Usuarios</h3>
+
+      <div>
+        <label for="user-list" class="block text-gray-700 font-semibold mb-2">Lista de Usuarios:</label>
+        <select id="user-list" name="user-list" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <!-- Opciones de usuarios se cargar醤 din醡icamente -->
+        </select>
+      </div>
+
+      <div>
+        <button type="button" onclick="fetchUserDetails()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Ver Detalles</button>
+      </div>
+    </form>
+
+    <!-- Formulario para Actualizar Usuario -->
+    <form id="update-user-form" class="hidden space-y-4 mt-4">
+      <h3 class="text-2xl font-bold mb-4">Actualizar Usuario</h3>
+
+      <div>
+        <label for="user-id" class="block text-gray-700 font-semibold mb-2">ID del Usuario:</label>
+        <input type="text" id="user-id" name="user-id" placeholder="Ingrese el ID del usuario" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+        <button type="button" onclick="fetchUserDetailsById()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 mt-2">Buscar Usuario</button>
+      </div>
+
+      <div id="user-details" class="hidden space-y-4">
+        <div>
+          <label for="update-email" class="block text-gray-700 font-semibold mb-2">Correo Electr髇ico:</label>
+          <input type="email" id="update-email" name="email" placeholder="Ingrese el correo electr髇ico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </div>
+
+        <div>
+          <label for="update-password" class="block text-gray-700 font-semibold mb-2">Contrase馻:</label>
+          <input type="password" id="update-password" name="password" placeholder="Ingrese la nueva contrase馻" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </div>
+
+        <div>
+          <label for="update-conf-password" class="block text-gray-700 font-semibold mb-2">Confirme su Contrase馻:</label>
+          <input type="password" id="update-conf-password" name="conf-password" placeholder="Confirme la nueva contrase馻" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        </div>
+
+        <div>
+          <label for="update-status" class="block text-gray-700 font-semibold mb-2">Estado:</label>
+          <select id="update-status" name="status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            <option value="" disabled selected>Seleccione el estado</option>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+        </div>
+
+        <div>
+          <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Actualizar</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Formulario de Registro de Usuario -->
+    <form id="create-user-form" class="hidden space-y-4 mt-4">
+      <h3 class="text-2xl font-bold mb-4">Registrar Usuario</h3>
+
+      <div>
+        <label for="email-register" class="block text-gray-700 font-semibold mb-2">Correo Electr髇ico:</label>
+        <input type="email" id="email-register" name="email" placeholder="Ingrese el correo electr髇ico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      </div>
+
+      <div>
+        <label for="password-register" class="block text-gray-700 font-semibold mb-2">Contrase馻:</label>
+        <input type="password" id="password-register" name="password" placeholder="Ingrese la contrase馻" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      </div>
+
+      <div>
+        <label for="password-confirmation" class="block text-gray-700 font-semibold mb-2">Confirme su Contrase馻:</label>
+        <input type="password" id="conf-password" name="conf-password" placeholder="Confirme la contrase馻" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      </div>
+
+      <div>
+        <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="../js/administracionSistema.js"></script>
 </body>
 </html>
