@@ -1,114 +1,100 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Módulo de aseguradoras cargado');
-    showSection('register'); // Mostrar por defecto el formulario de registro
+    showForm('register'); // Mostrar por defecto el formulario de registro
 });
 
-function showSection(section) {
-    const formContainer = document.getElementById('form-container2');
-    formContainer.innerHTML = ''; // Limpiar el contenido del formulario
+function showForm(formType) {
+    const registerForm = document.getElementById('register-form');
+    const consultForm = document.getElementById('consult-form');
+    const updateForm = document.getElementById('update-form');
 
-    let formHtml = '';
+    registerForm.classList.add('hidden');
+    consultForm.classList.add('hidden');
+    updateForm.classList.add('hidden');
 
-    switch (section) {
+    switch (formType) {
         case 'register':
-            formHtml = `
-                <h3>Registrar Aseguradora</h3>
-                <form id="register-form">
-                    <div id="insurance-fields"></div>
-                    <button type="submit">Registrar</button>
-                </form>
-            `;
+            registerForm.classList.remove('hidden');
             break;
         case 'consult':
-            formHtml = `
-                <h3>Consultar Aseguradora</h3>
-                <form id="consult-form">
-                    <label for="searchId">Ingrese Cédula/RUC:</label>
-                    <input type="text" id="searchId" name="searchId" placeholder="Ingrese la cédula o RUC">
-                    <button type="button" onclick="consultInsurance()">Consultar</button>
-                    <div id="insurance-fields"></div>
-                </form>
-            `;
+            consultForm.classList.remove('hidden');
             break;
         case 'update':
-            formHtml = `
-                <h3>Actualizar Aseguradora</h3>
-                <form id="update-form">
-                    <label for="searchId">Ingrese Nombre Aseguradora:</label>
-                    <input type="text" id="searchId" name="searchId" placeholder="Ingrese el nombre de la aseguradora">
-                    <button type="button" onclick="updateInsurance()">Actualizar</button>
-                    <div id="insurance-fields"></div>
-                </form>
-            `;
+            updateForm.classList.remove('hidden');
             break;
     }
-
-    formContainer.innerHTML = formHtml;
-    updateForm(section); // Pasar el parámetro de sección para actualizar el formulario
-}
-
-function updateForm(section) {
-    const insuranceFields = document.getElementById('insurance-fields');
-    insuranceFields.innerHTML = ''; // Limpiar los campos del formulario
-    let fieldsHtml = '';
-
-    if (section === 'register' || section === 'update') {
-        fieldsHtml = `
-            <label for="company">Compañía de Seguros:</label>
-            <input type="text" id="company" name="company" placeholder="Ingrese la compañía de seguros" required>
-
-            <label for="insuranceType">Tipo de Seguros:</label>
-            <input type="text" id="insuranceType" name="insuranceType" placeholder="Ingrese el tipo de seguro" required>
-
-            <label for="ruc-aseguradora">RUC:</label>
-            <input type="text" id="ruc-aseguradora" name="ruc-aseguradora" placeholder="Ingrese el RUC" required>
-
-            <label for="product">Producto:</label>
-            <input type="text" id="product" name="product" placeholder="Ingrese el producto" required>
-
-            <label for="phone">Teléfono:</label>
-            <input type="text" id="phone" name="phone" placeholder="Ingrese el teléfono" required>
-
-            <label for="address">Dirección:</label>
-            <input type="text" id="address" name="address" placeholder="Ingrese la dirección" required>
-
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="Ingrese el correo electrónico" required>
-
-            <label for="startDate">Fecha de Inicio Contrato:</label>
-            <input type="date" id="startDate" name="startDate" required>
-
-            <label for="endDate">Fecha de Fin Contrato:</label>
-            <input type="date" id="endDate" name="endDate" required>
-
-            <label for="percentageComission">Porcentaje de Comisión:</label>
-            <input type="text" id="percentageComission" name="percentageComission" placeholder="Ingrese el porcentaje de comisión" required>
-        `;
-    }
-
-    insuranceFields.innerHTML = fieldsHtml;
 }
 
 function consultInsurance() {
-    const searchId = document.getElementById('searchId').value;
+    const searchId = document.getElementById('searchId-consult').value;
     fetch(`/consultInsurance?searchId=${searchId}`)
         .then(response => response.json())
         .then(data => {
-            // Aquí debes rellenar los campos del formulario con los datos recibidos
-            document.getElementById('company').value = data.company;
-            // Rellena los demás campos de aseguradora
+            const consultResults = document.getElementById('consult-results');
+            consultResults.innerHTML = `
+                <p><strong>Compañía de Seguros:</strong> ${data.company}</p>
+                <p><strong>Tipo de Seguros:</strong> ${data.insuranceType}</p>
+                <p><strong>RUC:</strong> ${data.ruc}</p>
+                <p><strong>Producto:</strong> ${data.product}</p>
+                <p><strong>Teléfono:</strong> ${data.phone}</p>
+                <p><strong>Dirección:</strong> ${data.address}</p>
+                <p><strong>Correo Electrónico:</strong> ${data.email}</p>
+                <p><strong>Fecha de Inicio Contrato:</strong> ${data.startDate}</p>
+                <p><strong>Fecha de Fin Contrato:</strong> ${data.endDate}</p>
+                <p><strong>Porcentaje de Comisión:</strong> ${data.percentageComission}</p>
+            `;
         })
         .catch(error => console.error('Error al consultar Aseguradora:', error));
 }
 
 function updateInsurance() {
-    const searchId = document.getElementById('searchId').value;
+    const searchId = document.getElementById('searchId-update').value;
     fetch(`/updateInsurance?searchId=${searchId}`)
         .then(response => response.json())
         .then(data => {
-            // Aquí debes rellenar los campos del formulario con los datos recibidos
-            document.getElementById('company').value = data.company;
-            // Rellena los demás campos de aseguradora
+            const updateFields = document.getElementById('update-fields');
+            updateFields.innerHTML = `
+                <div>
+                    <label for="company-update" class="block text-gray-700 font-semibold mb-2">Compañía de Seguros:</label>
+                    <input type="text" id="company-update" name="company" value="${data.company}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="insuranceType-update" class="block text-gray-700 font-semibold mb-2">Tipo de Seguros:</label>
+                    <input type="text" id="insuranceType-update" name="insuranceType" value="${data.insuranceType}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="ruc-update" class="block text-gray-700 font-semibold mb-2">RUC:</label>
+                    <input type="text" id="ruc-update" name="ruc" value="${data.ruc}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="product-update" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+                    <input type="text" id="product-update" name="product" value="${data.product}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="phone-update" class="block text-gray-700 font-semibold mb-2">Teléfono:</label>
+                    <input type="text" id="phone-update" name="phone" value="${data.phone}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="address-update" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
+                    <input type="text" id="address-update" name="address" value="${data.address}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="email-update" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
+                    <input type="email" id="email-update" name="email" value="${data.email}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="startDate-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio Contrato:</label>
+                    <input type="date" id="startDate-update" name="startDate" value="${data.startDate}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="endDate-update" class="block text-gray-700 font-semibold mb-2">Fecha de Fin Contrato:</label>
+                    <input type="date" id="endDate-update" name="endDate" value="${data.endDate}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+                <div>
+                    <label for="percentageComission-update" class="block text-gray-700 font-semibold mb-2">Porcentaje de Comisión:</label>
+                    <input type="text" id="percentageComission-update" name="percentageComission" value="${data.percentageComission}" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                </div>
+            `;
         })
         .catch(error => console.error('Error al actualizar Aseguradora:', error));
 }

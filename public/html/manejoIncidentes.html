@@ -17,6 +17,7 @@
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
           <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
+          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administración del Sistema</a></li>
           <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button></li>
         </ul>
       </nav>
@@ -32,8 +33,64 @@
       <button onclick="showSection('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
     </div>
 
-    <div id="form-container1" class="space-y-4">
-      <!-- Formulario dinámico se actualizará aquí -->
+    <div id="form-container" class="space-y-4">
+      <!-- Formularios estáticos se actualizarán aquí -->
+      <!-- Registrar Incidente -->
+      <div id="register-form" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">Registrar Incidente</h3>
+        <form>
+          <label for="id-cedula-ruc" class="block text-sm font-medium text-gray-700">Cédula/RUC:</label>
+          <input type="text" id="id-cedula-ruc" name="id-cedula-ruc" placeholder="Ingrese la cédula o RUC" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="id-incident" class="block text-sm font-medium text-gray-700">ID Incidente:</label>
+          <input type="text" id="id-incident" name="id-incident" placeholder="Ingrese el ID del incidente" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="description" class="block text-sm font-medium text-gray-700">Descripción:</label>
+          <input type="text" id="description" name="description" placeholder="Ingrese la descripción" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="annexes" class="block text-sm font-medium text-gray-700">Anexos:</label>
+          <input type="text" id="annexes" name="annexes" placeholder="Ingrese los anexos" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="date" class="block text-sm font-medium text-gray-700">Fecha:</label>
+          <input type="date" id="date" name="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="place" class="block text-sm font-medium text-gray-700">Lugar:</label>
+          <input type="text" id="place" name="place" placeholder="Ingrese el lugar" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="evidence" class="block text-sm font-medium text-gray-700">Evidencia:</label>
+          <input type="text" id="evidence" name="evidence" placeholder="Ingrese la evidencia" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="incidentType" class="block text-sm font-medium text-gray-700">Tipo de Incidente:</label>
+          <input type="text" id="incidentType" name="incidentType" placeholder="Ingrese el tipo de incidente" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <label for="statusIncident" class="block text-sm font-medium text-gray-700">Estado del Incidente:</label>
+          <input type="text" id="statusIncident" name="statusIncident" placeholder="Ingrese el estado del incidente" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+
+          <button type="submit" class="mt-4 bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+        </form>
+      </div>
+
+      <!-- Consultar Incidente -->
+      <div id="consult-form" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">Consultar Incidente</h3>
+        <form>
+          <label for="searchId" class="block text-sm font-medium text-gray-700">Ingrese ID Incidente:</label>
+          <input type="text" id="searchId" name="searchId" placeholder="Ingrese el ID del incidente" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+          <button type="button" onclick="consultIncident()" class="mt-4 bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
+          <div id="incident-details" class="mt-6"></div>
+        </form>
+      </div>
+
+      <!-- Actualizar Incidente -->
+      <div id="update-form" class="hidden">
+        <h3 class="text-2xl font-bold mb-4">Actualizar Incidente</h3>
+        <form>
+          <label for="searchIdUpdate" class="block text-sm font-medium text-gray-700">Ingrese ID Incidente:</label>
+          <input type="text" id="searchIdUpdate" name="searchIdUpdate" placeholder="Ingrese el ID del incidente" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+          <button type="button" onclick="updateIncident()" class="mt-4 bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
+          <div id="incident-details-update" class="mt-6"></div>
+        </form>
+      </div>
     </div>
   </main>
 
