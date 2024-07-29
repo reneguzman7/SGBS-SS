@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manejo de Incidentes</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function showSection(section) {
+      const sections = ['register', 'consult', 'update'];
+      sections.forEach(s => {
+        document.getElementById(`${s}-form`).classList.add('hidden');
+      });
+      document.getElementById(`${section}-form`).classList.remove('hidden');
+    }
+
+    function hideRegister() {
+      document.getElementById('register-form').classList.add('hidden');
+    }
+    function hideConsult() {
+      document.getElementById('consult-form').classList.add('hidden');
+    }
+    function hideUpdate() {
+      document.getElementById('update-form').classList.add('hidden');
+    }
+
+  </script>
 </head>
 <body class="bg-gray-50">
   <!-- Barra de Navegación Horizontal -->
@@ -28,9 +48,9 @@
   <main class="container mx-auto p-8">
     <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Manejo de Incidentes</h1>
     <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showSection('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-      <button onclick="showSection('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-      <button onclick="showSection('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
+      <button onclick="showSection('register'); hideConsult();hideUpdate();" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+      <button onclick="showSection('consult'); hideRegister(); hideUpdate();" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
+      <button onclick="showSection('update'); hideRegister(); hideConsult();" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
     </div>
 
     <div id="form-container" class="space-y-4">
