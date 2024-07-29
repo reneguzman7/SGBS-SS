@@ -1,83 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Pagos</title>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
-  <header class="bg-blue-800 text-white shadow-lg">
-    <div class="container mx-auto flex items-center justify-between p-6">
-      <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
-          <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
-          <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administración del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container mx-auto p-8">
-    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Gestión de Pagos</h1>
-    <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showSection('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-      <button onclick="showSection('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-    </div>
-    <div id="form-container" class="space-y-4">
-      <!-- Formulario de Registro -->
-      <div id="register-section" class="hidden">
-        <h3 class="text-2xl font-bold mb-4">Registrar Pago</h3>
-        <form id="register-form" class="space-y-4">
-          <div>
-            <label for="registerRUC" class="block text-gray-700 font-semibold mb-2">RUC:</label>
-            <input type="text" id="registerRUC" name="RUC" placeholder="Ingrese el RUC" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="registerAmount" class="block text-gray-700 font-semibold mb-2">Monto:</label>
-            <input type="text" id="registerAmount" name="amount" placeholder="Ingrese el monto" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="registerContractNumber" class="block text-gray-700 font-semibold mb-2">Número de Contrato:</label>
-            <input type="text" id="registerContractNumber" name="contractNumber" placeholder="Ingrese el número de contrato" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-        </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Pagos</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-blue-800 text-white shadow-lg">
+      <div class="container mx-auto flex items-center justify-between p-6">
+        <img src="../images/logo.png" alt="Logo" class="w-32 h-auto" />
+        <nav>
+          <ul class="flex space-x-6">
+            <li>
+              <a
+                href="clientes.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Clientes</a
+              >
+            </li>
+            <li>
+              <a
+                href="aseguradoras.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Aseguradoras</a
+              >
+            </li>
+            <li>
+              <a
+                href="gestionPagos.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Gestión de Pagos</a
+              >
+            </li>
+            <li>
+              <a
+                href="manejoIncidentes.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Manejo de Incidentes</a
+              >
+            </li>
+            <li>
+              <a
+                href="administracionSistema.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Administración del Sistema</a
+              >
+            </li>
+            <li>
+              <button
+                onclick="window.location.href='index.html'"
+                class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300"
+              >
+                Cerrar sesión
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
-      
-      <!-- Formulario de Consulta -->
-      <div id="consult-section" class="hidden">
-        <h3 class="text-2xl font-bold mb-4">Consultar Pago</h3>
-        <form id="consult-form" class="space-y-4">
-          <div>
-            <label for="consultSearchId" class="block text-gray-700 font-semibold mb-2">Ingrese Cédula/RUC:</label>
-            <input type="text" id="consultSearchId" name="searchId" placeholder="Ingrese la cédula o RUC" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <button type="button" onclick="consultPayments()" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-          <div class="space-y-4 mt-4">
-            <div>
-              <label for="consultRUC" class="block text-gray-700 font-semibold mb-2">RUC:</label>
-              <input type="text" id="consultRUC" name="RUC" placeholder="Ingrese el RUC" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-            </div>
-            <div>
-              <label for="consultAmount" class="block text-gray-700 font-semibold mb-2">Monto:</label>
-              <input type="text" id="consultAmount" name="amount" placeholder="Ingrese el monto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-            </div>
-            <div>
-              <label for="consultContractNumber" class="block text-gray-700 font-semibold mb-2">Número de Contrato:</label>
-              <input type="text" id="consultContractNumber" name="contractNumber" placeholder="Ingrese el número de contrato" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
+    </header>
 
-  <script src="../js/gestionPagos.js"></script>
-</body>
+    <main class="container mx-auto p-8">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-6">
+        Gestión de Pagos
+      </h1>
+      <div class="mb-6 flex flex-wrap gap-4">
+        <button
+          onclick="showSection('register')"
+          class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+        >
+          Registrar
+        </button>
+        <button
+          onclick="showSection('consult')"
+          class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300"
+        >
+          Consultar
+        </button>
+      </div>
+      <div id="form-container" class="space-y-4">
+        <div id="register-section" class="hidden">
+          <h3 class="text-2xl font-bold mb-4">Registrar Pago</h3>
+          <form
+            id="register-form"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <div>
+              <label
+                for="registerRUC"
+                class="block text-gray-700 font-semibold mb-2"
+                >RUC:</label
+              >
+              <input
+                type="text"
+                id="registerRUC"
+                name="RUC"
+                placeholder="Ingrese el RUC"
+                required
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+            <div>
+              <label
+                for="registerAmount"
+                class="block text-gray-700 font-semibold mb-2"
+                >Monto:</label
+              >
+              <input
+                type="text"
+                id="registerAmount"
+                name="amount"
+                placeholder="Ingrese el monto"
+                required
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+            <div>
+              <label
+                for="registerContractNumber"
+                class="block text-gray-700 font-semibold mb-2"
+                >Número de Contrato:</label
+              >
+              <input
+                type="text"
+                id="registerContractNumber"
+                name="contractNumber"
+                placeholder="Ingrese el número de contrato"
+                required
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+            <div class="col-span-full">
+              <button
+                type="submit"
+                class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+              >
+                Registrar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulario de Consulta -->
+        <div id="consult-section" class="hidden">
+          <h3 class="text-2xl font-bold mb-4">Consultar Pago</h3>
+          <form
+            id="consult-form"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            <div>
+              <label
+                for="consultSearchId"
+                class="block text-gray-700 font-semibold mb-2"
+                >Ingrese Cédula/RUC:</label
+              >
+              <input
+                type="text"
+                id="consultSearchId"
+                name="searchId"
+                placeholder="Ingrese la cédula o RUC"
+                required
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+            <div class="col-span-full">
+              <button
+                type="button"
+                onclick="consultPayments()"
+                class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300"
+              >
+                Consultar
+              </button>
+            </div>
+            <div>
+              <label
+                for="consultRUC"
+                class="block text-gray-700 font-semibold mb-2"
+                >RUC:</label
+              >
+              <input
+                type="text"
+                id="consultRUC"
+                name="RUC"
+                placeholder="Ingrese el RUC"
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+            <div>
+              <label
+                for="consultAmount"
+                class="block text-gray-700 font-semibold mb-2"
+                >Monto:</label
+              >
+              <input
+                type="text"
+                id="consultAmount"
+                name="amount"
+                placeholder="Ingrese el monto"
+                class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="../js/gestionPagos.js"></script>
+  </body>
 </html>
