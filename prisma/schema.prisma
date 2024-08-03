@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,7 +8,131 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
+  id         String   @id @default(cuid())
+  typeOfUser String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Ensurance {
+  id              String            @id @default(cuid())
+  insurerName     String
+  ruc             String
+  telf            String
+  address         String
+  email           String
+  start_date      DateTime
+  end_date        DateTime
+  comission       Float
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @updatedAt
+
+  typeOfEnsurance typeOfEnsurance[] 
+  product         Product[]         
+  customers       Customer[] @relation("EnsuranceToCustomer") // Relación inversa uno a muchos con Customer
+}
+
+model Customer {
+  id               String    @id @default(cuid())
+  policy           String
+  inferable        String
+  start_date       DateTime
+  end_date         DateTime
+  validityDate     DateTime?
+  isInsured        Boolean
+  cancelationCause String
+  cancelationDate  DateTime
+  notes            String?
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  ensuranceId      String
+  ensurance        Ensurance @relation(fields: [ensuranceId], references: [id], name: "EnsuranceToCustomer") // Relación muchos a uno con Ensurance
+
+  typeOfEnsuranceId String
+  typeOfEnsurance   typeOfEnsurance  @relation(fields: [typeOfEnsuranceId], references: [id])
+
+  productId        String
+  product          Product @relation(fields: [productId], references: [id])
+
+  status           Status[] 
+  incidentManagements IncidentManagement[] 
+  payments         Payment[] 
+}
+
+model IncidentManagement {
+  id                  String   @id @default(cuid())
+  incidentId          String
+  description         String
+  anexes              String?
+  date                DateTime
+  place               String
+  evidences           String
+  typeOfIncident      String
+  incidentStatus      Boolean  @default(false)
+  ruc_CI              Boolean  @default(false)
+  documentationNumber String
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+
+  customerId          String
+  customer            Customer @relation(fields: [customerId], references: [id])
+}
+
+model Payment {
+  id             String   @id @default(cuid())
+  ruc            String
+  amount         Float
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+
+  customerId     String
+  customer       Customer @relation(fields: [customerId], references: [id])
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  productName String
+  price       Float
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  ensuranceId String
+  ensurance   Ensurance @relation(fields: [ensuranceId], references: [id])
+
+  customers   Customer[] // Relación inversa uno a muchos
+}
+
+model typeOfEnsurance {
+  id          String    @id @default(cuid())
+  type        String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+
+  ensuranceId String
+  ensurance   Ensurance @relation(fields: [ensuranceId], references: [id])
+
+  customers   Customer[] // Relación inversa uno a muchos
+}
+
+model Status {
+  id         String   @id @default(cuid())
+  status     String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  action     String
+  modelName  String
+  itemId     String
+  userId     String?
+  changes    Json?
+  timestamp  DateTime @default(now())
 }
