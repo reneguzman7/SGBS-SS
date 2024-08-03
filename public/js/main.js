@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
         registerSection.style.display = 'block';
     });
 
-    // Volver al formulario de inicio de sesión
+    // Volver al formulario de inicio de sesiï¿½n
     document.querySelector('.login-button').addEventListener('click', () => {
         registerSection.style.display = 'none';
         loginSection.style.display = 'block';
     });
 
-    // Función de validación de contraseÃ±a
+    // Funciï¿½n de validaciï¿½n de contraseÃ±a
     function validatePassword(password) {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasNoSpaces;
     }
 
-    // Lógica de inicio de sesión
+    // Lï¿½gica de inicio de sesiï¿½n
     loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el envío del formulario
+        event.preventDefault(); // Previene el envï¿½o del formulario
 
         const user = userField.value;
         const password = passwordField.value;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     loginMessage.textContent = 'Ingreso Satisfactorio';
                     loginMessage.className = 'message success';
                     setTimeout(() => {
-                        window.location.href = '../html/clientes.html'; // Redirigir a la página principal
+                        window.location.href = '../html/clientes.html'; // Redirigir a la pï¿½gina principal
                     }, 1500); // Esperar 1.5 segundos antes de redirigir
                 } else {
                     loginMessage.textContent = result.error || 'Ingreso fallido';
@@ -72,25 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Lógica de registro
     registerForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el envío del formulario
-
+        event.preventDefault(); // Previene el envÃ­o del formulario
+    
         const newUser = document.getElementById('new-correo').value;
         const newPassword = document.getElementById('new-contrasena').value;
-        const confirmPassword = document.getElementById('conf-contrasena').value;
-
-        if (!newUser) {
-            registerMessage.textContent = 'El correo no puede estar en blanco';
-            registerMessage.className = 'message error';
-        } else if (!newPassword || !confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no pueden estar en blanco';
+    
+        if (!validateEmail(newUser)) {
+            registerMessage.textContent = 'Correo electrÃ³nico no vÃ¡lido';
             registerMessage.className = 'message error';
         } else if (!validatePassword(newPassword)) {
             registerMessage.textContent = 'La contraseÃ±a no cumple con los requisitos de seguridad';
-            registerMessage.className = 'message error';
-        } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no coinciden';
             registerMessage.className = 'message error';
         } else {
             try {
@@ -99,15 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id: Date.now().toString(), email: newUser, password: newPassword }),
+                    body: JSON.stringify({ email: newUser, password: newPassword }),
                 });
-
+    
                 const result = await response.json();
-
-                if (response.ok){
+    
+                if (response.ok) {
                     registerMessage.textContent = 'Registro exitoso';
                     registerMessage.className = 'message success';
-
+    
                     setTimeout(() => {
                         registerSection.style.display = 'none';
                         loginSection.style.display = 'block';
@@ -123,4 +115,3 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});

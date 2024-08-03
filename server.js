@@ -1,40 +1,32 @@
-// server.js
 const express = require('express');
-const path = require('path');
-const pool = require('./db');
+const bodyParser = require('body-parser');
+const { Pool } = require('pg');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Ruta para obtener clientes
-app.get('/api/clientes', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM clientes');
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'SGBS-SS',
+  password: 'Postgres2024',
+  port: 5432,
 });
 
-// Ruta para agregar un cliente
-app.post('/api/clientes', async (req, res) => {
+app.use(bodyParser.json());
+
+app.post('/users', async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const { nombre, apellido, email } = req.body;
-    const newClient = await pool.query(
-      'INSERT INTO clientes (nombre, apellido, email) VALUES ($1, $2, $3) RETURNING *',
-      [nombre, apellido, email]
+    const result = await pool.query(
+      'INSERT INTO "User" (email, password) VALUES ($1, $2) RETURNING *',
+      [email, password]
     );
-    res.json(newClient.rows[0]);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error al registrar usuario:', error);
+    res.status(500).json({ error: 'Error en el servidor' });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log('Servidor escuchando en el puerto 3000');
 });
