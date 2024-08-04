@@ -126,6 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 registerMessage.textContent = 'Error en el servidor';
                 registerMessage.classList.add('error');
             }
-        }
-    });
+        }
+    });
 });
