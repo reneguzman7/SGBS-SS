@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         registerSection.style.display = 'block';
     });
 
-    // Volver al formulario de inicio de sesi贸n
+    // Volver al formulario de inicio de sesi髇
     document.querySelector('.login-button').addEventListener('click', () => {
         registerSection.style.display = 'none';
         loginSection.style.display = 'block';
     });
 
-    // Funci贸n de validaci贸n de contrase帽a
+    // Funci髇 de validaci髇 de contrase馻
     function validatePassword(password) {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -30,25 +30,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasNoSpaces;
     }
 
-    // Funci贸n de validaci贸n de correo
+    // Funci髇 de validaci髇 de correo
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // L贸gica de inicio de sesi贸n
+    // L骻ica de inicio de sesi髇
     loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el env铆o del formulario
+        event.preventDefault(); // Previene el env韔 del formulario
 
         const user = document.getElementById('correo').value;
         const password = document.getElementById('contrasena').value;
 
         if (!user || !password) {
-            loginMessage.textContent = 'Correo y contrase帽a no pueden estar en blanco';
+            loginMessage.textContent = 'Correo y contrase馻 no pueden estar en blanco';
             loginMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('/login', {
+                const response = await fetch('http://localhost:3000/login', { // URL completa con localhost y puerto
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     loginMessage.textContent = 'Ingreso Satisfactorio';
                     loginMessage.classList.add('success');
                     setTimeout(() => {
-                        window.location.href = '../html/clientes.html'; // Redirigir a la p谩gina principal
+                        window.location.href = '../html/clientes.html'; // Redirigir a la p醙ina principal
                     }, 1500); // Esperar 1.5 segundos antes de redirigir
                 } else {
                     loginMessage.textContent = result.error || 'Ingreso fallido';
@@ -75,26 +75,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // L贸gica de registro
+    // L骻ica de registro
     registerForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el env铆o del formulario
+        event.preventDefault(); // Previene el env韔 del formulario
 
         const newUser = document.getElementById('new-correo').value;
         const newPassword = document.getElementById('new-contrasena').value;
         const confirmPassword = document.getElementById('conf-contrasena').value;
 
         if (!validateEmail(newUser)) {
-            registerMessage.textContent = 'Correo electr贸nico no v谩lido';
+            registerMessage.textContent = 'Correo electr髇ico no v醠ido';
             registerMessage.classList.add('error');
         } else if (!validatePassword(newPassword)) {
-            registerMessage.textContent = 'La contrase帽a no cumple con los requisitos de seguridad';
+            registerMessage.textContent = 'La contrase馻 no cumple con los requisitos de seguridad';
             registerMessage.classList.add('error');
         } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contrase帽as no coinciden';
+            registerMessage.textContent = 'Las contrase馻s no coinciden';
             registerMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('/register', {
+                const response = await fetch('http://localhost:3000/register', { // URL completa con localhost y puerto
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
