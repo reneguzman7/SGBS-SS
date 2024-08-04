@@ -7,12 +7,12 @@ const bcrypt = require('bcrypt');
 const app = express();
 const port = 3000;
 
-// Configurar la conexión a la base de datos
+// Configurar la conexiï¿½n a la base de datos
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'SGBS-SS',
-  password: '123456',
+  password: 'Postgres2024',
   port: 5432,
 });
 
@@ -20,7 +20,7 @@ pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error conectando a la base de datos:', err);
   } else {
-    console.log('Conexión exitosa:', res.rows[0]);
+    console.log('Conexiï¿½n exitosa:', res.rows[0]);
   }
 });
 
@@ -36,16 +36,16 @@ app.post('/register', async (req, res) => {
   try {
     // Validar entrada
     if (!email || !password) {
-      return res.status(400).json({ error: 'Correo y contraseña son requeridos' });
+      return res.status(400).json({ error: 'Correo y contraseï¿½a son requeridos' });
     }
 
     // Verificar si el usuario ya existe
     const userExists = await pool.query('SELECT * FROM "USUARIOS" WHERE CORREO = $1', [email]);
     if (userExists.rows.length > 0) {
-      return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
+      return res.status(400).json({ error: 'El correo electrï¿½nico ya estï¿½ registrado' });
     }
 
-    // Hash de la contraseña
+    // Hash de la contraseï¿½a
     const hashedPassword = await bcrypt.hash(password, 10);
     
     // Insertar el nuevo usuario en la base de datos
@@ -62,7 +62,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Endpoint para iniciar sesión
+// Endpoint para iniciar sesiï¿½n
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -76,13 +76,13 @@ app.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.contrasena);
 
     if (!isMatch) {
-      return res.status(400).json({ error: 'Contraseña incorrecta' });
+      return res.status(400).json({ error: 'Contraseï¿½a incorrecta' });
     }
 
-    res.json({ message: 'Inicio de sesión exitoso' });
+    res.json({ message: 'Inicio de sesiï¿½n exitoso' });
   } catch (error) {
     console.error('Error en /login:', error);
-    res.status(500).json({ error: 'Error al iniciar sesión' });
+    res.status(500).json({ error: 'Error al iniciar sesiï¿½n' });
   }
 });
 

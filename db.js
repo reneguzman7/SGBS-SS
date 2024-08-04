@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'SGBS-SS',
-  password: '123456',
+  password: 'Postgres2024', // Cambiar por la contrase�a de su usuario
   port: 5432, // Puerto por defecto de PostgreSQL
 });
 

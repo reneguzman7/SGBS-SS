@@ -27,7 +27,7 @@
   </script>
 </head>
 <body class="bg-gray-50">
-  <!-- Barra de Navegación Horizontal -->
+  <!-- Barra de Navegaciï¿½n Horizontal -->
   <header class="bg-blue-800 text-white shadow-lg">
     <div class="container mx-auto flex items-center justify-between p-6">
       <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
@@ -35,10 +35,10 @@
         <ul class="flex space-x-6">
           <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
+          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestiï¿½n de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administración del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button></li>
+          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraciï¿½n del Sistema</a></li>
+          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesiï¿½n</button></li>
         </ul>
       </nav>
     </div>
@@ -54,52 +54,41 @@
     </div>
 
     <div id="form-container" class="space-y-4">
-      <!-- Formularios se actualizarán aquí -->
+      <!-- Formularios se actualizarï¿½n aquï¿½ -->
 
-      <!-- Registrar Incidente -->
-      <form id="register-form" class="hidden grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <h3 class="text-2xl font-bold col-span-full mb-4">Registrar Incidente</h3>
-        
-        <div class="col-span-full">
-          <label for="id-cedula-ruc" class="block text-gray-700 font-semibold mb-2">Cédula/RUC:</label>
-          <input type="text" id="id-cedula-ruc" name="id-cedula-ruc" placeholder="Ingrese la cédula o RUC" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="id-incident" class="block text-gray-700 font-semibold mb-2">ID Incidente:</label>
-          <input type="text" id="id-incident" name="id-incident" placeholder="Ingrese el ID del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="description" class="block text-gray-700 font-semibold mb-2">Descripción:</label>
-          <input type="text" id="description" name="description" placeholder="Ingrese la descripción" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="annexes" class="block text-gray-700 font-semibold mb-2">Anexos:</label>
-          <input type="text" id="annexes" name="annexes" placeholder="Ingrese los anexos" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="date" class="block text-gray-700 font-semibold mb-2">Fecha:</label>
-          <input type="date" id="date" name="date" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="place" class="block text-gray-700 font-semibold mb-2">Lugar:</label>
-          <input type="text" id="place" name="place" placeholder="Ingrese el lugar" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="evidence" class="block text-gray-700 font-semibold mb-2">Evidencia:</label>
-          <input type="text" id="evidence" name="evidence" placeholder="Ingrese la evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="incidentType" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
-          <input type="text" id="incidentType" name="incidentType" placeholder="Ingrese el tipo de incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div>
-          <label for="statusIncident" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
-          <input type="text" id="statusIncident" name="statusIncident" placeholder="Ingrese el estado del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        </div>
-        <div class="col-span-full">
-          <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-        </div>
-      </form>
+      <!-- Formulario de Registrar Incidente -->
+<form id="register-incident-form" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+  <h3 class="text-2xl font-bold col-span-full mb-4">Registrar Incidente</h3>
+  
+  <div class="col-span-full">
+    <label for="cedula_ruc" class="block text-gray-700 font-semibold mb-2">CÃ©dula/RUC:</label>
+    <input type="text" id="cedula_ruc" name="cedula_ruc" placeholder="Ingrese la cÃ©dula o RUC" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+  </div>
+  
+  <div>
+    <label for="id_incidente" class="block text-gray-700 font-semibold mb-2">ID Incidente:</label>
+    <input type="text" id="id_incidente" name="id_incidente" placeholder="Ingrese el ID del incidente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+  </div>
+  
+  <div>
+    <label for="descripcion" class="block text-gray-700 font-semibold mb-2">DescripciÃ³n:</label>
+    <input type="text" id="descripcion" name="descripcion" placeholder="Ingrese la descripciÃ³n" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+  </div>
+  
+  <div>
+    <label for="tipo_incidente" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
+    <input type="text" id="tipo_incidente" name="tipo_incidente" placeholder="Ingrese el tipo de incidente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+  </div>
+  
+  <div>
+    <label for="estado_incidente" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
+    <input type="text" id="estado_incidente" name="estado_incidente" placeholder="Ingrese el estado del incidente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+  </div>
+  
+  <div class="col-span-full">
+    <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
+  </div>
+</form>
 
       <!-- Consultar Incidente -->
       <form id="consult-form" class="hidden grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -113,7 +102,7 @@
           <button type="button" onclick="consultIncident()" class="bg-gray-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
         </div>
         <div id="incident-details" class="col-span-full mt-6">
-          <!-- Los detalles del incidente se mostrarán aquí -->
+          <!-- Los detalles del incidente se mostrarï¿½n aquï¿½ -->
         </div>
       </form>
 
@@ -129,7 +118,7 @@
           <button type="button" onclick="updateIncident()" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
         </div>
         <div id="incident-details-update" class="col-span-full mt-6">
-          <!-- Los detalles del incidente para actualización se mostrarán aquí -->
+          <!-- Los detalles del incidente para actualizaciï¿½n se mostrarï¿½n aquï¿½ -->
         </div>
       </form>
     </div>
