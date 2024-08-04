@@ -1,17 +1,17 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
-const bcrypt = require('bcrypt');  // Usaremos bcrypt para encriptar contraseñas
+const bcrypt = require('bcrypt');  // Usaremos bcrypt para encriptar contraseï¿½as
 
 const app = express();
 const port = 3000;
 
-// Configuración de conexión a la base de datos
+// Configuraciï¿½n de conexiï¿½n a la base de datos
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'SGBS-SS',
-  password: '123456',
+  password: 'Postgres2024',
   port: 5432,
 });
 
@@ -19,7 +19,7 @@ pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error conectando a la base de datos:', err);
   } else {
-    console.log('Conexión exitosa:', res.rows[0]);
+    console.log('Conexiï¿½n exitosa:', res.rows[0]);
   }
 });
 
@@ -71,8 +71,8 @@ app.post('/login', async (req, res) => {
 
     res.status(200).json({ message: 'Login exitoso' });
   } catch (err) {
-    console.error('Error al iniciar sesión:', err);
-    res.status(500).json({ error: 'Error al iniciar sesión' });
+    console.error('Error al iniciar sesiï¿½n:', err);
+    res.status(500).json({ error: 'Error al iniciar sesiï¿½n' });
   }
 });
 
@@ -102,7 +102,7 @@ app.post('/clientes', async (req, res) => {
   } = req.body;
 
   try {
-    // Validación de datos obligatorios
+    // Validaciï¿½n de datos obligatorios
     if (!documentoidentidad || !nombrecompleto || !correo || !tipocliente || !ciudad || !direccion || !telefonoaseguradora || !aseguradora || !tiposeguro || !fechainicio) {
       return res.status(400).json({ error: 'Faltan datos obligatorios' });
     }
