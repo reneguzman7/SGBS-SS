@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         registerSection.style.display = 'block';
     });
 
-    // Volver al formulario de inicio de sesión
+    // Volver al formulario de inicio de sesi n
     document.querySelector('.login-button').addEventListener('click', () => {
         registerSection.style.display = 'none';
         loginSection.style.display = 'block';
     });
 
-    // Función de validación de contraseña
+    // Funci n de validaci n de contrase a
     function validatePassword(password) {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -30,15 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasNoSpaces;
     }
 
-    // Función de validación de correo
+    // Funci n de validaci n de correo
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
 
-    // Lógica de inicio de sesión
+    // L gica de inicio de sesi n
     loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el envío del formulario
+        event.preventDefault(); // Previene el env o del formulario
 
         const user = document.getElementById('correo').value;
         const password = document.getElementById('contrasena').value;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginMessage.classList.remove('error', 'success');
 
         if (!user || !password) {
-            loginMessage.textContent = 'Correo y contraseña no pueden estar en blanco';
+            loginMessage.textContent = 'Correo y contrase a no pueden estar en blanco';
             loginMessage.classList.add('error');
         } else {
             try {
@@ -78,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Lógica de registro
+    // L gica de registro
     registerForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Previene el envío del formulario
+        event.preventDefault(); // Previene el env o del formulario
 
         const newUser = document.getElementById('new-correo').value;
         const newPassword = document.getElementById('new-contrasena').value;
@@ -90,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         registerMessage.classList.remove('error', 'success');
 
         if (!validateEmail(newUser)) {
-            registerMessage.textContent = 'Correo electrónico no válido';
+            registerMessage.textContent = 'Correo electr nico no v lido';
             registerMessage.classList.add('error');
         } else if (!validatePassword(newPassword)) {
-            registerMessage.textContent = 'La contraseña debe tener una longitud mínima de 8 caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial como !@#$%^&*(),.?":{}|<>';
+            registerMessage.textContent = 'La contrase a debe tener una longitud m nima de 8 caracteres, al menos una letra may scula, una letra min scula, un n mero y un car cter especial como !@#$%^&*(),.?":{}|<>';
             registerMessage.classList.add('error');
         } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contraseñas no coinciden';
+            registerMessage.textContent = 'Las contrase as no coinciden';
             registerMessage.classList.add('error');
         } else {
             try {
@@ -126,6 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 registerMessage.textContent = 'Error en el servidor';
                 registerMessage.classList.add('error');
             }
-        }
-    });
+        }
+    });
 });

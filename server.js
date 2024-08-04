@@ -11,7 +11,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'SGBS-SS',
-  password: 'Postgres2024',
+  password: '123456',
   port: 5432,
 });
 
@@ -28,53 +28,75 @@ app.use(express.json());  // Usa express.json() en lugar de bodyParser
 app.use(express.urlencoded({ extended: true }));
 
 // Endpoint para registrar un nuevo usuario
+// Endpoint para registrar un nuevo usuario
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Faltan datos obligatorios' });
-  }
+  console.log('Solicitud recibida en /register', req.body);
+  const { email, password } = req.body;
 
   try {
+    // Validar entrada
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Correo y contrase a son requeridos' });
+    }
+
+    // Verificar si el usuario ya existe
+    const userExists = await pool.query('SELECT * FROM "USUARIOS" WHERE CORREO = $1', [email]);
+    if (userExists.rows.length > 0) {
+      return res.status(400).json({ error: 'El correo electr nico ya est  registrado' });
+    }
+
+    // Hash de la contrase a
     const hashedPassword = await bcrypt.hash(password, 10);
-    const query = 'INSERT INTO USERS (username, password) VALUES ($1, $2)';
-    await pool.query(query, [username, hashedPassword]);
-    res.status(201).json({ message: 'Usuario registrado exitosamente' });
-  } catch (err) {
-    console.error('Error al registrar usuario:', err);
-    res.status(500).json({ error: 'Error al registrar usuario' });
+    
+    // Insertar el nuevo usuario en la base de datos
+    const result = await pool.query(
+      'INSERT INTO "USUARIOS" (CORREO, CONTRASENA, ROL, CREATEDAT) VALUES ($1, $2, $3, NOW()) RETURNING *',
+      [email, hashedPassword, 'user']
+    );
+
+    // Responder con los datos del usuario registrado
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error('Error en /register:', error);
+    res.status(500).json({ error: 'Error al registrar el usuario' });
   }
 });
 
-// Endpoint para login de usuario
+// Endpoint para iniciar sesi n
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Faltan datos obligatorios' });
-  }
+  const { email, password } = req.body;
 
   try {
-    const query = 'SELECT * FROM USERS WHERE username = $1';
-    const result = await pool.query(query, [username]);
-    
+    const result = await pool.query('SELECT * FROM "USUARIOS" WHERE CORREO = $1', [email]);
     if (result.rows.length === 0) {
-      return res.status(401).json({ error: 'Credenciales incorrectas' });
+      return res.status(400).json({ error: 'Usuario no encontrado' });
     }
 
     const user = result.rows[0];
-    const match = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.contrasena);
 
-    if (!match) {
-      return res.status(401).json({ error: 'Credenciales incorrectas' });
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Contrase a incorrecta' });
     }
 
-    res.status(200).json({ message: 'Login exitoso' });
-  } catch (err) {
-    console.error('Error al iniciar sesi�n:', err);
-    res.status(500).json({ error: 'Error al iniciar sesi�n' });
+    res.json({ message: 'Inicio de sesi n exitoso' });
+  } catch (error) {
+    console.error('Error en /login:', error);
+    res.status(500).json({ error: 'Error al iniciar sesi n' });
   }
 });
+
+// Endpoint para obtener todos los usuarios
+app.get('/users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM "USUARIOS"');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Error en /users:', error);
+    res.status(500).json({ error: 'Error al obtener los usuarios' });
+  }
+});
+
 
 // Endpoint para registrar un nuevo cliente
 app.post('/clientes', async (req, res) => {
