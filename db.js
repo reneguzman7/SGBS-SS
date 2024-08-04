@@ -1,12 +1,17 @@
-// db.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'tu_usuario',
-  host: 'tu_host',
-  database: 'tu_base_de_datos',
-  password: 'tu_contraseña',
-  port: 5432,
+  user: 'postgres',
+  host: 'localhost',
+  database: 'SGBS-SS',
+  password: 'Postgres2024', // Cambiar por la contrase�a de su usuario
+  port: 5432, // Puerto por defecto de PostgreSQL
 });
 
-module.exports = pool;
+pool.query('SELECT NOW()', (err, res) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log('Conexión exitosa:', res.rows[0]);
+  }
+});

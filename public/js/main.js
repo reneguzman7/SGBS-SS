@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('#login-form');
-    const registerForm = document.querySelector('#register-form');
-    const userField = document.getElementById('correo');
-    const passwordField = document.getElementById('contrasena');
-    const loginMessage = document.querySelector('.login-form .message');
-    const registerMessage = document.querySelector('.register-form .message');
-
-    const registerSection = document.getElementById('register-form');
+    const loginForm = document.querySelector('#login-form form');
+    const registerForm = document.querySelector('#register-form form');
     const loginSection = document.getElementById('login-form');
+    const registerSection = document.getElementById('register-form');
+    const loginMessage = document.querySelector('#login-form .message');
+    const registerMessage = document.querySelector('#register-form .message');
 
     // Mostrar el formulario de registro
     document.querySelector('.register-button').addEventListener('click', () => {
@@ -21,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginSection.style.display = 'block';
     });
 
-    // Función de validación de contraseÃ±a
+    // Función de validación de contraseña
     function validatePassword(password) {
         const minLength = 8;
         const hasUpperCase = /[A-Z]/.test(password);
@@ -33,19 +30,28 @@ document.addEventListener('DOMContentLoaded', () => {
         return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasNoSpaces;
     }
 
+    // Función de validación de correo
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
     // Lógica de inicio de sesión
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault(); // Previene el envío del formulario
 
-        const user = userField.value;
-        const password = passwordField.value;
+        const user = document.getElementById('correo').value;
+        const password = document.getElementById('contrasena').value;
+
+        loginMessage.textContent = '';
+        loginMessage.classList.remove('error', 'success');
 
         if (!user || !password) {
-            loginMessage.textContent = 'Correo y contraseÃ±a no pueden estar en blanco';
-            loginMessage.className = 'message error';
+            loginMessage.textContent = 'Correo y contraseña no pueden estar en blanco';
+            loginMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('/login', {
+                const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -57,17 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     loginMessage.textContent = 'Ingreso Satisfactorio';
-                    loginMessage.className = 'message success';
+                    loginMessage.classList.add('success');
                     setTimeout(() => {
-                        window.location.href = '../html/clientes.html'; // Redirigir a la página principal
+                        window.location.href = '../html/clientes.html';
                     }, 1500); // Esperar 1.5 segundos antes de redirigir
                 } else {
                     loginMessage.textContent = result.error || 'Ingreso fallido';
-                    loginMessage.className = 'message error';
+                    loginMessage.classList.add('error');
                 }
             } catch (error) {
                 loginMessage.textContent = 'Error en el servidor';
-                loginMessage.className = 'message error';
+                loginMessage.classList.add('error');
             }
         }
     });
@@ -80,46 +86,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const newPassword = document.getElementById('new-contrasena').value;
         const confirmPassword = document.getElementById('conf-contrasena').value;
 
-        if (!newUser) {
-            registerMessage.textContent = 'El correo no puede estar en blanco';
-            registerMessage.className = 'message error';
-        } else if (!newPassword || !confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no pueden estar en blanco';
-            registerMessage.className = 'message error';
+        registerMessage.textContent = '';
+        registerMessage.classList.remove('error', 'success');
+
+        if (!validateEmail(newUser)) {
+            registerMessage.textContent = 'Correo electrónico no válido';
+            registerMessage.classList.add('error');
         } else if (!validatePassword(newPassword)) {
-            registerMessage.textContent = 'La contraseÃ±a no cumple con los requisitos de seguridad';
-            registerMessage.className = 'message error';
+            registerMessage.textContent = 'La contraseña debe tener una longitud mínima de 8 caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial como !@#$%^&*(),.?":{}|<>';
+            registerMessage.classList.add('error');
         } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contraseÃ±as no coinciden';
-            registerMessage.className = 'message error';
+            registerMessage.textContent = 'Las contraseñas no coinciden';
+            registerMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('/users', {
+                const response = await fetch('http://localhost:3000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ id: Date.now().toString(), email: newUser, password: newPassword }),
+                    body: JSON.stringify({ email: newUser, password: newPassword }),
                 });
 
                 const result = await response.json();
 
-                if (response.ok){
+                if (response.ok) {
                     registerMessage.textContent = 'Registro exitoso';
-                    registerMessage.className = 'message success';
+                    registerMessage.classList.add('success');
 
                     setTimeout(() => {
                         registerSection.style.display = 'none';
                         loginSection.style.display = 'block';
-                        registerMessage.textContent = '';
-                    }, 1500);
+                    }, 1500); // Esperar 1.5 segundos antes de volver a la pantalla de login
                 } else {
                     registerMessage.textContent = result.error || 'Registro fallido';
-                    registerMessage.className = 'message error';
+                    registerMessage.classList.add('error');
                 }
             } catch (error) {
                 registerMessage.textContent = 'Error en el servidor';
-                registerMessage.className = 'message error';
+                registerMessage.classList.add('error');
             }
         }
     });
