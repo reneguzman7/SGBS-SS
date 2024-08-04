@@ -37,21 +37,42 @@
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div>
-      <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compañía de Seguros:</label>
-      <input type="text" id="company-register" name="company" placeholder="Ingrese la compañía de seguros" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compañía:</label>
+      <select id="company-register" name="company" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateInsuranceTypes(this.value)">
+        <option value="">Seleccione la compañía</option>
+        <option value="Zurich">Zurich</option>
+        <option value="Latina">Latina</option>
+        <option value="AMA">AMA</option>
+        <option value="Sweden">Sweden</option>
+        <option value="MAFRE">MAFRE</option>
+        <option value="Equinoccial">Equinoccial</option>
+        <option value="Hispana">Hispana</option>
+        <option value="BMI">BMI</option>
+        <option value="Cofiamed">Cofiamed</option>
+        <option value="Humanda">Humanda</option>
+        <option value="Saludsa">Saludsa</option>
+      </select>
     </div>
+
     <div>
-      <label for="insuranceType-register" class="block text-gray-700 font-semibold mb-2">Tipo de Seguros:</label>
-      <input type="text" id="insuranceType-register" name="insuranceType" placeholder="Ingrese el tipo de seguro" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      <label for="insuranceType-register" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
+      <select id="insuranceType-register" name="insuranceType" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateProducts(this.value)">
+        <option value="">Seleccione el tipo de seguro</option>
+      </select>
     </div>
+
+    <div>
+      <label for="product-register" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+      <select id="product-register" name="product" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <option value="">Seleccione el producto (si aplica)</option>
+      </select>
+    </div>
+    
     <div>
       <label for="ruc-register" class="block text-gray-700 font-semibold mb-2">RUC:</label>
       <input type="text" id="ruc-register" name="ruc" placeholder="Ingrese el RUC" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
     </div>
-    <div>
-      <label for="product-register" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-      <input type="text" id="product-register" name="product" placeholder="Ingrese el producto" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-    </div>
+    
     <div>
       <label for="phone-register" class="block text-gray-700 font-semibold mb-2">Teléfono:</label>
       <input type="text" id="phone-register" name="phone" placeholder="Ingrese el teléfono" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
