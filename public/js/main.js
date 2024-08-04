@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.querySelector('#register-form form');
     const loginSection = document.getElementById('login-form');
     const registerSection = document.getElementById('register-form');
-    const loginMessage = document.querySelector('.login-form .message');
-    const registerMessage = document.querySelector('.register-form .message');
+    const loginMessage = document.querySelector('#login-form .message');
+    const registerMessage = document.querySelector('#register-form .message');
 
     // Mostrar el formulario de registro
     document.querySelector('.register-button').addEventListener('click', () => {
@@ -43,12 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const user = document.getElementById('correo').value;
         const password = document.getElementById('contrasena').value;
 
+        loginMessage.textContent = '';
+        loginMessage.classList.remove('error', 'success');
+
         if (!user || !password) {
             loginMessage.textContent = 'Correo y contraseña no pueden estar en blanco';
             loginMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('http://localhost:3000/login', { // URL completa con localhost y puerto
+                const response = await fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     loginMessage.textContent = 'Ingreso Satisfactorio';
                     loginMessage.classList.add('success');
                     setTimeout(() => {
-                        window.location.href = '../html/clientes.html'; // Redirigir a la página principal
+                        window.location.href = '../html/clientes.html';
                     }, 1500); // Esperar 1.5 segundos antes de redirigir
                 } else {
                     loginMessage.textContent = result.error || 'Ingreso fallido';
@@ -83,18 +86,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const newPassword = document.getElementById('new-contrasena').value;
         const confirmPassword = document.getElementById('conf-contrasena').value;
 
+        registerMessage.textContent = '';
+        registerMessage.classList.remove('error', 'success');
+
         if (!validateEmail(newUser)) {
             registerMessage.textContent = 'Correo electrónico no válido';
             registerMessage.classList.add('error');
         } else if (!validatePassword(newPassword)) {
-            registerMessage.textContent = 'La contraseña no cumple con los requisitos de seguridad';
+            registerMessage.textContent = 'La contraseña debe tener una longitud mínima de 8 caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial como !@#$%^&*(),.?":{}|<>';
             registerMessage.classList.add('error');
         } else if (newPassword !== confirmPassword) {
             registerMessage.textContent = 'Las contraseñas no coinciden';
             registerMessage.classList.add('error');
         } else {
             try {
-                const response = await fetch('http://localhost:3000/register', { // URL completa con localhost y puerto
+                const response = await fetch('http://localhost:3000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
