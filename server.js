@@ -97,6 +97,66 @@ app.get('/users', async (req, res) => {
   }
 });
 
+// Endpoint para registrar un nuevo cliente
+app.post('/clientes', async (req, res) => {
+  const {
+    documentoidentidad = 'N/A',
+    nombrecompleto = 'N/A',
+    correo = 'N/A',
+    tipocliente = 'N/A',
+    ciudad = 'N/A',
+    direccion = 'N/A',
+    telefonoaseguradora = 'N/A',
+    aseguradora = 'N/A',
+    tiposeguro = 'N/A',
+    producto = null,
+    poliza = null,
+    deducible = 0.00,
+    fechainicio,
+    fechainiciovigencia = fechainicio,
+    fechavencimientopoliza = null,
+    tipo = 'N/A',
+    status = 'Activo',
+    causacancelacion = null,
+    fechacancelacion = null,
+    observaciones = ''
+  } = req.body;
+
+  try {
+    if (!documentoidentidad || !nombrecompleto || !correo || !tipocliente || !ciudad || !direccion || !telefonoaseguradora || !aseguradora || !tiposeguro || !fechainicio) {
+      return res.status(400).json({ error: 'Faltan datos obligatorios' });
+    }
+
+    const query = `
+      INSERT INTO CLIENTES (
+        DOCUMENTOIDENTIDAD, NOMBRECOMPLETO, CORREO, TIPOCLIENTE, CIUDAD, DIRECCION, TELEFONOASEGURADORA, ASEGURADORA, TIPOSEGURO, PRODUCTO, POLIZA, DEDUCIBLE, FECHAINICIO, FECHAINICIOVIGENCIA, FECHAVENCIMIENTOPOLIZA, TIPO, STATUS, CAUSACANCELACION, FECHACANCELACION, OBSERVACIONES, CREATEDAT
+      ) VALUES (
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, NOW()
+      )
+    `;
+    await pool.query(query, [
+      documentoidentidad, nombrecompleto, correo, tipocliente, ciudad, direccion, telefonoaseguradora, aseguradora, tiposeguro, producto, poliza, deducible, fechainicio, fechainiciovigencia, fechavencimientopoliza, tipo, status, causacancelacion, fechacancelacion, observaciones
+    ]);
+    res.status(201).json({ message: 'Cliente registrado exitosamente' });
+  } catch (err) {
+    console.error('Error al registrar cliente:', err);
+    res.status(500).json({ error: 'Error al registrar cliente' });
+  }
+});
+
+
+app.get('/clientes', (req, res) => {
+  pool.query('SELECT * FROM clientes', (error, results) => {
+    if (error) {
+      console.error('Error al obtener clientes:', error);
+      res.status(500).json({ error: 'Error al obtener clientes' });
+    } else {
+      res.status(200).json(results.rows);
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
