@@ -8,85 +8,6 @@
   <style>
     .hidden { display: none; }
   </style>
-  <script>
-    function validateCI(ci) {
-    if (!isNumeric(ci)) {
-        return "La cédula debe contener solo números.";
-    }
-    if (ci.length !== 10) {
-        return "La cédula debe ser de 10 dígitos.";
-    }
-    if (parseInt(ci, 10) === 0) {
-        return "La cédula ingresada no puede ser cero.";
-    }
-    if (ci.startsWith("30")) {
-        return "La cédula es válida.";
-    }
-
-    var total = 0;
-    for (var i = 0; i < 9; i++) {
-        var num = parseInt(ci[i], 10);
-        if (i % 2 === 0) {
-            var val = num * 2;
-            if (val > 9) val -= 9;
-            total += val;
-        } else {
-            total += num;
-        }
-    }
-
-    var lastDigit = parseInt(ci[9], 10);
-    var checksum = (total % 10 === 0) ? 0 : 10 - (total % 10);
-
-    if (checksum === lastDigit) {
-        return "La cédula es válida.";
-    } else {
-        return "La cédula ingresada no es válida.";
-    }
-}
-
-function isNumeric(value) {
-    return /^\d+$/.test(value);
-}
-
-function validateRUC(ruc) {
-    if (ruc.length !== 13) {
-        return "El RUC debe ser de 13 dígitos.";
-    }
-    if (!ruc.endsWith("001")) {
-        return "El RUC debe terminar en '001'.";
-    }
-
-    var ci = ruc.substring(0, 10);
-    var ciValidation = validateCI(ci);
-
-    if (ciValidation === "La cédula es válida.") {
-        return "El RUC es válido.";
-    } else {
-        return "El RUC ingresado no es válido.";
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const documentoidentidadInput = document.getElementById('documentoidentidad');
-    documentoidentidadInput.addEventListener('blur', function() {
-        const value = documentoidentidadInput.value;
-        let validationMessage = '';
-
-        if (value.length === 10) {
-          validationMessage = validateCI(value);
-        } else if (value.length === 13) {
-          validationMessage = validateRUC(value);
-        } else {
-          validationMessage = 'El documento debe ser de 10 dígitos (cédula) o 13 dígitos (RUC).';
-        }
-
-        const validationMessageElement = document.getElementById('documentoidentidad-validation');
-        validationMessageElement.textContent = validationMessage;
-        validationMessageElement.style.color = validationMessage.includes('válida') ? 'green' : 'red';
-    });
-});
-  </script>
 </head>
 <body class="bg-gray-50">
   <!-- Barra de Navegaci�n Horizontal -->
@@ -134,9 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <input type="text" id="nombrecompleto" placeholder="Nombre Completo" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
           </div>
           <div>
-            <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
-            <input type="email" id="correo" placeholder="Correo Electr�nico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
+            <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
+            <input type="email" id="correo" placeholder="Correo Electrónico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            <span id="correo-validation" class="text-sm"></span>
+        </div>
           <div>
             <label for="tipocliente" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
             <input type="text" id="tipocliente" placeholder="Tipo de Cliente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
