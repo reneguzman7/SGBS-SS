@@ -145,3 +145,62 @@ form.addEventListener('submit', function(event) {
     });
   });
   
+
+
+  // Consultar un cliente
+document.getElementById('consultar').addEventListener('click', async () => {
+  const documentoidentidad = document.getElementById('documentoidentidad').value;
+
+  if (!documentoidentidad) {
+      alert('Por favor, ingrese el documento de identidad.');
+      return;
+  }
+
+  try {
+      const response = await fetch(`http://localhost:3000/clientes/${documentoidentidad}`);
+      
+      if (!response.ok) {
+          throw new Error('Error al consultar los datos');
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+          alert(data.error);
+          return;
+      }
+
+      // Llenar la tabla con los datos
+      const resultsBody = document.getElementById('results-body');
+      resultsBody.innerHTML = `
+          <tr>
+              <td class="py-2 px-4 border-b">${data.nombrecompleto}</td>
+              <td class="py-2 px-4 border-b">${data.correo}</td>
+              <td class="py-2 px-4 border-b">${data.tipocliente}</td>
+              <td class="py-2 px-4 border-b">${data.ciudad}</td>
+              <td class="py-2 px-4 border-b">${data.direccion}</td>
+              <td class="py-2 px-4 border-b">${data.telefonoaseguradora}</td>
+              <td class="py-2 px-4 border-b">${data.aseguradora}</td>
+              <td class="py-2 px-4 border-b">${data.tiposeguro}</td>
+              <td class="py-2 px-4 border-b">${data.producto}</td>
+              <td class="py-2 px-4 border-b">${data.poliza}</td>
+              <td class="py-2 px-4 border-b">${data.deducible}</td>
+              <td class="py-2 px-4 border-b">${data.fechainicio}</td>
+              <td class="py-2 px-4 border-b">${data.fechainiciovigencia}</td>
+              <td class="py-2 px-4 border-b">${data.fechavencimientopoliza}</td>
+              <td class="py-2 px-4 border-b">${data.tipo}</td>
+              <td class="py-2 px-4 border-b">${data.status}</td>
+              <td class="py-2 px-4 border-b">${data.causacancelacion}</td>
+              <td class="py-2 px-4 border-b">${data.fechacancelacion}</td>
+              <td class="py-2 px-4 border-b">${data.observaciones}</td>
+          </tr>
+      `;
+
+      // Mostrar la tabla con los resultados
+      document.getElementById('consult-results').classList.remove('hidden');
+
+  } catch (error) {
+      console.error('Error al consultar los datos:', error);
+      alert('Error al consultar los datos.');
+  }
+});
