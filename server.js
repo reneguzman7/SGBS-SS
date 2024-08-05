@@ -11,7 +11,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'SGBS-SS',
-  password: '123456',
+  password: 'Postgres2024',
   port: 5432,
 });
 
@@ -122,6 +122,12 @@ app.post('/clientes', async (req, res) => {
     fechacancelacion = null,
     observaciones = ''
   } = req.body;
+
+  console.log(req.body); // Agregar esto para depuración
+
+  console.log({
+    documentoidentidad, nombrecompleto, correo, tipocliente, ciudad, direccion, telefonoaseguradora, aseguradora, tiposeguro, fechainicio
+  }); // Depuración
 
   try {
     // Validaci�n de datos obligatorios

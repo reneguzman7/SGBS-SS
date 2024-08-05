@@ -7,9 +7,9 @@ document.getElementById('guardar').addEventListener('click', function() {
   const ciudad = document.getElementById('ciudad').value;
   const direccion = document.getElementById('direccion').value;
   const telefonoaseguradora = document.getElementById('telefonoaseguradora').value;
-  const aseguradora = document.getElementById('aseguradora').value;
-  const tiposeguro = document.getElementById('tiposeguro').value;
-  const producto = document.getElementById('producto').value;
+  const aseguradora = document.getElementById('company-register').value;
+  const tiposeguro = document.getElementById('insuranceType-register').value;
+  const producto = document.getElementById('product-register').value;
   const poliza = document.getElementById('poliza').value;
   const deducible = parseFloat(document.getElementById('deducible').value) || 0.00;
   const fechainicio = document.getElementById('fechainicio').value;
@@ -58,7 +58,7 @@ document.getElementById('guardar').addEventListener('click', function() {
       if (data.error) {
           alert('Error: ' + data.error);
       } else {
-          alert('�xito: ' + data.message);
+          alert('�xito: ' + data.message);
           document.getElementById('cliente-form').reset();
       }
   })
@@ -67,3 +67,81 @@ document.getElementById('guardar').addEventListener('click', function() {
       alert('Error al enviar los datos.');
   });
 });
+
+
+const form = document.getElementById('cliente-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const jsonData = {};
+
+  formData.forEach((value, key) => {
+    jsonData[key] = value;
+  });
+
+  console.log(jsonData); // Verifica los datos en la consola
+
+  fetch('http://localhost:3000/clientes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.error) {
+      alert('Error: ' + data.error);
+    } else {
+      alert('Éxito: ' + data.message);
+      form.reset();
+    }
+  })
+  .catch((error) => {
+    console.error('Error al enviar los datos:', error);
+    alert('Error al enviar los datos.');
+  });
+});
+
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+  
+    const formData = new FormData(form);
+    const jsonData = {};
+  
+    formData.forEach((value, key) => {
+      jsonData[key] = value;
+    });
+  
+    // Validación en el frontend
+    if (!jsonData.documentoidentidad || !jsonData.nombrecompleto || !jsonData.correo || !jsonData.tipocliente || !jsonData.ciudad || !jsonData.direccion || !jsonData.telefonoaseguradora || !jsonData.aseguradora || !jsonData.tiposeguro || !jsonData.fechainicio) {
+      alert('Faltan datos obligatorios');
+      return;
+    }
+  
+    console.log(jsonData); // Verifica los datos en la consola
+  
+    fetch('http://localhost:3000/clientes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(jsonData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        alert('Error: ' + data.error);
+      } else {
+        alert('Éxito: ' + data.message);
+        form.reset();
+      }
+    })
+    .catch((error) => {
+      console.error('Error al enviar los datos:', error);
+      alert('Error al enviar los datos.');
+    });
+  });
+  
