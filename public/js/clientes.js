@@ -149,7 +149,7 @@ form.addEventListener('submit', function(event) {
 
   // Consultar un cliente
 document.getElementById('consultar').addEventListener('click', async () => {
-  const documentoidentidad = document.getElementById('documentoidentidad').value;
+  const documentoidentidad = document.getElementById('documentoidentidad-consulta').value;
 
   if (!documentoidentidad) {
       alert('Por favor, ingrese el documento de identidad.');
