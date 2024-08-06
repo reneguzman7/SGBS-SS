@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesti贸n de Clientes</title>
+  <title>Gesti髇 de Clientes</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .hidden { display: none; }
   </style>
 </head>
 <body class="bg-gray-50">
-  <!-- Barra de Navegaci锟絥 Horizontal -->
+  <!-- Barra de Navegaci髇 Horizontal -->
   <header class="bg-blue-800 text-white shadow-lg">
     <div class="container mx-auto flex items-center justify-between p-6">
       <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
@@ -18,10 +18,10 @@
         <ul class="flex space-x-6">
           <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti贸n de Pagos</a></li>
+          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti髇 de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci锟絥 del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi锟絥</button></li>
+          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci髇 del Sistema</a></li>
+          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi髇</button></li>
         </ul>
       </nav>
     </div>
@@ -51,30 +51,30 @@
               <input type="text" id="nombrecompleto" placeholder="Nombre Completo" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
-          <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electr贸nico:</label>
-          <input type="email" id="correo" placeholder="Correo Electr贸nico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electr髇ico:</label>
+          <input type="email" id="correo" placeholder="Correo Electr髇ico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
         <span id="correo-validation" class="text-sm"></spa>
       </div>
             <div>
               <label for="tipocliente" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-              <input type="text" id="tipocliente" placeholder="Tipo de Cliente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+              <input type="text" id="tipocliente" placeholder="Natural o Jur韉ico " required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
               <label for="ciudad" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
               <input type="text" id="ciudad" placeholder="Ciudad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
-              <label for="direccion" class="block text-gray-700 font-semibold mb-2">Direcci锟絥:</label>
-              <input type="text" id="direccion" placeholder="Direcci锟絥" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+              <label for="direccion" class="block text-gray-700 font-semibold mb-2">Direcci髇:</label>
+              <input type="text" id="direccion" placeholder="Direcci髇" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
-              <label for="telefonoaseguradora" class="block text-gray-700 font-semibold mb-2">Tel锟絝ono Aseguradora:</label>
-              <input type="text" id="telefonoaseguradora" placeholder="Tel锟絝ono Aseguradora" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+              <label for="telefonoaseguradora" class="block text-gray-700 font-semibold mb-2">Tel閒ono:</label>
+              <input type="text" id="telefonoaseguradora" placeholder="Tel閒ono" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
-              <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compa帽铆a:</label>
+              <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compa駃璦:</label>
               <select id="company-register" name="company" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateInsuranceTypes(this.value)" required>
-                <option value="">Seleccione la compa帽铆a</option>
+                <option value="">Seleccione la compa駃璦</option>
                 <option value="Zurich">Zurich</option>
                 <option value="Latina">Latina</option>
                 <option value="AMA">AMA</option>
@@ -131,11 +131,11 @@
               <input type="text" id="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
-              <label for="causacancelacion" class="block text-gray-700 font-semibold mb-2">Causa Cancelaci锟絥:</label>
-              <textarea id="causacancelacion" placeholder="Causa Cancelaci锟絥" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+              <label for="causacancelacion" class="block text-gray-700 font-semibold mb-2">Causa Cancelaci髇:</label>
+              <textarea id="causacancelacion" placeholder="Causa Cancelaci髇" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
             </div>
             <div>
-              <label for="fechacancelacion" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci锟絥:</label>
+              <label for="fechacancelacion" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci髇:</label>
               <input type="date" id="fechacancelacion" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
             <div>
@@ -168,23 +168,23 @@
                 <thead>
                     <tr>
                         <th class="py-2 px-4 border-b">Nombre Completo</th>
-                        <th class="py-2 px-4 border-b">Correo Electr贸nico</th>
+                        <th class="py-2 px-4 border-b">Correo Electr髇ico</th>
                         <th class="py-2 px-4 border-b">Tipo de Cliente</th>
                         <th class="py-2 px-4 border-b">Ciudad</th>
-                        <th class="py-2 px-4 border-b">Direcci贸n</th>
-                        <th class="py-2 px-4 border-b">Tel茅fono Aseguradora</th>
+                        <th class="py-2 px-4 border-b">Direcci髇</th>
+                        <th class="py-2 px-4 border-b">Tel閒ono Aseguradora</th>
                         <th class="py-2 px-4 border-b">Aseguradora</th>
                         <th class="py-2 px-4 border-b">Tipo de Seguro</th>
                         <th class="py-2 px-4 border-b">Producto</th>
-                        <th class="py-2 px-4 border-b">P贸liza</th>
+                        <th class="py-2 px-4 border-b">P髄iza</th>
                         <th class="py-2 px-4 border-b">Deducible</th>
                         <th class="py-2 px-4 border-b">Fecha de Inicio</th>
                         <th class="py-2 px-4 border-b">Fecha de Inicio de Vigencia</th>
-                        <th class="py-2 px-4 border-b">Fecha de Vencimiento de P贸liza</th>
+                        <th class="py-2 px-4 border-b">Fecha de Vencimiento de P髄iza</th>
                         <th class="py-2 px-4 border-b">Tipo</th>
                         <th class="py-2 px-4 border-b">Status</th>
-                        <th class="py-2 px-4 border-b">Causa de Cancelaci贸n</th>
-                        <th class="py-2 px-4 border-b">Fecha de Cancelaci贸n</th>
+                        <th class="py-2 px-4 border-b">Causa de Cancelaci髇</th>
+                        <th class="py-2 px-4 border-b">Fecha de Cancelaci髇</th>
                         <th class="py-2 px-4 border-b">Observaciones</th>
                     </tr>
                 </thead>
@@ -248,7 +248,7 @@
                 <input type="text" id="ciudad-update" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
               </div>
               <div>
-                <label for="telefonoaseguradora-update" class="block text-gray-700 font-semibold mb-2">Tel閒ono Aseguradora:</label>
+                <label for="telefonoaseguradora-update" class="block text-gray-700 font-semibold mb-2">Tel閒ono</label>
                 <input type="tel" id="telefonoaseguradora-update" placeholder="Tel閒ono Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
               </div>
               <div>

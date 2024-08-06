@@ -69,7 +69,7 @@ app.post('/login', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM "USUARIOS" WHERE CORREO = $1', [email]);
     if (result.rows.length === 0) {
-      return res.status(400).json({ error: 'Usuario no encontrado' });
+      return res.status(400).json({ error: 'Ingreso fallido' });
     }
 
     const user = result.rows[0];

@@ -46,8 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         loginMessage.textContent = '';
         loginMessage.classList.remove('error', 'success');
 
-        if (!user || !password) {
-            loginMessage.textContent = 'Correo y contrase a no pueden estar en blanco';
+
+        if(!user){
+            loginMessage.textContent = 'Error: Campo del correo del cliente vacío. Por favor, ingrese un correo.';
+            loginMessage.classList.add('error');
+        }
+        else if (!password) {
+            loginMessage.textContent = 'Error: Campo de la contraseña del cliente vacío. Por favor, ingrese su contraseña.';
             loginMessage.classList.add('error');
         } else {
             try {
@@ -90,13 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         registerMessage.classList.remove('error', 'success');
 
         if (!validateEmail(newUser)) {
-            registerMessage.textContent = 'Correo electr nico no v lido';
+            registerMessage.textContent = 'Correo electrónico no válido';
             registerMessage.classList.add('error');
         } else if (!validatePassword(newPassword)) {
-            registerMessage.textContent = 'La contrase a debe tener una longitud m nima de 8 caracteres, al menos una letra may scula, una letra min scula, un n mero y un car cter especial como !@#$%^&*(),.?":{}|<>';
+            registerMessage.textContent = 'La contrase a debe tener una longitud m nima de 8 caracteres, al menos una letra mayúscula, una letra minúscula, un número y un car cter especial como !@#$%^&*(),.?":{}|<>';
             registerMessage.classList.add('error');
         } else if (newPassword !== confirmPassword) {
-            registerMessage.textContent = 'Las contrase as no coinciden';
+            registerMessage.textContent = 'Las contraseñas no coinciden';
             registerMessage.classList.add('error');
         } else {
             try {
