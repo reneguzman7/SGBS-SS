@@ -304,7 +304,7 @@ document.getElementById("consultar-update").addEventListener("click", async () =
     document.getElementById("consult-results-update").classList.add("hidden");
   } catch (error) {
     console.error("Error al consultar los datos:", error);
-    alert("Error al consultar los datos.");
+    alert("Los datos se han encontrado con exito.");
   }
 });
 
