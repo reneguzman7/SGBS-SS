@@ -68,7 +68,34 @@ document.getElementById('guardar').addEventListener('click', function() {
   });
 });
 
+function showForm(formType) {
+  const forms = ['register-form', 'consult-form', 'update-form'];
 
+  forms.forEach(form => {
+    const formElement = document.getElementById(form);
+    if (formElement) {
+      if (form === `${formType}-form`) {
+        formElement.classList.remove('hidden');
+      } else {
+        formElement.classList.add('hidden');
+      }
+    }
+  });
+}
+
+// Función para resetear y ocultar formularios
+function resetForm() {
+  document.querySelectorAll('form').forEach(form => {
+    form.reset();
+    form.classList.add('hidden');
+  });
+}
+document.querySelectorAll('button[onclick]').forEach(button => {
+  button.addEventListener('click', () => {
+    const formType = button.getAttribute('onclick').split("'")[1];
+    showForm(formType);
+  });
+});
 const form = document.getElementById('cliente-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
