@@ -214,29 +214,76 @@
 
     <!-- Formulario de Actualizaciï¿½n -->
     <form id="update-form" class="hidden">
-        <h2>Actualizar Cliente</h2>
-        <input type="text" id="documentoidentidad-update" name="documentoidentidad" placeholder="Documento de Identidad" required>
-        <input type="text" id="nombrecompleto-update" name="nombrecompleto" placeholder="Nombre Completo">
-        <input type="email" id="correo-update" name="correo" placeholder="Correo Electrï¿½nico">
-        <input type="text" id="tipocliente-update" name="tipocliente" placeholder="Tipo de Cliente">
-        <input type="text" id="ciudad-update" name="ciudad" placeholder="Ciudad">
-        <input type="text" id="direccion-update" name="direccion" placeholder="Direcciï¿½n">
-        <input type="text" id="telefonoaseguradora-update" name="telefonoaseguradora" placeholder="Telï¿½fono de Aseguradora">
-        <input type="text" id="aseguradora-update" name="aseguradora" placeholder="Aseguradora">
-        <input type="text" id="tiposeguro-update" name="tiposeguro" placeholder="Tipo de Seguro">
-        <input type="text" id="producto-update" name="producto" placeholder="Producto">
-        <input type="text" id="poliza-update" name="poliza" placeholder="Poliza">
-        <input type="number" id="deducible-update" name="deducible" placeholder="Deducible" step="0.01" min="0.00">
-        <input type="date" id="fechainicio-update" name="fechainicio" placeholder="Fecha de Inicio">
-        <input type="date" id="fechainiciovigencia-update" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia">
-        <input type="date" id="fechavencimientopoliza-update" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de Pï¿½liza">
-        <input type="text" id="tipo-update" name="tipo" placeholder="Tipo">
-        <input type="text" id="status-update" name="status" placeholder="Status">
-        <input type="text" id="causacancelacion-update" name="causacancelacion" placeholder="Causa Cancelaciï¿½n">
-        <input type="date" id="fechacancelacion-update" name="fechacancelacion" placeholder="Fecha Cancelaciï¿½n">
-        <textarea id="observaciones-update" name="observaciones" placeholder="Observaciones"></textarea>
-        <button type="button" id="update-button">Actualizar</button>
-    </form>
+      <!-- Formulario de Consulta -->
+      <div>
+          <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
+          <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      </div>
+      <div class="flex justify-end mt-4">
+          <button type="button" id="consultar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
+      </div>
+  
+      <!-- Resultados de Consulta -->
+      <div id="consult-results-update" class="hidden">
+          <div class="overflow-x-auto">
+              <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-4">
+                  <thead>
+                      <tr>
+                          <th class="py-2 px-4 border-b">Nombre Completo</th>
+                          <th class="py-2 px-4 border-b">Correo Electrónico</th>
+                          <th class="py-2 px-4 border-b">Tipo de Cliente</th>
+                          <th class="py-2 px-4 border-b">Ciudad</th>
+                          <th class="py-2 px-4 border-b">Dirección</th>
+                          <th class="py-2 px-4 border-b">Teléfono Aseguradora</th>
+                          <th class="py-2 px-4 border-b">Aseguradora</th>
+                          <th class="py-2 px-4 border-b">Tipo de Seguro</th>
+                          <th class="py-2 px-4 border-b">Producto</th>
+                          <th class="py-2 px-4 border-b">Póliza</th>
+                          <th class="py-2 px-4 border-b">Deducible</th>
+                          <th class="py-2 px-4 border-b">Fecha de Inicio</th>
+                          <th class="py-2 px-4 border-b">Fecha de Inicio de Vigencia</th>
+                          <th class="py-2 px-4 border-b">Fecha de Vencimiento de Póliza</th>
+                          <th class="py-2 px-4 border-b">Tipo</th>
+                          <th class="py-2 px-4 border-b">Status</th>
+                          <th class="py-2 px-4 border-b">Causa de Cancelación</th>
+                          <th class="py-2 px-4 border-b">Fecha de Cancelación</th>
+                          <th class="py-2 px-4 border-b">Observaciones</th>
+                      </tr>
+                  </thead>
+                  <tbody id="results-body">
+                      <!-- Los resultados se llenarán aquí -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  
+      <!-- Formulario de Actualización -->
+      <div id="update-section" class="hidden mt-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Actualizar Cliente</h2>
+          <input type="text" id="documentoidentidad-update" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="nombrecompleto-update" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="email" id="correo-update" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="tipocliente-update" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="ciudad-update" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="direccion-update" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="telefonoaseguradora-update" name="telefonoaseguradora" placeholder="Teléfono de Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="aseguradora-update" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="tiposeguro-update" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="producto-update" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="poliza-update" name="poliza" placeholder="Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="number" id="deducible-update" name="deducible" placeholder="Deducible" step="0.01" min="0.00" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="date" id="fechainicio-update" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="date" id="fechainiciovigencia-update" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="date" id="fechavencimientopoliza-update" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="tipo-update" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="status-update" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="text" id="causacancelacion-update" name="causacancelacion" placeholder="Causa Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <input type="date" id="fechacancelacion-update" name="fechacancelacion" placeholder="Fecha Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <textarea id="observaciones-update" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+          <button type="button" id="update-button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Actualizar</button>
+      </div>
+  </form>
+  
 
     
     <script src="../js/clientes.js"></script>
