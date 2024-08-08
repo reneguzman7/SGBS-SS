@@ -1,20 +1,27 @@
 // Función para mostrar un formulario y ocultar los demás, incluyendo secciones específicas
 function showForm(formType) {
-  const forms = ['register-form', 'consult-form', 'update-form'];
+  const forms = ['register-form', 'consult-form', 'update-form', 'cliente-form'];
   const consultSection = document.getElementById('consult-section');
 
+  // Limpiar datos de todos los formularios y divs antes de mostrar el formulario actual
+  resetForm();
+
+  // Mostrar el formulario correspondiente y limpiar sus campos
   forms.forEach(form => {
     const formElement = document.getElementById(form);
     if (formElement) {
-      if (form === `${formType}-form`) {
+      if (form === `${formType}-form` || form === 'cliente-form') {
         formElement.classList.remove('hidden');
+        if (formType !== 'register') {
+          clearFormFields(form); // Limpiar campos si no es el formulario de registro
+        }
       } else {
         formElement.classList.add('hidden');
       }
     }
   });
 
-  // Ocultar consult-section cuando no se está mostrando el formulario de consulta
+  // Controlar la visibilidad del consult-section
   if (consultSection) {
     if (formType === 'consult') {
       consultSection.classList.remove('hidden');
@@ -24,11 +31,12 @@ function showForm(formType) {
   }
 }
 
-// Función para resetear y ocultar todos los formularios
+// Función para resetear y ocultar todos los formularios y limpiar datos de los divs
 function resetForm() {
+  // Limpiar y ocultar todos los formularios
   document.querySelectorAll('form').forEach(form => {
-    form.reset();
-    form.classList.add('hidden');
+    form.reset(); // Limpiar el formulario
+    form.classList.add('hidden'); // Ocultar el formulario
   });
 
   // Asegurarse de ocultar consult-section
@@ -36,6 +44,28 @@ function resetForm() {
   if (consultSection) {
     consultSection.classList.add('hidden');
   }
+
+  // Limpiar cualquier otro div que pueda tener datos persistentes
+  document.querySelectorAll('.data-container').forEach(div => {
+    div.innerHTML = ''; // Limpiar el contenido de los divs
+  });
+}
+
+// Función para limpiar los campos específicos de un formulario
+function clearFormFields(formId) {
+  const form = document.getElementById(formId);
+  if (form) {
+    form.reset(); // Limpiar los campos del formulario
+  }
+}
+
+// Función para manejar el cambio de módulo
+function changeModule(formType) {
+  // Limpia todos los formularios y datos
+  resetForm();
+  
+  // Muestra el formulario correspondiente
+  showForm(formType);
 }
 
 

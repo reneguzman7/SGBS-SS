@@ -54,7 +54,7 @@
     </div>
           <div>
             <label for="tipocliente" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-            <!-- <input type="text" id="tipocliente" placeholder="Natural o Jurï¿½dico " required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"> -->
+            
              <select id="tipocliente" name="tipocliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
               <option value="">Seleccione el tipo de cliente</option>
               <option value="Natural">Natural</option>
@@ -126,7 +126,7 @@
           </div>
           <div>
             <label for="tipo" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-            <!-- <input type="text" id="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"> -->
+            
              <select id="tipo" name="tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
               <option value="">Seleccione el tipo</option>
               <option value="Individual">Individual</option>
@@ -136,7 +136,7 @@
           </div>
           <div>
             <label for="status" class="block text-gray-700 font-semibold mb-2">Status:</label>
-            <!-- <input type="text" id="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"> -->
+            
             <select id="status" name="status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
               <option value="">Seleccione el status</option>
               <option value="Activo">Activo</option>
@@ -178,75 +178,75 @@
   
   <!-- Formulario de Actualización -->
   <div id="consult-section" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">Datos actuales del Cliente</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-              <label for="documentoidentidad-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-              <input type="text" id="documentoidentidad-consult" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="nombrecompleto-consult" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
-              <input type="text" id="nombrecompleto-consult" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="correo-consult" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-              <input type="email" id="correo-consult" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="tipocliente-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-              <input type="text" id="tipocliente-consult" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-          </div>
-          <div>
-              <label for="ciudad-consult" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
-              <input type="text" id="ciudad-consult" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="direccion-consult" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-              <input type="text" id="direccion-consult" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="telefonoaseguradora-consult" class="block text-gray-700 font-semibold mb-2">Teléfono de Aseguradora:</label>
-              <input type="text" id="telefonoaseguradora-consult" name="telefonoaseguradora" placeholder="Teléfono de Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="aseguradora-consult" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
-              <input type="text" id="aseguradora-consult" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-          </div>
-          <div>
-              <label for="tiposeguro-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
-              <input type="text" id="tiposeguro-consult" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="producto-consult" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-              <input type="text" id="producto-consult" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="poliza-consult" class="block text-gray-700 font-semibold mb-2">Póliza:</label>
-              <input type="text" id="poliza-consult" name="poliza" placeholder="Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="deducible-consult" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-              <input type="number" id="deducible-consult" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-          </div>
-          <div>
-              <label for="fechainicio-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
-              <input type="text" id="fechainicio-consult" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="fechainiciovigencia-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
-              <input type="text" id="fechainiciovigencia-consult" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="fechavencimientopoliza-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de Póliza:</label>
-              <input type="text" id="fechavencimientopoliza-consult" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="tipo-consult" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-              <input type="text" id="tipo-consult" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-          </div>
-          <div>
-              <label for="status-consult" class="block text-gray-700 font-semibold mb-2">Status:</label>
-              <input type="text" id="status-consult" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="causacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Causa de Cancelación:</label>
-              <input type="text" id="causacancelacion-consult" name="causacancelacion" placeholder="Causa de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="fechacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelación:</label>
-              <input type="text" id="fechacancelacion-consult" name="fechacancelacion" placeholder="Fecha de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              
-              <label for="observaciones-consult" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
-              <textarea id="observaciones-consult" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-          </div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Datos actuales del Cliente</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="documentoidentidad-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
+        <input type="text" id="documentoidentidad-consult" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="nombrecompleto-consult" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
+        <input type="text" id="nombrecompleto-consult" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="correo-consult" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
+        <input type="email" id="correo-consult" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="tipocliente-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
+        <input type="text" id="tipocliente-consult" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
       </div>
+      <div>
+        <label for="ciudad-consult" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
+        <input type="text" id="ciudad-consult" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="direccion-consult" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
+        <input type="text" id="direccion-consult" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="telefonoaseguradora-consult" class="block text-gray-700 font-semibold mb-2">Teléfono de Aseguradora:</label>
+        <input type="text" id="telefonoaseguradora-consult" name="telefonoaseguradora" placeholder="Teléfono de Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="aseguradora-consult" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
+        <input type="text" id="aseguradora-consult" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="tiposeguro-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
+        <input type="text" id="tiposeguro-consult" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="producto-consult" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+        <input type="text" id="producto-consult" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="poliza-consult" class="block text-gray-700 font-semibold mb-2">Póliza:</label>
+        <input type="text" id="poliza-consult" name="poliza" placeholder="Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="deducible-consult" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
+        <input type="number" id="deducible-consult" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="fechainicio-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
+        <input type="text" id="fechainicio-consult" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechainiciovigencia-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
+        <input type="text" id="fechainiciovigencia-consult" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechavencimientopoliza-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de Póliza:</label>
+        <input type="text" id="fechavencimientopoliza-consult" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="tipo-consult" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
+        <input type="text" id="tipo-consult" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="status-consult" class="block text-gray-700 font-semibold mb-2">Status:</label>
+        <input type="text" id="status-consult" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="causacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Causa de Cancelación:</label>
+        <input type="text" id="causacancelacion-consult" name="causacancelacion" placeholder="Causa de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelación:</label>
+        <input type="text" id="fechacancelacion-consult" name="fechacancelacion" placeholder="Fecha de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="observaciones-consult" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
+        <textarea id="observaciones-consult" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" readonly></textarea>
+      </div>
+    </div>
   </div>
 
   
