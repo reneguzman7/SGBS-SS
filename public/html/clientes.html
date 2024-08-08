@@ -174,39 +174,78 @@
       <div class="flex justify-end mt-4">
           <button type="button" id="consultar" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
       </div>
-
+  </div>
+  
+  <!-- Formulario de Actualización -->
+  <div id="consult-section" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Datos actuales del Cliente</h2>
       
-      <div id="consult-results" class="hidden">
-      </div>
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-4">
-              <thead>
-                  <tr>
-                      <th class="py-2 px-4 border-b">Nombre Completo</th>
-                      <th class="py-2 px-4 border-b">Correo Electrï¿½nico</th>
-                      <th class="py-2 px-4 border-b">Tipo de Cliente</th>
-                      <th class="py-2 px-4 border-b">Ciudad</th>
-                      <th class="py-2 px-4 border-b">Direcciï¿½n</th>
-                      <th class="py-2 px-4 border-b">Telï¿½fono Aseguradora</th>
-                      <th class="py-2 px-4 border-b">Aseguradora</th>
-                      <th class="py-2 px-4 border-b">Tipo de Seguro</th>
-                      <th class="py-2 px-4 border-b">Producto</th>
-                      <th class="py-2 px-4 border-b">Pï¿½liza</th>
-                      <th class="py-2 px-4 border-b">Deducible</th>
-                      <th class="py-2 px-4 border-b">Fecha de Inicio</th>
-                      <th class="py-2 px-4 border-b">Fecha de Inicio de Vigencia</th>
-                      <th class="py-2 px-4 border-b">Fecha de Vencimiento de Pï¿½liza</th>
-                      <th class="py-2 px-4 border-b">Tipo</th>
-                      <th class="py-2 px-4 border-b">Status</th>
-                      <th class="py-2 px-4 border-b">Causa de Cancelaciï¿½n</th>
-                      <th class="py-2 px-4 border-b">Fecha de Cancelaciï¿½n</th>
-                      <th class="py-2 px-4 border-b">Observaciones</th>
-                  </tr>
-              </thead>
-              <tbody id="results-body">
-                  <!-- Los resultados se llenarÃ¡n aquÃ¬ -->
-              </tbody>
-          </table>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+              <label for="documentoidentidad-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
+              <input type="text" id="documentoidentidad-consult" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="nombrecompleto-consult" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
+              <input type="text" id="nombrecompleto-consult" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="correo-consult" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
+              <input type="email" id="correo-consult" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="tipocliente-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
+              <input type="text" id="tipocliente-consult" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+          </div>
+          <div>
+              <label for="ciudad-consult" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
+              <input type="text" id="ciudad-consult" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="direccion-consult" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
+              <input type="text" id="direccion-consult" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="telefonoaseguradora-consult" class="block text-gray-700 font-semibold mb-2">Teléfono de Aseguradora:</label>
+              <input type="text" id="telefonoaseguradora-consult" name="telefonoaseguradora" placeholder="Teléfono de Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="aseguradora-consult" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
+              <input type="text" id="aseguradora-consult" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+          </div>
+          <div>
+              <label for="tiposeguro-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
+              <input type="text" id="tiposeguro-consult" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="producto-consult" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+              <input type="text" id="producto-consult" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="poliza-consult" class="block text-gray-700 font-semibold mb-2">Póliza:</label>
+              <input type="text" id="poliza-consult" name="poliza" placeholder="Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="deducible-consult" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
+              <input type="number" id="deducible-consult" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+          </div>
+          <div>
+              <label for="fechainicio-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
+              <input type="text" id="fechainicio-consult" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="fechainiciovigencia-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
+              <input type="text" id="fechainiciovigencia-consult" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="fechavencimientopoliza-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de Póliza:</label>
+              <input type="text" id="fechavencimientopoliza-consult" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="tipo-consult" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
+              <input type="text" id="tipo-consult" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+          </div>
+          <div>
+              <label for="status-consult" class="block text-gray-700 font-semibold mb-2">Status:</label>
+              <input type="text" id="status-consult" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="causacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Causa de Cancelación:</label>
+              <input type="text" id="causacancelacion-consult" name="causacancelacion" placeholder="Causa de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="fechacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelación:</label>
+              <input type="text" id="fechacancelacion-consult" name="fechacancelacion" placeholder="Fecha de Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              
+              <label for="observaciones-consult" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
+              <textarea id="observaciones-consult" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+          </div>
       </div>
   </div>
 
@@ -214,47 +253,12 @@
 
     <!-- Formulario de Actualizaciï¿½n -->
     <form id="update-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-      <!-- Formulario de Consulta -->
-      <div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Actualizacion</h2>
           <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
           <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
       </div>
       <div class="flex justify-end mt-4">
           <button type="button" id="consultar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
-      </div>
-  
-      <!-- Resultados de Consulta -->
-      <div id="consult-results-update" class="hidden">
-          <div class="overflow-x-auto">
-              <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-4">
-                  <thead>
-                      <tr>
-                          <th class="py-2 px-4 border-b">Nombre Completo</th>
-                          <th class="py-2 px-4 border-b">Correo Electrónico</th>
-                          <th class="py-2 px-4 border-b">Tipo de Cliente</th>
-                          <th class="py-2 px-4 border-b">Ciudad</th>
-                          <th class="py-2 px-4 border-b">Dirección</th>
-                          <th class="py-2 px-4 border-b">Teléfono Aseguradora</th>
-                          <th class="py-2 px-4 border-b">Aseguradora</th>
-                          <th class="py-2 px-4 border-b">Tipo de Seguro</th>
-                          <th class="py-2 px-4 border-b">Producto</th>
-                          <th class="py-2 px-4 border-b">Póliza</th>
-                          <th class="py-2 px-4 border-b">Deducible</th>
-                          <th class="py-2 px-4 border-b">Fecha de Inicio</th>
-                          <th class="py-2 px-4 border-b">Fecha de Inicio de Vigencia</th>
-                          <th class="py-2 px-4 border-b">Fecha de Vencimiento de Póliza</th>
-                          <th class="py-2 px-4 border-b">Tipo</th>
-                          <th class="py-2 px-4 border-b">Status</th>
-                          <th class="py-2 px-4 border-b">Causa de Cancelación</th>
-                          <th class="py-2 px-4 border-b">Fecha de Cancelación</th>
-                          <th class="py-2 px-4 border-b">Observaciones</th>
-                      </tr>
-                  </thead>
-                  <tbody id="results-body">
-                      <!-- Los resultados se llenarán aquí -->
-                  </tbody>
-              </table>
-          </div>
       </div>
   
       <!-- Formulario de Actualización -->
@@ -335,8 +339,6 @@
     </div>
   </form>
   
-
-    
     <script src="../js/clientes.js"></script>
     <script src="../js/common.js"></script>
 </body>

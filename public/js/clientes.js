@@ -1,6 +1,7 @@
-// Manejo de botones principales
+// Función para mostrar un formulario y ocultar los demás, incluyendo secciones específicas
 function showForm(formType) {
   const forms = ['register-form', 'consult-form', 'update-form'];
+  const consultSection = document.getElementById('consult-section');
 
   forms.forEach(form => {
     const formElement = document.getElementById(form);
@@ -12,17 +13,84 @@ function showForm(formType) {
       }
     }
   });
+
+  // Ocultar consult-section cuando no se está mostrando el formulario de consulta
+  if (consultSection) {
+    if (formType === 'consult') {
+      consultSection.classList.remove('hidden');
+    } else {
+      consultSection.classList.add('hidden');
+    }
+  }
 }
 
-// Función para resetear y ocultar formularios
+// Función para resetear y ocultar todos los formularios
 function resetForm() {
   document.querySelectorAll('form').forEach(form => {
     form.reset();
     form.classList.add('hidden');
   });
+
+  // Asegurarse de ocultar consult-section
+  const consultSection = document.getElementById('consult-section');
+  if (consultSection) {
+    consultSection.classList.add('hidden');
+  }
 }
 
 
+document.getElementById("consultar").addEventListener("click", async () => {
+  const documentoIdentidad = document.getElementById("documentoidentidad-consulta").value;
+
+  if (!documentoIdentidad) {
+      alert("Por favor, ingrese el documento de identidad.");
+      return;
+  }
+
+  try {
+      // Reemplaza la URL con la ruta correcta de tu API
+      const response = await fetch(`http://localhost:3000/clientes/${documentoIdentidad}`);
+
+      if (!response.ok) {
+          throw new Error("Error al consultar los datos");
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+          alert(data.error);
+          return;
+      }
+
+      // Llenar los campos del formulario de actualización con los datos obtenidos
+      document.getElementById("documentoidentidad-consult").value = data.documentoidentidad || "";
+      document.getElementById("nombrecompleto-consult").value = data.nombrecompleto || "";
+      document.getElementById("correo-consult").value = data.correo || "";
+      document.getElementById("tipocliente-consult").value = data.tipocliente || "";
+      document.getElementById("ciudad-consult").value = data.ciudad || "";
+      document.getElementById("direccion-consult").value = data.direccion || "";
+      document.getElementById("telefonoaseguradora-consult").value = data.telefonoaseguradora || "";
+      document.getElementById("aseguradora-consult").value = data.aseguradora || "";
+      document.getElementById("tiposeguro-consult").value = data.tiposeguro || "";
+      document.getElementById("producto-consult").value = data.producto || "";
+      document.getElementById("poliza-consult").value = data.poliza || "";
+      document.getElementById("deducible-consult").value = data.deducible || "";
+      document.getElementById("fechainicio-consult").value = data.fechainicio || "";
+      document.getElementById("fechainiciovigencia-consult").value = data.fechainiciovigencia || "";
+      document.getElementById("fechavencimientopoliza-consult").value = data.fechavencimientopoliza || "";
+      document.getElementById("tipo-consult").value = data.tipo || "";
+      document.getElementById("status-consult").value = data.status || "";
+      document.getElementById("causacancelacion-consult").value = data.causacancelacion || "";
+      document.getElementById("fechacancelacion-consult").value = data.fechacancelacion || "";
+      document.getElementById("observaciones-consult").value = data.observaciones || "";
+
+      // Mostrar el formulario de actualización
+      document.getElementById("consult-section").classList.remove("hidden");
+  } catch (error) {
+      console.error("Error al consultar los datos:", error);
+      alert("Error al consultar los datos.");
+  }
+});
 
 document.getElementById("guardar").addEventListener("click", function () {
   // Obtener los valores de los campos del formulario
