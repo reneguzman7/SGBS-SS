@@ -336,33 +336,37 @@ document.getElementById("update-button").addEventListener("click", async () => {
     return;
   }
 
+  // Construir el objeto dinámicamente
+  const updateData = {
+    nombrecompleto,
+    correo,
+    tipocliente,
+    ciudad,
+    direccion,
+    telefonoaseguradora,
+    aseguradora,
+    tiposeguro,
+    producto,
+    poliza,
+    deducible,
+    fechainicio,
+    fechainiciovigencia,
+    fechavencimientopoliza,
+    tipo,
+    status,
+    // Solo agregar los campos si no están vacíos
+    ...(causacancelacion && { causacancelacion }),
+    ...(fechacancelacion && { fechacancelacion }),
+    ...(observaciones && { observaciones }),
+  };
+
   try {
     const response = await fetch(`http://localhost:3000/clientes/${documentoidentidad}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        nombrecompleto,
-        correo,
-        tipocliente,
-        ciudad,
-        direccion,
-        telefonoaseguradora,
-        aseguradora,
-        tiposeguro,
-        producto,
-        poliza,
-        deducible,
-        fechainicio,
-        fechainiciovigencia,
-        fechavencimientopoliza,
-        tipo,
-        status,
-        causacancelacion,
-        fechacancelacion,
-        observaciones,
-      }),
+      body: JSON.stringify(updateData),
     });
 
     if (response.ok) {
