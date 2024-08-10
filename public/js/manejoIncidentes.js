@@ -152,7 +152,4 @@ class FormHandler {
       alert("Ocurrió un error al actualizar el incidente.");
     }
   }
-}
-
-// Inicializar el manejador de formularios
-new FormHandler();
+} 

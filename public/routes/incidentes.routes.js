@@ -28,26 +28,15 @@ const pool = new Pool({
 app.post('/incidentes', async (req, res) => {
   const {
     documentoidentidad = 'N/A',
-    fecha_incidente,
-    lugar_incidente = 'Desconocido',
-    descripcion = null,
+    fechaincidente,
+    lugarincidente = 'N/A',
+    descripcion = '',
     evidencia = 'N/A',
-    tipo_incidente = 'General',
-    estado_incidente = 'Abierto'
+    tipoincidente = 'General',
+    estadoincidente = 'Abierto'
   } = req.body;
 
-  console.log(req.body); // Agregar esto para depuración
-
-  console.log({
-    documentoidentidad, fecha_incidente, lugar_incidente, descripcion, evidencia, tipo_incidente, estado_incidente
-  }); // Depuración
-
   try {
-    // Validación de datos obligatorios
-    if (!documentoidentidad || !fecha_incidente || !tipo_incidente) {
-      return res.status(400).json({ error: 'Faltan datos obligatorios' });
-    }
-
     const query = `
       INSERT INTO GESTION_INCIDENTES (
         DOCUMENTOIDENTIDAD, FECHAINCIDENTE, LUGARINCIDENTE, DESCRIPCION, EVIDENCIA, TIPOINCIDENTE, ESTADOINCIDENTE, CREATEDAT
@@ -56,7 +45,7 @@ app.post('/incidentes', async (req, res) => {
       )
     `;
     await pool.query(query, [
-      documentoidentidad, fecha_incidente, lugar_incidente, descripcion, evidencia, tipo_incidente, estado_incidente
+      documentoidentidad, fechaincidente, lugarincidente, descripcion, evidencia, tipoincidente, estadoincidente
     ]);
     res.status(201).json({ message: 'Incidente registrado exitosamente' });
   } catch (err) {
@@ -76,22 +65,24 @@ app.get('/incidentes', async (req, res) => {
   }
 });
 
+
+
 // Endpoint para obtener un incidente por su ID
 app.get('/incidentes/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const query = 'SELECT * FROM GESTION_INCIDENTES WHERE IDINCIDENTE = $1';
+    const query = 'SELECT * FROM GESTION_INCIDENTES WHERE DOCUMENTOIDENTIDAD = $1';
     const result = await pool.query(query, [id]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: 'Incidente no encontrado' });
+      return res.status(404).json({ error: 'Documento de identidad no encontrado' });
     }
 
     res.status(200).json(result.rows[0]);
   } catch (err) {
-    console.error('Error al obtener incidente:', err);
-    res.status(500).json({ error: 'Error al obtener incidente' });
+    console.error('Error al obtener documento de identidad:', err);
+    res.status(500).json({ error: 'Error al obtener documento de identidad' });
   }
 });
 
