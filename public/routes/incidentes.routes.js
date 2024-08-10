@@ -85,5 +85,70 @@ app.get('/incidentes/:id', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener documento de identidad' });
   }
 });
+// Endpoint para actualizar un incidente
+app.patch('/incidentes/:id', async (req, res) => {
+  const { id } = req.params;
+  const {
+    fechaincidente,
+    lugarincidente,
+    descripcion,
+    evidencia,
+    tipoincidente,
+    estadoincidente
+  } = req.body;
 
+  // Construcción dinámica de la consulta SQL
+  let query = 'UPDATE GESTION_INCIDENTES SET';
+  const values = [];
+  let index = 1;
+
+  if (fechaincidente) {
+    query += ` FECHAINCIDENTE = $${index++},`;
+    values.push(fechaincidente);
+  }
+
+  if (lugarincidente) {
+    query += ` LUGARINCIDENTE = $${index++},`;
+    values.push(lugarincidente);
+  }
+
+  if (descripcion !== undefined) {
+    query += ` DESCRIPCION = $${index++},`;
+    values.push(descripcion);
+  }
+
+  if (evidencia !== undefined) {
+    query += ` EVIDENCIA = $${index++},`;
+    values.push(evidencia);
+  }
+
+  if (tipoincidente) {
+    query += ` TIPOINCIDENTE = $${index++},`;
+    values.push(tipoincidente);
+  }
+
+  if (estadoincidente) {
+    query += ` ESTADOINCIDENTE = $${index++},`;
+    values.push(estadoincidente);
+  }
+
+  // Eliminar la última coma y añadir la cláusula WHERE
+  query = query.slice(0, -1); // Eliminar la última coma
+  query += ` WHERE DOCUMENTOIDENTIDAD = $${index}`;
+
+  values.push(id);
+
+  try {
+    const result = await pool.query(query, values);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Documento de identidad no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Incidente actualizado exitosamente' });
+  } catch (err) {
+    console.error('Error al actualizar incidente:', err);
+    res.status(500).json({ error: 'Error al actualizar incidente' });
+  }
+});
 export default app;
