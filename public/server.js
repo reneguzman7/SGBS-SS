@@ -1,9 +1,9 @@
 import express from 'express';
 import loginRoutes from './routes/login.routes.js';
 import clientesRoutes from './routes/clientes.routes.js';
+import incidentesRoutes from './routes/incidentes.routes.js';
 import pkg from 'pg';
 import dotenv from 'dotenv';
-
 // Cargar variables de entorno
 dotenv.config();
 const { Pool } = pkg;
@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 // Rutas
 app.use(loginRoutes);
 app.use(clientesRoutes);
-
+app.use(incidentesRoutes);
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

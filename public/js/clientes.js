@@ -479,31 +479,6 @@ document.getElementById("update-button").addEventListener("click", async () => {
   }
 });
 
-app.put('/clientes/:documentoidentidad', async (req, res) => {
-  try {
-    const documentoidentidad = req.params.documentoidentidad;
-    const updateData = req.body;
-
-    // Verificación de los datos recibidos
-    console.log('Datos recibidos para actualizar:', updateData);
-
-    const cliente = await Cliente.findOneAndUpdate(
-      { documentoidentidad },
-      { $set: updateData },
-      { new: true }
-    );
-
-    if (!cliente) {
-      return res.status(404).json({ error: 'Cliente no encontrado' });
-    }
-
-    res.json({ message: 'Cliente actualizado con éxito', cliente });
-  } catch (error) {
-    console.error('Error al actualizar el cliente:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
-});
-
 
 document.getElementById("guardar").addEventListener("click", async () => {
   const documentoidentidad = document.getElementById(
