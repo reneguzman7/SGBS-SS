@@ -1,58 +1,206 @@
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('M√≥dulo de Manejo de Incidentes cargado');
-    showSection('register'); // Mostrar por defecto el formulario de registro
-});
+class FormHandler {
+  constructor() {
+    this.registerForm = document.getElementById('register-form');
+    this.consultForm = document.getElementById('consult-form');
+    this.updateForm = document.getElementById('update-form');
 
-function showSection(section) {
-    const forms = document.querySelectorAll('#form-container > div');
-    forms.forEach(form => form.classList.add('hidden')); // Ocultar todos los formularios
+    this.setupEventListeners();
+  }
 
-    const activeForm = document.getElementById(section + '-form');
-    if (activeForm) {
-        activeForm.classList.remove('hidden'); // Mostrar el formulario activo
+  setupEventListeners() {
+    // Event listener para el botÛn de consulta en el formulario de actualizaciÛn
+    document.getElementById('consultar-update').addEventListener('click', () => this.consultIncident());
+
+    // Event listener para el formulario de registro
+    this.registerForm.addEventListener('submit', (event) => this.registerIncident(event));
+
+    // Event listener para el botÛn de actualizaciÛn
+    document.getElementById('update-button').addEventListener('click', () => this.updateIncident());
+
+    // Event listener para el botÛn de consulta en el formulario de consulta
+    document.getElementById('consultar').addEventListener('click', () => this.consultIncidentFromConsultForm());
+  }
+
+  showSection(section) {
+    // Oculta todas las secciones y muestra solo la secciÛn solicitada
+    ['register', 'consult', 'update'].forEach(s => {
+      document.getElementById(`${s}-form`).classList.add('hidden');
+    });
+    document.getElementById(`${section}-form`).classList.remove('hidden');
+  }
+
+  hideForm(formId) {
+    // Oculta el formulario especificado
+    document.getElementById(`${formId}-form`).classList.add('hidden');
+  }
+
+  async consultIncidentFromConsultForm() {
+    const documentId = document.getElementById('document-id-consult').value;
+
+    if (!documentId) {
+      alert("Por favor, ingrese el documento de identidad.");
+      return;
     }
+
+    try {
+      const response = await fetch(`http://localhost:3000/incidentes/${documentId}`);
+      if (!response.ok) {
+        throw new Error("Error al consultar los datos");
+      }
+
+      const data = await response.json();
+      if (data.error) {
+        alert(data.error);
+        return;
+      }
+
+      // Llena los campos con la informaciÛn del incidente
+      document.getElementById('incident-date-consult').value = data.fechaincidente || '';
+      document.getElementById('description-consult').value = data.descripcion || '';
+      document.getElementById('location-consult').value = data.lugarincidente || '';
+      document.getElementById('evidence-consult').value = data.evidencia || '';
+      document.getElementById('incident-type-consult').value = data.tipoincidente || '';
+      document.getElementById('incident-status-consult').value = data.estadoincidente || '';
+
+      this.showSection('consult');
+    } catch (error) {
+      console.error("Error al consultar el incidente:", error);
+      alert("Error al consultar el incidente.");
+    }
+  }
+
+  async consultIncident() {
+    const documentId = document.getElementById('documentoidentidad-update').value;
+
+    if (!documentId) {
+      alert("Por favor, ingrese el documento de identidad.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/incidentes/${documentId}`);
+      if (!response.ok) {
+        throw new Error("Error al consultar los datos");
+      }
+
+      const data = await response.json();
+      if (data.error) {
+        alert(data.error);
+        return;
+      }
+
+      // Llena los campos con la informaciÛn del incidente
+      document.getElementById('incident-date-update').value = data.fechaincidente || '';
+      document.getElementById('description-update').value = data.descripcion || '';
+      document.getElementById('location-update').value = data.lugarincidente || '';
+      document.getElementById('evidence-update').value = data.evidencia || '';
+      document.getElementById('incident-type-update').value = data.tipoincidente || '';
+      document.getElementById('incident-status-update').value = data.estadoincidente || '';
+
+      this.showSection('update');
+    } catch (error) {
+      console.error("Error al consultar el incidente:", error);
+      alert("Error al consultar el incidente.");
+    }
+  }
+
+  async registerIncident(event) {
+    event.preventDefault();
+
+    const documentId = document.getElementById('register-document-id').value;
+    const incidentDate = document.getElementById('register-date').value;
+    const description = document.getElementById('register-description').value;
+    const location = document.getElementById('register-location').value;
+    const evidence = document.getElementById('register-evidence').value;
+    const incidentType = document.getElementById('register-incident-type').value;
+    const incidentStatus = document.getElementById('register-incident-status').value;
+
+    if (!documentId || !incidentDate || !description || !location || !incidentType || !incidentStatus) {
+      alert("Por favor, complete todos los campos obligatorios.");
+      return;
+    }
+
+    const jsonData = {
+      documentoidentidad: documentId,
+      fechaincidente: incidentDate,
+      descripcion: description,
+      lugarincidente: location,
+      evidencia: evidence,
+      tipoincidente: incidentType,
+      estadoincidente: incidentStatus,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/incidentes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonData),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        alert("Error: " + data.error);
+      } else {
+        alert("…xito: " + data.message);
+        this.registerForm.reset();
+        this.hideForm('register');
+      }
+    } catch (error) {
+      console.error("Error al registrar el incidente:", error);
+      alert("Error al registrar el incidente.");
+    }
+  }
+
+  async updateIncident() {
+    const documentoidentidad = document.getElementById("documentoidentidad-update").value.trim();
+    const incidentDate = document.getElementById("incident-date-update").value;
+    const description = document.getElementById("description-update").value.trim() || null;
+    const location = document.getElementById("location-update").value.trim();
+    const evidence = document.getElementById("evidence-update").value.trim() || null;
+    const incidentType = document.getElementById("incident-type-update").value.trim();
+    const incidentStatus = document.getElementById("incident-status-update").value.trim() || 'Abierto';
+
+    if (!documentoidentidad) {
+      alert("Por favor, ingrese el Documento de Identidad.");
+      return;
+    }
+
+    const updateData = {
+      fechaincidente: incidentDate,
+      lugarincidente: location,
+      tipoincidente: incidentType,
+      estadoincidente: incidentStatus,
+      ...(description && { descripcion: description }),
+      ...(evidence && { evidencia: evidence }),
+    };
+
+    try {
+      const response = await fetch(`http://localhost:3000/incidentes/${documentoidentidad}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateData),
+      });
+
+      if (response.ok) {
+        alert("Incidente actualizado con Èxito.");
+        this.updateForm.reset();
+        this.hideForm('update');
+      } else {
+        const errorData = await response.json();
+        alert("Error: " + (errorData.error || "No se pudo actualizar el incidente."));
+      }
+    } catch (error) {
+      // alert("OcurriÛ un error al actualizar el incidente.");
+    }
+  }
 }
 
-function consultIncident() {
-    const searchId = document.getElementById('searchId').value;
-    fetch(`/consultIncident?searchId=${searchId}`)
-        .then(response => response.json())
-        .then(data => {
-            // Rellenar campos del formulario con los datos recibidos
-            const details = `
-                <p><strong>C√©dula/RUC:</strong> ${data.idCedulaRuc}</p>
-                <p><strong>ID Incidente:</strong> ${data.idIncident}</p>
-                <p><strong>Descripci√≥n:</strong> ${data.description}</p>
-                <p><strong>Anexos:</strong> ${data.annexes}</p>
-                <p><strong>Fecha:</strong> ${data.date}</p>
-                <p><strong>Lugar:</strong> ${data.place}</p>
-                <p><strong>Evidencia:</strong> ${data.evidence}</p>
-                <p><strong>Tipo de Incidente:</strong> ${data.incidentType}</p>
-                <p><strong>Estado del Incidente:</strong> ${data.statusIncident}</p>
-            `;
-            document.getElementById('incident-details').innerHTML = details;
-        })
-        .catch(error => console.error('Error al consultar incidente:', error));
-}
-
-function updateIncident() {
-    const searchId = document.getElementById('searchIdUpdate').value;
-    fetch(`/updateIncident?searchId=${searchId}`)
-        .then(response => response.json())
-        .then(data => {
-            // Rellenar campos del formulario con los datos recibidos
-            const details = `
-                <p><strong>C√©dula/RUC:</strong> ${data.idCedulaRuc}</p>
-                <p><strong>ID Incidente:</strong> ${data.idIncident}</p>
-                <p><strong>Descripci√≥n:</strong> ${data.description}</p>
-                <p><strong>Anexos:</strong> ${data.annexes}</p>
-                <p><strong>Fecha:</strong> ${data.date}</p>
-                <p><strong>Lugar:</strong> ${data.place}</p>
-                <p><strong>Evidencia:</strong> ${data.evidence}</p>
-                <p><strong>Tipo de Incidente:</strong> ${data.incidentType}</p>
-                <p><strong>Estado del Incidente:</strong> ${data.statusIncident}</p>
-            `;
-            document.getElementById('incident-details-update').innerHTML = details;
-        })
-        .catch(error => console.error('Error al actualizar incidente:', error));
-}
+// Inicializar el FormHandler
+document.addEventListener('DOMContentLoaded', () => {
+  new FormHandler();
+});

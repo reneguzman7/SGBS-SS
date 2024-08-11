@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Clientes</title>
+  <title>Gesti�n de Clientes</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .hidden { display: none; }
@@ -16,30 +16,24 @@
       <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
       <nav>
         <ul class="flex space-x-6">
-          <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
+                    <li><a href="clientes.html" class="nav-active px-4 py-2 rounded-md">Clientes</a></li>
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
           <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci�n del Sistema</a></li>
+          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administración del Sistema</a></li>
           <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi�n</button></li>
         </ul>
       </nav>
     </div>
   </header>
-
-  <!-- Contenido principal -->
-  <main class="container mx-auto p-6">
-    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Gesti�n de Clientes</h1>
-
-    <!-- Botones para cambiar entre formularios -->
+  <div class="bg-gray-100 p-6">
     <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showForm('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-      <button onclick="showForm('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-      <button onclick="showForm('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
-      
+      <button onclick="showForm('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar Cliente</button>
+      <button onclick="showForm('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar Cliente</button>
+      <button onclick="showForm('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar Cliente</button>
     </div>
-
-    <!-- Formularios -->
+  </div>
+    <!-- Formulario de Registro -->
     <div id="register-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Registro</h2>
       <form id="cliente-form" class="space-y-6">
         <!-- Campos del formulario -->
@@ -54,13 +48,18 @@
             <input type="text" id="nombrecompleto" placeholder="Nombre Completo" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
           </div>
           <div>
-        <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-        <input type="email" id="correo" placeholder="Correo Electrónico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
+        <input type="email" id="correo" placeholder="Correo Electr�nico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
       <span id="correo-validation" class="text-sm"></spa>
     </div>
           <div>
             <label for="tipocliente" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-            <input type="text" id="tipocliente" placeholder="Tipo de Cliente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            
+             <select id="tipocliente" name="tipocliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+              <option value="">Seleccione el tipo de cliente</option>
+              <option value="Natural">Natural</option>
+              <option value="Juridico">Jurídico</option>
+            </select>
           </div>
           <div>
             <label for="ciudad" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
@@ -71,13 +70,13 @@
             <input type="text" id="direccion" placeholder="Direcci�n" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
           </div>
           <div>
-            <label for="telefonoaseguradora" class="block text-gray-700 font-semibold mb-2">Tel�fono Aseguradora:</label>
-            <input type="text" id="telefonoaseguradora" placeholder="Tel�fono Aseguradora" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            <label for="telefonoaseguradora" class="block text-gray-700 font-semibold mb-2">Tel�fono:</label>
+            <input type="text" id="telefonoaseguradora" placeholder="Tel�fono" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
           </div>
           <div>
-            <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compañía:</label>
+            <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compa�i�a:</label>
             <select id="company-register" name="company" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateInsuranceTypes(this.value)" required>
-              <option value="">Seleccione la compañía</option>
+              <option value="">Seleccione la compa�i�a</option>
               <option value="Zurich">Zurich</option>
               <option value="Latina">Latina</option>
               <option value="AMA">AMA</option>
@@ -111,7 +110,7 @@
           </div>
           <div>
             <label for="deducible" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-            <input type="number" step="0.01" id="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            <input type="text" id="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
           </div>
           <div>
             <label for="fechainicio" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
@@ -127,11 +126,22 @@
           </div>
           <div>
             <label for="tipo" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-            <input type="text" id="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            
+             <select id="tipo" name="tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+              <option value="">Seleccione el tipo</option>
+              <option value="Individual">Individual</option>
+              <option value="Corporativo">Corporativo</option>
+            </select>
+
           </div>
           <div>
             <label for="status" class="block text-gray-700 font-semibold mb-2">Status:</label>
-            <input type="text" id="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            
+            <select id="status" name="status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
+              <option value="">Seleccione el status</option>
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
           </div>
           <div>
             <label for="causacancelacion" class="block text-gray-700 font-semibold mb-2">Causa Cancelaci�n:</label>
@@ -152,8 +162,11 @@
       </form>
     </div>
 
+  
+
     <div id="consult-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Consulta</h2>
+      
       <div>
           <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
           <input type="text" id="documentoidentidad-consulta" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
@@ -161,188 +174,175 @@
       <div class="flex justify-end mt-4">
           <button type="button" id="consultar" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
       </div>
-      <div id="consult-results" class="hidden">
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg mt-4">
-              <thead>
-                  <tr>
-                      <th class="py-2 px-4 border-b">Nombre Completo</th>
-                      <th class="py-2 px-4 border-b">Correo Electrónico</th>
-                      <th class="py-2 px-4 border-b">Tipo de Cliente</th>
-                      <th class="py-2 px-4 border-b">Ciudad</th>
-                      <th class="py-2 px-4 border-b">Dirección</th>
-                      <th class="py-2 px-4 border-b">Teléfono Aseguradora</th>
-                      <th class="py-2 px-4 border-b">Aseguradora</th>
-                      <th class="py-2 px-4 border-b">Tipo de Seguro</th>
-                      <th class="py-2 px-4 border-b">Producto</th>
-                      <th class="py-2 px-4 border-b">Póliza</th>
-                      <th class="py-2 px-4 border-b">Deducible</th>
-                      <th class="py-2 px-4 border-b">Fecha de Inicio</th>
-                      <th class="py-2 px-4 border-b">Fecha de Inicio de Vigencia</th>
-                      <th class="py-2 px-4 border-b">Fecha de Vencimiento de Póliza</th>
-                      <th class="py-2 px-4 border-b">Tipo</th>
-                      <th class="py-2 px-4 border-b">Status</th>
-                      <th class="py-2 px-4 border-b">Causa de Cancelación</th>
-                      <th class="py-2 px-4 border-b">Fecha de Cancelación</th>
-                      <th class="py-2 px-4 border-b">Observaciones</th>
-                  </tr>
-              </thead>
-              <tbody id="results-body">
-                  <!-- Los resultados se llenarán aquí -->
-              </tbody>
-          </table>
-      </div>
   </div>
   
+  <!-- Formulario de Actualizaci�n -->
+  <div id="consult-section" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Datos actuales del Cliente</h2>
     
-    
-
-  <div id="update-form" class="hidden max-w-4xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Actualización</h2>
-    <div>
-        <label for="search-documentoidentidad" class="block text-gray-700 font-semibold mb-2">Buscar por Documento de Identidad:</label>
-        <input type="text" id="search-documentoidentidad" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-    </div>
-    <div class="flex justify-end mt-4">
-        <button type="button" id="search-button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Buscar</button>
-    </div>
-
-    <div id="update-fields" class="mt-6 hidden">
-        <div>
-            <label for="documentoidentidad-update" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-            <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="nombrecompleto-update" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
-            <input type="text" id="nombrecompleto-update" placeholder="Nombre Completo" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="correo-update" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-            <input type="email" id="correo-update" placeholder="Correo Electrónico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="tipocliente-update" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-            <input type="text" id="tipocliente-update" placeholder="Tipo de Cliente" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="ciudad-update" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
-            <input type="text" id="ciudad-update" placeholder="Ciudad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="direccion-update" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-            <input type="text" id="direccion-update" placeholder="Dirección" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="telefonoaseguradora-update" class="block text-gray-700 font-semibold mb-2">Teléfono Aseguradora:</label>
-            <input type="text" id="telefonoaseguradora-update" placeholder="Teléfono Aseguradora" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="aseguradora-update" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
-            <input type="text" id="aseguradora-update" placeholder="Aseguradora" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="tiposeguro-update" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
-            <input type="text" id="tiposeguro-update" placeholder="Tipo de Seguro" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="producto-update" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-            <input type="text" id="producto-update" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="poliza-update" class="block text-gray-700 font-semibold mb-2">Poliza:</label>
-            <input type="text" id="poliza-update" placeholder="Poliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="deducible-update" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-            <input type="number" step="0.01" id="deducible-update" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="fechainicio-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
-            <input type="date" id="fechainicio-update" value="" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="fechainiciovigencia-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
-            <input type="date" id="fechainiciovigencia-update" value="" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="fechavencimientopoliza-update" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de Poliza:</label>
-            <input type="date" id="fechavencimientopoliza-update" value="" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="tipo-update" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-            <input type="text" id="tipo-update" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="status-update" class="block text-gray-700 font-semibold mb-2">Status:</label>
-            <input type="text" id="status-update" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-            <label for="causacancelacion-update" class="block text-gray-700 font-semibold mb-2">Causa Cancelación:</label>
-            <textarea id="causacancelacion-update" placeholder="Causa Cancelación" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-        </div>
-        <div>
-          <label for="fechacancelacion-update" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelación:</label>
-          <input type="date" id="fechacancelacion-update" value="" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="documentoidentidad-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
+        <input type="text" id="documentoidentidad-consult" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="nombrecompleto-consult" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
+        <input type="text" id="nombrecompleto-consult" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="correo-consult" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
+        <input type="email" id="correo-consult" name="correo" placeholder="Correo Electr�nico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="tipocliente-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
+        <input type="text" id="tipocliente-consult" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
       </div>
       <div>
-          <label for="observaciones-update" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
-          <textarea id="observaciones-update" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+        <label for="ciudad-consult" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
+        <input type="text" id="ciudad-consult" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="direccion-consult" class="block text-gray-700 font-semibold mb-2">Direcci�n:</label>
+        <input type="text" id="direccion-consult" name="direccion" placeholder="Direcci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="telefonoaseguradora-consult" class="block text-gray-700 font-semibold mb-2">Tel�fono:</label>
+        <input type="text" id="telefonoaseguradora-consult" name="telefonoaseguradora" placeholder="Tel�fono" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="aseguradora-consult" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
+        <input type="text" id="aseguradora-consult" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="tiposeguro-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
+        <input type="text" id="tiposeguro-consult" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="producto-consult" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+        <input type="text" id="producto-consult" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="poliza-consult" class="block text-gray-700 font-semibold mb-2">P�liza:</label>
+        <input type="text" id="poliza-consult" name="poliza" placeholder="P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="deducible-consult" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
+        <input type="number" id="deducible-consult" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="fechainicio-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
+        <input type="text" id="fechainicio-consult" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechainiciovigencia-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
+        <input type="text" id="fechainiciovigencia-consult" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border 100354659border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechavencimientopoliza-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de P�liza:</label>
+        <input type="text" id="fechavencimientopoliza-consult" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="tipo-consult" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
+        <input type="text" id="tipo-consult" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+      </div>
+      <div>
+        <label for="status-consult" class="block text-gray-700 font-semibold mb-2">Status:</label>
+        <input type="text" id="status-consult" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="causacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Causa de Cancelaci�n:</label>
+        <input type="text" id="causacancelacion-consult" name="causacancelacion" placeholder="Causa de Cancelaci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="fechacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci�n:</label>
+        <input type="text" id="fechacancelacion-consult" name="fechacancelacion" placeholder="Fecha de Cancelaci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
+        
+        <label for="observaciones-consult" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
+        <textarea id="observaciones-consult" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  
+
+    <!-- Formulario de Actualizaci�n -->
+    <form id="update-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Actualizacion</h2>
+          <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
+          <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
       </div>
       <div class="flex justify-end mt-4">
-          <button type="button" id="guardar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Actualizar</button>
+          <button type="button" id="consultar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
       </div>
-  </div>
-</div>
-    
-  </main>
-
-  <script>
-    function showForm(formType) {
-  const forms = ['register-form', 'consult-form', 'update-form'];
-  forms.forEach(form => {
-    document.getElementById(form).classList.add('hidden');
-  });
-  document.getElementById(`${formType}-form`).classList.remove('hidden');
-}
-
-    function resetForm() {
-      document.querySelectorAll('form').forEach(form => {
-        form.reset();
-        form.classList.add('hidden');
-      });
-    }
-    async function guardarCliente() {
-            const form = document.getElementById('clienteForm');
-            const formData = new FormData(form);
-
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            try {
-                const response = await fetch('http://localhost:3000/clientes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                });
-
-                if (response.ok) {
-                    alert('Cliente registrado exitosamente');
-                    form.reset();
-                } else {
-                    const error = await response.json();
-                    alert(`Error: ${error.error}`);
-                }
-            } catch (err) {
-                console.error('Error al registrar cliente:', err);
-                alert('Error al registrar cliente');
-            }
-        }
-  </script>
-  <script src="../js/common.js"></script>
-  <script src="../js/clientes.js"></script>
+  
+      <!-- Formulario de Actualizaci�n -->
+      <div id="update-section" class=" max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Actualizar Cliente</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                
+                <label for="nombrecompleto-update" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
+                <input type="text" id="nombrecompleto-update" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+                
+                <label for="correo-update" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
+                <input type="email" id="correo-update" name="correo" placeholder="Correo Electr�nico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="tipocliente-update" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
+                <input type="text" id="tipocliente-update" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+                <label for="ciudad-update" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
+                <input type="text" id="ciudad-update" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+            </div>
+            <div>
+                
+                <label for="direccion-update" class="block text-gray-700 font-semibold mb-2">Direcci�n:</label>
+                <input type="text" id="direccion-update" name="direccion" placeholder="Direcci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="telefonoaseguradora-update" class="block text-gray-700 font-semibold mb-2">Tel�fono:</label>
+                <input type="text" id="telefonoaseguradora-update" name="telefonoaseguradora" placeholder="Tel�fono" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="aseguradora-update" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
+                <input type="text" id="aseguradora-update" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+                <label for="tiposeguro-update" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
+                <input type="text" id="tiposeguro-update" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+            </div>
+            <div>
+                
+                <label for="producto-update" class="block text-gray-700 font-semibold mb-2">Producto:</label>
+                <input type="text" id="producto-update" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="poliza-update" class="block text-gray-700 font-semibold mb-2">P�liza:</label>
+                <input type="text" id="poliza-update" name="poliza" placeholder="P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="deducible-update" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
+                <input type="number" id="deducible-update" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                <label for="fechainicio-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
+                <input type="text" id="fechainicio-update" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+            </div>
+            <div>
+                
+                <label for="fechainiciovigencia-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
+                <input type="text" id="fechainiciovigencia-update" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="fechavencimientopoliza-update" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de P�liza:</label>
+                <input type="text" id="fechavencimientopoliza-update" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+                
+                <label for="tipo-update" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
+                <input type="text" id="tipo-update" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+                <label for="status-update" class="block text-gray-700 font-semibold mb-2">Status:</label>
+                <input type="text" id="status-update" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+              </div>
+              <div>
+                <div class="flex space-x-4 mb-4">
+                    <div class="w-1/2">
+                        <label for="causacancelacion-update" class="block text-gray-700 font-semibold mb-2">Causa de Cancelaci�n:</label>
+                        <input type="text" id="causacancelacion-update" name="causacancelacion" placeholder="Causa de Cancelaci�n" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    </div>
+                    <div class="w-1/2">
+                        <label for="fechacancelacion-update" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci�n:</label>
+                        <input type="text" id="fechacancelacion-update" name="fechacancelacion" placeholder="Fecha de Cancelaci�n" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                    </div>
+                </div>
+            
+                <label for="observaciones-update" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
+            <textarea id="observaciones-update" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+            </div>
+            
+        </div>
+        
+        <div class="flex justify-end mt-4">
+            <button type="button" id="update-button" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">Actualizar</button>
+        </div>
+    </div>
+  </form>
+  
+    <script src="../js/clientes.js"></script>
+    <script src="../js/common.js"></script>
 </body>
 </html>

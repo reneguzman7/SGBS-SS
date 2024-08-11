@@ -934,3 +934,9 @@ video {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+.nav-active {
+  font-weight: bold;
+  background-color: #1e3a8a; /* Cambia el color de fondo si lo deseas */
+  color: white; /* Cambia el color del texto si lo deseas */
+}

@@ -1,11 +1,13 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 
+
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'SGBS-SS',
-  password: 'Postgres2024', // Cambiar por la contrase�a de su usuario
-  port: 5432, // Puerto por defecto de PostgreSQL
+  user: process.env.USER, 
+  host: process.env.HOST, 
+  database: process.env.DATABASE, 
+  password: process.env.PASSWORD, 
+  port: process.env.PORT, 
 });
 
 pool.query('SELECT NOW()', (err, res) => {
