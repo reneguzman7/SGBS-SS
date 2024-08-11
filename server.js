@@ -1,7 +1,7 @@
 import express from 'express';
-import loginRoutes from './routes/login.routes.js';
-import clientesRoutes from './routes/clientes.routes.js';
-import incidentesRoutes from './routes/incidentes.routes.js';
+import loginRoutes from './public/routes/login.routes.js';
+import clientesRoutes from './public/routes/clientes.routes.js';
+import incidentesRoutes from './public/routes/incidentes.routes.js';
 import pkg from 'pg';
 import dotenv from 'dotenv';
 // Cargar variables de entorno
@@ -10,7 +10,7 @@ const { Pool } = pkg;
 const app = express();
 const port = 3000;
 
-// Configuración de conexión a la base de datos
+// Configuraciï¿½n de conexiï¿½n a la base de datos
 const pool = new Pool({
   user: process.env.USER,
   host: process.env.HOST,
@@ -19,16 +19,16 @@ const pool = new Pool({
   port: process.env.PORT,
 });
 
-// Verificar la conexión a la base de datos
+// Verificar la conexiï¿½n a la base de datos
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Error conectando a la base de datos:', err);
   } else {
-    console.log('Conexión exitosa:', res.rows[0]);
+    console.log('Conexiï¿½n exitosa:', res.rows[0]);
   }
 });
 
-// Configuración de middleware
+// Configuraciï¿½n de middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

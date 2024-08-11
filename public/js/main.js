@@ -43,23 +43,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return re.test(email);
   }
 
-  // L gica de inicio de sesi n
   loginForm.addEventListener("submit", async (event) => {
-    event.preventDefault(); // Previene el env o del formulario
-
+    event.preventDefault(); // Previene el envÃ­o del formulario
+  
     const user = document.getElementById("correo").value;
     const password = document.getElementById("contrasena").value;
-
+  
     loginMessage.textContent = "";
     loginMessage.classList.remove("error", "success");
-
+  
     if (!user) {
       loginMessage.textContent =
-        "Error: Campo del correo del cliente vacío. Por favor, ingrese un correo.";
+        "Error: Campo del correo del cliente vacÃ­o. Por favor, ingrese un correo.";
       loginMessage.classList.add("error");
     } else if (!password) {
       loginMessage.textContent =
-        "Error: Campo de la contraseña del cliente vacío. Por favor, ingrese su contraseña.";
+        "Error: Campo de la contraseÃ±a del cliente vacÃ­o. Por favor, ingrese su contraseÃ±a.";
       loginMessage.classList.add("error");
     } else {
       try {
@@ -70,14 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({ email: user, password: password }),
         });
-
+  
         const result = await response.json();
-
+  
         if (response.ok) {
           loginMessage.textContent = "Ingreso Satisfactorio";
           loginMessage.classList.add("success");
           setTimeout(() => {
-            window.location.href = "../html/clientes.html";
+            window.location.href = "../html/menu.html"; // Redirigir al menÃº
           }, 1500); // Esperar 1.5 segundos antes de redirigir
         } else {
           loginMessage.textContent = result.error || "Ingreso fallido";
@@ -102,14 +101,14 @@ document.addEventListener("DOMContentLoaded", () => {
     registerMessage.classList.remove("error", "success");
 
     if (!validateEmail(newUser)) {
-      registerMessage.textContent = "Correo electrónico no válido";
+      registerMessage.textContent = "Correo electrï¿½nico no vï¿½lido";
       registerMessage.classList.add("error");
     } else if (!validatePassword(newPassword)) {
       registerMessage.textContent =
-        'La contrase a debe tener una longitud m nima de 8 caracteres, al menos una letra mayúscula, una letra minúscula, un número y un car cter especial como !@#$%^&*(),.?":{}|<>';
+        'La contrase a debe tener una longitud m nima de 8 caracteres, al menos una letra mayï¿½scula, una letra minï¿½scula, un nï¿½mero y un car cter especial como !@#$%^&*(),.?":{}|<>';
       registerMessage.classList.add("error");
     } else if (newPassword !== confirmPassword) {
-      registerMessage.textContent = "Las contraseñas no coinciden";
+      registerMessage.textContent = "Las contraseï¿½as no coinciden";
       registerMessage.classList.add("error");
     } else {
       try {
