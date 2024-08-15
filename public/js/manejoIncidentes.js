@@ -200,6 +200,85 @@ class FormHandler {
   }
 }
 
+
+function validateCI(ci) {
+  if (!isNumeric(ci)) {
+      return "La cédula debe contener solo números.";
+  }
+  if (ci.length !== 10) {
+      return "La cédula debe ser de 10 dígitos.";
+  }
+  if (parseInt(ci, 10) === 0) {
+      return "La cédula ingresada no puede ser cero.";
+  }
+  if (ci.startsWith("30")) {
+      return "La cédula es válida.";
+  }
+
+  let total = 0;
+  for (let i = 0; i < 9; i++) {
+      let num = parseInt(ci[i], 10);
+      if (i % 2 === 0) {
+          let val = num * 2;
+          if (val > 9) val -= 9;
+          total += val;
+      } else {
+          total += num;
+      }
+  }
+
+  let lastDigit = parseInt(ci[9], 10);
+  let checksum = total % 10 === 0 ? 0 : 10 - (total % 10);
+
+  if (checksum === lastDigit) {
+      return "La cédula es válida.";
+  } else {
+      return "La cédula ingresada no es válida.";
+  }
+}
+
+function isNumeric(value) {
+  return /^\d+$/.test(value);
+}
+
+function validateRUC(ruc) {
+  if (ruc.length !== 13) {
+      return "El RUC debe ser de 13 dígitos.";
+  }
+  if (!ruc.endsWith("001")) {
+      return "El RUC debe terminar en '001'.";
+  }
+
+  let ci = ruc.substring(0, 10);
+  let ciValidation = validateCI(ci);
+
+  if (ciValidation === "La cédula es válida.") {
+      return "El RUC es válido.";
+  } else {
+      return "El RUC ingresado no es válido.";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const documentoidentidadInput = document.getElementById("register-document-id");
+
+  documentoidentidadInput.addEventListener("blur", function () {
+      const value = documentoidentidadInput.value;
+      let validationMessage = "";
+
+      if (value.length === 10) {
+          validationMessage = validateCI(value);
+      } else if (value.length === 13) {
+          validationMessage = validateRUC(value);
+      } else {
+          validationMessage = "El documento debe ser de 10 dígitos (cédula) o 13 dígitos (RUC).";
+      }
+
+      const validationMessageElement = document.getElementById("register-document-id-validation");
+      validationMessageElement.textContent = validationMessage;
+      validationMessageElement.style.color = validationMessage.includes("válida") ? "green" : "red";
+  });
+});
 // Inicializar el FormHandler
 document.addEventListener('DOMContentLoaded', () => {
   new FormHandler();

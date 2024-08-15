@@ -54,7 +54,8 @@
         <div class="col-span-full">
           <label for="register-document-id" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
           <input type="text" id="register-document-id" name="document_id" placeholder="Ingrese el documento de identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
+          <span id="register-document-id-validation" class="text-sm"></span>
+      </div>
         <div>
           <label for="register-date" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
           <input type="date" id="register-date" name="incident_date" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
@@ -109,50 +110,38 @@
         </div>
     
         <form id="consult-form" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-          <div>
+          <!-- <div>
             <label for="document-id-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
             <input type="text" id="document-id-consult" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
+        </div> -->
             <div>
                 <label for="incident-date-consult" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
-                <input type="text" id="incident-date-consult" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                <input type="text" id="incident-date-consult" placeholder="Fecha del Incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
     
             <div>
                 <label for="description-consult" class="block text-gray-700 font-semibold mb-2">Descripci�n:</label>
-                <textarea id="description-consult" placeholder="Descripci�n del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+                <input id="description-consult" placeholder="Descripci�n del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
     
             <div>
                 <label for="location-consult" class="block text-gray-700 font-semibold mb-2">Lugar del Incidente:</label>
-                <input type="text" id="location-consult" placeholder="Lugar del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                <input type="text" id="location-consult" placeholder="Lugar del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
     
             <div>
                 <label for="evidence-consult" class="block text-gray-700 font-semibold mb-2">Evidencia:</label>
-                <textarea id="evidence-consult" placeholder="Evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+                <input id="evidence-consult" placeholder="Evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
     
             <div>
                 <label for="incident-type-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
-                <select id="incident-type-consult" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    <option value="">Seleccione el tipo de incidente</option>
-                    <option value="Accidente de tr�fico">Accidente de tr�fico</option>
-                    <option value="Robo">Robo</option>
-                    <option value="Da�os materiales">Da�os materiales</option>
-                    <option value="Lesiones personales">Lesiones personales</option>
-                    <option value="Incendio">Incendio</option>
-                    <option value="Otro">Otro</option>
-                </select>
+                <input id="incident-type-consult"placeholder="Tipo de incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
     
             <div>
                 <label for="incident-status-consult" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
-                <select id="incident-status-consult" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    <option value="">Seleccione el estado del incidente</option>
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                </select>
+                <input id="incident-status-consult" placeholder="Estado del incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
             </div>
         </form>
     </div>
@@ -176,7 +165,7 @@
     
             <div>
                 <label for="incident-date-update" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
-                <input type="text" id="incident-date-update" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+                <input type="text" id="incident-date-update" placeholder="Fecha del incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
             </div>
     
             <div>
