@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesti贸n de Aseguradoras</title>
+  <title>Gesti髇 de Aseguradoras</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .hidden {
@@ -19,25 +19,25 @@
         <ul class="flex space-x-6">
                     <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
           <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti贸n de Pagos</a></li>
+          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti髇 de Pagos</a></li>
           <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="nav-active px-4 py-2 rounded-md">Administraci贸n del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi贸n</button></li>
+          <li><a href="administracionSistema.html" class="nav-active px-4 py-2 rounded-md">Administraci髇 del Sistema</a></li>
+          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi髇</button></li>
         </ul>
       </nav>
     </div>
   </header>
     
   <main class="container mx-auto p-8">
-    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Administraci贸n del Sistema</h1>
+    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Administraci髇 del Sistema</h1>
     
     <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showForm('user-management')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Gesti贸n de usuarios</button>
-      <button onclick="showForm('parameter-management')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Gesti贸n de par谩metros</button>
+      <button onclick="showForm('user-management')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Gesti髇 de usuarios</button>
+      <button onclick="showForm('parameter-management')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Gesti髇 de par谩metros</button>
       <button onclick="showForm('auditory')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Auditoria</button>
     </div>
 
-    <!-- Formulario de Gesti贸n de Usuarios -->
+    <!-- Formulario de Gesti髇 de Usuarios -->
     <form id="user-management" class="hidden space-y-4">
       <div>
         <button type="button" onclick="showForm('create-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Crear Usuario</button>
@@ -59,7 +59,7 @@
       <div>
         <label for="user-list" class="block text-gray-700 font-semibold mb-2">Lista de Usuarios:</label>
         <select id="user-list" name="user-list" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          <!-- Opciones de usuarios se cargar贸n din贸micamente -->
+          <!-- Opciones de usuarios se cargar髇 din髆icamente -->
         </select>
       </div>
 
@@ -80,8 +80,8 @@
 
       <div id="user-details" class="hidden space-y-4">
         <div>
-          <label for="update-email" class="block text-gray-700 font-semibold mb-2">Correo Electr贸nico:</label>
-          <input type="email" id="update-email" name="email" placeholder="Ingrese el correo electr贸nico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <label for="update-email" class="block text-gray-700 font-semibold mb-2">Correo Electr髇ico:</label>
+          <input type="email" id="update-email" name="email" placeholder="Ingrese el correo electr髇ico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
         </div>
 
         <div>
@@ -114,8 +114,8 @@
       <h3 class="text-2xl font-bold mb-4">Registrar Usuario</h3>
 
       <div>
-        <label for="email-register" class="block text-gray-700 font-semibold mb-2">Correo Electr贸nico:</label>
-        <input type="email" id="email-register" name="email" placeholder="Ingrese el correo electr贸nico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <label for="email-register" class="block text-gray-700 font-semibold mb-2">Correo Electr髇ico:</label>
+        <input type="email" id="email-register" name="email" placeholder="Ingrese el correo electr髇ico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
       </div>
 
       <div>
@@ -133,9 +133,9 @@
       </div>
     </form>
 
-    <!-- Formulario de Gesti贸n de Par谩metros -->
+    <!-- Formulario de Gesti髇 de Par谩metros -->
     <form id="parameter-management" class="hidden space-y-4 mt-4">
-      <h3 class="text-2xl font-bold mb-4">Gesti贸n de Par谩metros</h3>
+      <h3 class="text-2xl font-bold mb-4">Gesti髇 de Par谩metros</h3>
       <div>
         <label for="parameter-name" class="block text-gray-700 font-semibold mb-2">Nombre del Par谩metro:</label>
         <input type="text" id="parameter-name" name="parameter-name" placeholder="Ingrese el nombre del par谩metro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
