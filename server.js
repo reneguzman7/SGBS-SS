@@ -8,7 +8,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 const { Pool } = pkg;
 const app = express();
-const port = process.env.APP_PORT || 3000;
 
 // Configuraci�n de conexi�n a la base de datos
 const pool = new Pool({
@@ -48,8 +47,8 @@ app.use(loginRoutes);
 app.use(clientesRoutes);
 app.use(incidentesRoutes);
 // Iniciar servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
+app.listen(3000, () => {
+  console.log(`Servidor corriendo en http://localhost:3000`);
 });
 
 export default app;
