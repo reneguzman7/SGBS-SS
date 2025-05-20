@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const { Pool } = pkg;
 const app = express();
-const port = 3000;
+const port = process.env.APP_PORT || 3000;
 
 // Configuraci�n de conexi�n a la base de datos
 const pool = new Pool({
@@ -16,7 +16,7 @@ const pool = new Pool({
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: process.env.PORT,
+  port: parseInt(process.env.PORT, 10),
   ssl: {
     require: true,
     rejectUnauthorized: false // For development only
