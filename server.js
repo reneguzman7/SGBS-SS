@@ -35,6 +35,13 @@ pool.query('SELECT NOW()', (err, res) => {
 // Configuraci�n de middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Servir archivos estáticos
+app.use(express.static('public'));
+
+// Ruta para el endpoint raíz
+app.get('/', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/index.html');
+});
 
 // Rutas
 app.use(loginRoutes);
