@@ -9,19 +9,23 @@ dotenv.config();
 const { Pool } = pkg;
 const app = express();
 
-// Configuración de middleware
+// Configuraciï¿½n de middleware
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Configuración de conexión a la base de datos
+// Configuraciï¿½n de conexiï¿½n a la base de datos
 const pool = new Pool({
   user: process.env.USER,
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
   port: process.env.PORT,
+  ssl: {
+    require: true,
+    rejectUnauthorized: false // For development only
+  }
 });
 
 // Endpoint para registrar un nuevo incidente
@@ -97,7 +101,7 @@ app.patch('/incidentes/:id', async (req, res) => {
     estadoincidente
   } = req.body;
 
-  // Construcción dinámica de la consulta SQL
+  // Construcciï¿½n dinï¿½mica de la consulta SQL
   let query = 'UPDATE GESTION_INCIDENTES SET';
   const values = [];
   let index = 1;
@@ -132,8 +136,8 @@ app.patch('/incidentes/:id', async (req, res) => {
     values.push(estadoincidente);
   }
 
-  // Eliminar la última coma y añadir la cláusula WHERE
-  query = query.slice(0, -1); // Eliminar la última coma
+  // Eliminar la ï¿½ltima coma y aï¿½adir la clï¿½usula WHERE
+  query = query.slice(0, -1); // Eliminar la ï¿½ltima coma
   query += ` WHERE DOCUMENTOIDENTIDAD = $${index}`;
 
   values.push(id);
