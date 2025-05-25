@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
     registerSection.style.display = "block";
   });
 
-  // Volver al formulario de inicio de sesi n
+  // Volver al formulario de inicio de sesión
   document.querySelector(".login-button").addEventListener("click", () => {
     registerSection.style.display = "none";
     loginSection.style.display = "block";
   });
 
-  // Funci n de validaci n de contrase a
+  // Función de validación de contraseña
   function validatePassword(password) {
     const minLength = 8;
     const hasUpperCase = /[A-Z]/.test(password);
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Funci n de validaci n de correo
+  // Función de validación de correo
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault(); // Previene el envío del formulario
-  
+
     const user = document.getElementById("correo").value;
     const password = document.getElementById("contrasena").value;
-  
+
     loginMessage.textContent = "";
     loginMessage.classList.remove("error", "success");
-  
+
     if (!user) {
       loginMessage.textContent =
         "Error: Campo del correo del cliente vacío. Por favor, ingrese un correo.";
@@ -69,9 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           body: JSON.stringify({ email: user, password: password }),
         });
-  
+
         const result = await response.json();
-  
+
         if (response.ok) {
           loginMessage.textContent = "Ingreso Satisfactorio";
           loginMessage.classList.add("success");
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     registerMessage.classList.remove("error", "success");
 
     if (!validateEmail(newUser)) {
-      registerMessage.textContent = "Correo electr�nico no v�lido";
+      registerMessage.textContent = "Correo electrónico no válido";
       registerMessage.classList.add("error");
     } else if (!validatePassword(newPassword)) {
       registerMessage.textContent =

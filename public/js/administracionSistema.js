@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Módulo de aseguradoras cargado");
+  console.log("MÃ³dulo de aseguradoras cargado");
   showForm("register"); // Mostrar por defecto el formulario de registro
 });
 
