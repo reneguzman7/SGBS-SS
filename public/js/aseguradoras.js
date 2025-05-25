@@ -27,24 +27,41 @@ function showForm(formType) {
 
 function consultInsurance() {
   const searchId = document.getElementById("searchId-consult").value;
+  if (!searchId) {
+    alert('Por favor ingrese un RUC o cédula');
+    return;
+  }
   fetch(`/consultInsurance?searchId=${searchId}`)
     .then((response) => response.json())
     .then((data) => {
-      const consultResults = document.getElementById("consult-results");
-      consultResults.innerHTML = `
-                <p><strong>Compañía de Seguros:</strong> ${data.company}</p>
-                <p><strong>Tipo de Seguros:</strong> ${data.insuranceType}</p>
-                <p><strong>RUC:</strong> ${data.ruc}</p>
-                <p><strong>Producto:</strong> ${data.product}</p>
-                <p><strong>Teléfono:</strong> ${data.phone}</p>
-                <p><strong>Dirección:</strong> ${data.address}</p>
-                <p><strong>Correo Electrónico:</strong> ${data.email}</p>
-                <p><strong>Fecha de Inicio Contrato:</strong> ${data.startDate}</p>
-                <p><strong>Fecha de Fin Contrato:</strong> ${data.endDate}</p>
-                <p><strong>Porcentaje de Comisión:</strong> ${data.percentageComission}</p>
-            `;
+      // Populate the table body with id 'insurance-details'
+      const detailsBody = document.getElementById('insurance-details');
+      if (!data || data.error) {
+        detailsBody.innerHTML = `<tr><td colspan='2'>No se encontró la aseguradora</td></tr>`;
+        document.getElementById('consult-results').style.display = 'block';
+        return;
+      }
+      detailsBody.innerHTML = `
+        <tr><td><strong>Compañía</strong></td><td>${data.company || ''}</td></tr>
+        <tr><td><strong>Tipo de Seguros</strong></td><td>${data.insuranceType || ''}</td></tr>
+        <tr><td><strong>RUC</strong></td><td>${data.ruc || ''}</td></tr>
+        <tr><td><strong>Producto</strong></td><td>${data.product || ''}</td></tr>
+        <tr><td><strong>Teléfono</strong></td><td>${data.phone || ''}</td></tr>
+        <tr><td><strong>Dirección</strong></td><td>${data.address || ''}</td></tr>
+        <tr><td><strong>Correo Electrónico</strong></td><td>${data.email || ''}</td></tr>
+        <tr><td><strong>Fecha de Inicio Contrato</strong></td><td>${data.startDate || ''}</td></tr>
+        <tr><td><strong>Fecha de Fin Contrato</strong></td><td>${data.endDate || ''}</td></tr>
+        <tr><td><strong>Porcentaje de Comisión</strong></td><td>${data.percentageComission || ''}</td></tr>
+        <tr><td><strong>Estado</strong></td><td>${data.status || ''}</td></tr>
+      `;
+      document.getElementById('consult-results').style.display = 'block';
     })
-    .catch((error) => console.error("Error al consultar Aseguradora:", error));
+    .catch((error) => {
+      const detailsBody = document.getElementById('insurance-details');
+      detailsBody.innerHTML = `<tr><td colspan='2'>Error al consultar aseguradora</td></tr>`;
+      document.getElementById('consult-results').style.display = 'block';
+      console.error("Error al consultar Aseguradora:", error);
+    });
 }
 
 function updateInsurance() {

@@ -13,14 +13,48 @@ function showSection(section) {
 
 function consultPayments() {
   const searchId = document.getElementById("consultSearchId").value;
+  if (!searchId) {
+    alert("Por favor ingrese un RUC o cédula");
+    return;
+  }
   fetch(`/consultPayments?searchId=${searchId}`)
     .then((response) => response.json())
     .then((data) => {
-      // Aquí debes rellenar los campos del formulario con los datos recibidos
-      document.getElementById("consultRUC").value = data.RUC;
-      document.getElementById("consultAmount").value = data.amount;
-      document.getElementById("consultContractNumber").value =
-        data.contractNumber;
+      // Populate fields
+      document.getElementById("consultRUC").value = data.RUC || searchId;
+      document.getElementById("consultAmount").value = data.amount || "";
+      // Populate payments table
+      const tableBody = document.getElementById("payments-table-body");
+      if (Array.isArray(data.payments) && data.payments.length > 0) {
+        tableBody.innerHTML = data.payments
+          .map(
+            (payment) => `
+          <tr>
+            <td>${payment.date || ""}</td>
+            <td>${payment.contractNumber || ""}</td>
+            <td>${payment.amount || ""}</td>
+            <td>${payment.method || ""}</td>
+            <td><span class="ss-badge ss-badge-${payment.statusClass || "success"
+              }">${payment.status || ""}</span></td>
+            <td>
+              <button class="ss-btn ss-btn-sm ss-btn-outline"><i class="bi bi-eye"></i></button>
+            </td>
+          </tr>
+        `
+          )
+          .join("");
+      } else {
+        tableBody.innerHTML =
+          '<tr><td colspan="6">No se encontraron pagos</td></tr>';
+      }
+      document.getElementById("consult-results").style.display = "block";
     })
-    .catch((error) => console.error("Error al consultar pagos:", error));
+    .catch((error) => {
+      document.getElementById("consultRUC").value = "";
+      document.getElementById("consultAmount").value = "";
+      document.getElementById("payments-table-body").innerHTML =
+        '<tr><td colspan="6">Error al consultar pagos</td></tr>';
+      document.getElementById("consult-results").style.display = "block";
+      console.error("Error al consultar pagos:", error);
+    });
 }

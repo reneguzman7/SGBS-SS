@@ -70,11 +70,12 @@ class FormHandler {
 
             // Llena los campos con la informaci�n del incidente
             document.getElementById('incident-date-consult').value = data.fechaincidente || '';
-            document.getElementById('description-consult').value = data.descripcion || '';
             document.getElementById('location-consult').value = data.lugarincidente || '';
-            document.getElementById('evidence-consult').value = data.evidencia || '';
             document.getElementById('incident-type-consult').value = data.tipoincidente || '';
-            document.getElementById('incident-status-consult').value = data.estadoincidente || '';
+            document.getElementById('description-consult').value = data.descripcion || '';
+            document.getElementById('evidence-consult').value = data.evidencia || '';
+            document.getElementById('incident-status-consult').textContent = data.estadoincidente || '';
+            document.getElementById('consult-results').style.display = 'block';
 
             this.showSection('consult');
         } catch (error) {

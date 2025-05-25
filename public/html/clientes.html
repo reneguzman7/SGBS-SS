@@ -1,347 +1,912 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Clientes</title>
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/utilities.css">
-</head>
-<body class="bg-gray-50">
-  <!-- Barra de Navegaci�n Horizontal -->
-  <header class="bg-blue-800 text-white shadow-lg">
-    <div class="container mx-auto flex items-center justify-between p-6">
-      <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
-      <nav>
-        <ul class="flex space-x-6">
-                    <li><a href="clientes.html" class="nav-active px-4 py-2 rounded-md">Clientes</a></li>
-          <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti�n de Pagos</a></li>
-          <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administraci�n del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi�n</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <div class="bg-gray-100 p-6">
-    <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showForm('register')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar Cliente</button>
-      <button onclick="showForm('consult')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar Cliente</button>
-      <button onclick="showForm('update')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar Cliente</button>
-    </div>
-  </div>
-    <!-- Formulario de Registro -->
-    <div id="register-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Registro</h2>
-      <form id="cliente-form" class="space-y-6">
-        <!-- Campos del formulario -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div>
-            <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-            <input type="text" id="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-            <span id="documentoidentidad-validation" class="text-sm"></span>
-          </div>
-          <div>
-            <label for="nombrecompleto" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
-            <input type="text" id="nombrecompleto" placeholder="Nombre Completo" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-        <label for="correo" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-        <input type="email" id="correo" placeholder="Correo Electrónico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      <span id="correo-validation" class="text-sm"></span>
-    </div>
-          <div>
-            <label for="tipocliente" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-            
-             <select id="tipocliente" name="tipocliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-              <option value="">Seleccione el tipo de cliente</option>
-              <option value="Natural">Natural</option>
-              <option value="Juridico">Jurídico</option>
-            </select>
-          </div>
-          <div>
-            <label for="ciudad" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
-            <input type="text" id="ciudad" placeholder="Ciudad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="direccion" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-            <input type="text" id="direccion" placeholder="Dirección" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="telefonoaseguradora" class="block text-gray-700 font-semibold mb-2">Teléfono:</label>
-            <input type="text" id="telefonoaseguradora" placeholder="Teléfono" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="company-register" class="block text-gray-700 font-semibold mb-2">Compañía:</label>
-            <select id="company-register" name="company" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateInsuranceTypes(this.value)" required>
-              <option value="">Seleccione la compañía</option>
-              <option value="Zurich">Zurich</option>
-              <option value="Latina">Latina</option>
-              <option value="AMA">AMA</option>
-              <option value="Sweden">Sweden</option>
-              <option value="MAFRE">MAFRE</option>
-              <option value="Equinoccial">Equinoccial</option>
-              <option value="Hispana">Hispana</option>
-              <option value="BMI">BMI</option>
-              <option value="Cofiamed">Cofiamed</option>
-              <option value="Humanda">Humanda</option>
-              <option value="Saludsa">Saludsa</option>
-            </select>
-          </div>
-          
-          <div>
-            <label for="insuranceType-register" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
-            <select id="insuranceType-register" name="insuranceType" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" onchange="updateProducts(this.value)" required>
-              <option value="">Seleccione el tipo de seguro</option>
-            </select>
-          </div>
-          
-          <div>
-            <label for="product-register" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-            <select id="product-register" name="product" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-              <option value="">Seleccione el producto (si aplica)</option>
-            </select>
-          </div>
-          <div>
-            <label for="poliza" class="block text-gray-700 font-semibold mb-2">Póliza:</label>
-            <input type="text" id="poliza" placeholder="Póliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="deducible" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-            <input type="text" id="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="fechainicio" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
-            <input type="date" id="fechainicio" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="fechainiciovigencia" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
-            <input type="date" id="fechainiciovigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="fechavencimientopoliza" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de Poliza:</label>
-            <input type="date" id="fechavencimientopoliza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="tipo" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-            
-             <select id="tipo" name="tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-              <option value="">Seleccione el tipo</option>
-              <option value="Individual">Individual</option>
-              <option value="Corporativo">Corporativo</option>
-            </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Clientes - Seguros Sayazu</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav class="ss-sidebar" id="sidebar">
+      <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+      </button>
 
-          </div>
-          <div>
-            <label for="status" class="block text-gray-700 font-semibold mb-2">Status:</label>
-            
-            <select id="status" name="status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-              <option value="">Seleccione el status</option>
-              <option value="Activo">Activo</option>
-              <option value="Inactivo">Inactivo</option>
-            </select>
-          </div>
-          <div>
-            <label for="causacancelacion" class="block text-gray-700 font-semibold mb-2">Causa Cancelación:</label>
-            <textarea id="causacancelacion" placeholder="Causa Cancelaci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-          </div>
-          <div>
-            <label for="fechacancelacion" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelación:</label>
-            <input type="date" id="fechacancelacion" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          </div>
-          <div>
-            <label for="observaciones" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
-            <textarea id="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+      <div class="ss-sidebar-header">
+        <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo" />
+        <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
+      </div>
+
+      <ul class="ss-sidebar-nav">
+        <li class="ss-nav-item">
+          <a href="clientes.html" class="ss-nav-link active">
+            <i class="bi bi-people ss-nav-icon"></i>
+            <span class="ss-nav-text">Clientes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="aseguradoras.html" class="ss-nav-link">
+            <i class="bi bi-building ss-nav-icon"></i>
+            <span class="ss-nav-text">Aseguradoras</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="gestionPagos.html" class="ss-nav-link">
+            <i class="bi bi-credit-card ss-nav-icon"></i>
+            <span class="ss-nav-text">Gestión de Pagos</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="manejoIncidentes.html" class="ss-nav-link">
+            <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
+            <span class="ss-nav-text">Manejo de Incidentes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="administracionSistema.html" class="ss-nav-link">
+            <i class="bi bi-gear ss-nav-icon"></i>
+            <span class="ss-nav-text">Administración</span>
+          </a>
+        </li>
+        <li class="ss-nav-item mt-auto">
+          <a href="index.html" class="ss-nav-link text-danger">
+            <i class="bi bi-box-arrow-right ss-nav-icon"></i>
+            <span class="ss-nav-text">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ss-main-content" id="mainContent">
+      <!-- Header -->
+      <div class="ss-header">
+        <div>
+          <h1 class="ss-header-title">Gestión de Clientes</h1>
+          <p class="ss-header-subtitle">
+            Administra la información de tus clientes
+          </p>
+        </div>
+        <div class="ss-header-actions">
+          <div class="ss-user-info">
+            <div class="ss-user-avatar">
+              <i class="bi bi-person"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Usuario Admin</div>
+              <small class="text-muted">Administrador</small>
+            </div>
           </div>
         </div>
-        <div class="flex justify-end mt-4">
-          <button type="button" id="guardar" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Guardar</button>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="ss-stats-grid">
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Total Clientes</h3>
+            <div class="ss-stat-icon">
+              <i class="bi bi-people"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">1,247</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +12% este mes
+          </p>
         </div>
-      </form>
-    </div>
 
-  
-
-    <div id="consult-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Consulta</h2>
-      
-      <div>
-          <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-          <input type="text" id="documentoidentidad-consulta" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
-      <div class="flex justify-end mt-4">
-          <button type="button" id="consultar" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
-      </div>
-  </div>
-  
-  <!-- Formulario de Actualizaci�n -->
-  <div id="consult-section" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">Datos actuales del Cliente</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label for="documentoidentidad-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-        <input type="text" id="documentoidentidad-consult" name="documentoidentidad" placeholder="Documento de Identidad" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="nombrecompleto-consult" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
-        <input type="text" id="nombrecompleto-consult" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="correo-consult" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-        <input type="email" id="correo-consult" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="tipocliente-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-        <input type="text" id="tipocliente-consult" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-      </div>
-      <div>
-        <label for="ciudad-consult" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
-        <input type="text" id="ciudad-consult" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="direccion-consult" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-        <input type="text" id="direccion-consult" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="telefonoaseguradora-consult" class="block text-gray-700 font-semibold mb-2">Teléfono:</label>
-        <input type="text" id="telefonoaseguradora-consult" name="telefonoaseguradora" placeholder="Teléfono" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="aseguradora-consult" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
-        <input type="text" id="aseguradora-consult" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-      </div>
-      <div>
-        <label for="tiposeguro-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
-        <input type="text" id="tiposeguro-consult" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="producto-consult" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-        <input type="text" id="producto-consult" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="poliza-consult" class="block text-gray-700 font-semibold mb-2">P�liza:</label>
-        <input type="text" id="poliza-consult" name="poliza" placeholder="P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="deducible-consult" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-        <input type="number" id="deducible-consult" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-      </div>
-      <div>
-        <label for="fechainicio-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
-        <input type="text" id="fechainicio-consult" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="fechainiciovigencia-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
-        <input type="text" id="fechainiciovigencia-consult" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border 100354659border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="fechavencimientopoliza-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de P�liza:</label>
-        <input type="text" id="fechavencimientopoliza-consult" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="tipo-consult" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-        <input type="text" id="tipo-consult" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-      </div>
-      <div>
-        <label for="status-consult" class="block text-gray-700 font-semibold mb-2">Status:</label>
-        <input type="text" id="status-consult" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="causacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Causa de Cancelaci�n:</label>
-        <input type="text" id="causacancelacion-consult" name="causacancelacion" placeholder="Causa de Cancelaci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="fechacancelacion-consult" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci�n:</label>
-        <input type="text" id="fechacancelacion-consult" name="fechacancelacion" placeholder="Fecha de Cancelaci�n" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4" readonly>
-        
-        <label for="observaciones-consult" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
-        <textarea id="observaciones-consult" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" readonly></textarea>
-      </div>
-    </div>
-  </div>
-
-  
-
-    <!-- Formulario de Actualizaci�n -->
-    <form id="update-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Actualización</h2>
-          <label for="documentoidentidad" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-          <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
-      <div class="flex justify-end mt-4">
-          <button type="button" id="consultar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
-      </div>
-  
-      <!-- Formulario de Actualizaci�n -->
-      <div id="update-section" class=" max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Actualizar Cliente</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                
-                <label for="nombrecompleto-update" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
-                <input type="text" id="nombrecompleto-update" name="nombrecompleto" placeholder="Nombre Completo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
-                
-                <label for="correo-update" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
-                <input type="email" id="correo-update" name="correo" placeholder="Correo Electrónico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="tipocliente-update" class="block text-gray-700 font-semibold mb-2">Tipo de Cliente:</label>
-                <input type="text" id="tipocliente-update" name="tipocliente" placeholder="Tipo de Cliente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
-                <label for="ciudad-update" class="block text-gray-700 font-semibold mb-2">Ciudad:</label>
-                <input type="text" id="ciudad-update" name="ciudad" placeholder="Ciudad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Clientes Activos</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-secondary)"
+            >
+              <i class="bi bi-person-check"></i>
             </div>
-            <div>
-                
-                <label for="direccion-update" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-                <input type="text" id="direccion-update" name="direccion" placeholder="Dirección" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="telefonoaseguradora-update" class="block text-gray-700 font-semibold mb-2">Teléfono:</label>
-                <input type="text" id="telefonoaseguradora-update" name="telefonoaseguradora" placeholder="Teléfono" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="aseguradora-update" class="block text-gray-700 font-semibold mb-2">Aseguradora:</label>
-                <input type="text" id="aseguradora-update" name="aseguradora" placeholder="Aseguradora" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
-                <label for="tiposeguro-update" class="block text-gray-700 font-semibold mb-2">Tipo de Seguro:</label>
-                <input type="text" id="tiposeguro-update" name="tiposeguro" placeholder="Tipo de Seguro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
+          </div>
+          <h2 class="ss-stat-value">1,156</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +8% este mes
+          </p>
+        </div>
+
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Nuevos Registros</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-accent)"
+            >
+              <i class="bi bi-person-plus"></i>
             </div>
-            <div>
-                
-                <label for="producto-update" class="block text-gray-700 font-semibold mb-2">Producto:</label>
-                <input type="text" id="producto-update" name="producto" placeholder="Producto" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="poliza-update" class="block text-gray-700 font-semibold mb-2">P�liza:</label>
-                <input type="text" id="poliza-update" name="poliza" placeholder="P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="deducible-update" class="block text-gray-700 font-semibold mb-2">Deducible:</label>
-                <input type="number" id="deducible-update" name="deducible" placeholder="Deducible" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                <label for="fechainicio-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio:</label>
-                <input type="text" id="fechainicio-update" name="fechainicio" placeholder="Fecha de Inicio" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
-            </div>
-            <div>
-                
-                <label for="fechainiciovigencia-update" class="block text-gray-700 font-semibold mb-2">Fecha de Inicio de Vigencia:</label>
-                <input type="text" id="fechainiciovigencia-update" name="fechainiciovigencia" placeholder="Fecha de Inicio de Vigencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="fechavencimientopoliza-update" class="block text-gray-700 font-semibold mb-2">Fecha de Vencimiento de P�liza:</label>
-                <input type="text" id="fechavencimientopoliza-update" name="fechavencimientopoliza" placeholder="Fecha de Vencimiento de P�liza" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-                
-                <label for="tipo-update" class="block text-gray-700 font-semibold mb-2">Tipo:</label>
-                <input type="text" id="tipo-update" name="tipo" placeholder="Tipo" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4"readonly>
-                <label for="status-update" class="block text-gray-700 font-semibold mb-2">Status:</label>
-                <input type="text" id="status-update" name="status" placeholder="Status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 mb-4">
-              </div>
-              <div>
-                <div class="flex space-x-4 mb-4">
-                    <div class="w-1/2">
-                        <label for="causacancelacion-update" class="block text-gray-700 font-semibold mb-2">Causa de Cancelaci�n:</label>
-                        <input type="text" id="causacancelacion-update" name="causacancelacion" placeholder="Causa de Cancelaci�n" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    </div>
-                    <div class="w-1/2">
-                        <label for="fechacancelacion-update" class="block text-gray-700 font-semibold mb-2">Fecha de Cancelaci�n:</label>
-                        <input type="text" id="fechacancelacion-update" name="fechacancelacion" placeholder="Fecha de Cancelaci�n" class="w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    </div>
+          </div>
+          <h2 class="ss-stat-value">91</h2>
+          <p class="ss-stat-change negative">
+            <i class="bi bi-arrow-down"></i> -3% este mes
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="ss-action-buttons">
+        <button onclick="showForm('register')" class="ss-btn ss-btn-primary">
+          <i class="bi bi-person-plus me-2"></i>
+          Registrar Cliente
+        </button>
+        <button onclick="showForm('consult')" class="ss-btn ss-btn-secondary">
+          <i class="bi bi-search me-2"></i>
+          Consultar Cliente
+        </button>
+        <button onclick="showForm('update')" class="ss-btn ss-btn-warning">
+          <i class="bi bi-pencil me-2"></i>
+          Actualizar Cliente
+        </button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" class="ss-card ss-fade-in" style="display: none">
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-person-plus"></i>
+            Registrar Nuevo Cliente
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <form id="cliente-form">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Documento de Identidad</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-card-text ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="documentoidentidad"
+                      class="ss-form-control"
+                      placeholder="Ingrese el documento"
+                      required
+                    />
+                  </div>
+                  <span
+                    id="documentoidentidad-validation"
+                    class="text-danger small"
+                  ></span>
                 </div>
-            
-                <label for="observaciones-update" class="block text-gray-700 font-semibold mb-2">Observaciones:</label>
-            <textarea id="observaciones-update" name="observaciones" placeholder="Observaciones" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nombre Completo</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-person ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="nombrecompleto"
+                      class="ss-form-control"
+                      placeholder="Nombre completo"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Correo Electrónico</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-envelope ss-input-icon"></i>
+                    <input
+                      type="email"
+                      id="correo"
+                      class="ss-form-control"
+                      placeholder="correo@ejemplo.com"
+                      required
+                    />
+                  </div>
+                  <span id="correo-validation" class="text-danger small"></span>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Cliente</label>
+                  <select id="tipocliente" class="ss-form-control" required>
+                    <option value="">Seleccione el tipo</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Juridico">Jurídico</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Ciudad</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-geo-alt ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="ciudad"
+                      class="ss-form-control"
+                      placeholder="Ciudad"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Dirección</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-house ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="direccion"
+                      class="ss-form-control"
+                      placeholder="Dirección completa"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Teléfono</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-telephone ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="telefonoaseguradora"
+                      class="ss-form-control"
+                      placeholder="Número de teléfono"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Compañía Aseguradora</label>
+                  <select
+                    id="company-register"
+                    class="ss-form-control"
+                    onchange="updateInsuranceTypes(this.value)"
+                    required
+                  >
+                    <option value="">Seleccione la compañía</option>
+                    <option value="Zurich">Zurich</option>
+                    <option value="Latina">Latina</option>
+                    <option value="AMA">AMA</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="MAFRE">MAFRE</option>
+                    <option value="Equinoccial">Equinoccial</option>
+                    <option value="Hispana">Hispana</option>
+                    <option value="BMI">BMI</option>
+                    <option value="Cofiamed">Cofiamed</option>
+                    <option value="Humanda">Humanda</option>
+                    <option value="Saludsa">Saludsa</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Seguro</label>
+                  <select
+                    id="insuranceType-register"
+                    class="ss-form-control"
+                    onchange="updateProducts(this.value)"
+                    required
+                  >
+                    <option value="">Seleccione el tipo de seguro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Producto</label>
+                  <select id="product-register" class="ss-form-control">
+                    <option value="">Seleccione el producto</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Póliza</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-file-text ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="poliza"
+                      class="ss-form-control"
+                      placeholder="Número de póliza"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Deducible</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-currency-dollar ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="deducible"
+                      class="ss-form-control"
+                      placeholder="Monto del deducible"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Inicio</label>
+                  <input
+                    type="date"
+                    id="fechainicio"
+                    class="ss-form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label"
+                    >Fecha de Inicio de Vigencia</label
+                  >
+                  <input
+                    type="date"
+                    id="fechainiciovigencia"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Vencimiento</label>
+                  <input
+                    type="date"
+                    id="fechavencimientopoliza"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo</label>
+                  <select id="tipo" class="ss-form-control" required>
+                    <option value="">Seleccione el tipo</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Corporativo">Corporativo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <select id="status" class="ss-form-control" required>
+                    <option value="">Seleccione el estado</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Causa de Cancelación</label>
+                  <textarea
+                    id="causacancelacion"
+                    class="ss-form-control"
+                    rows="3"
+                    placeholder="Motivo de cancelación (si aplica)"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Observaciones</label>
+                  <textarea
+                    id="observaciones"
+                    class="ss-form-control"
+                    rows="3"
+                    placeholder="Observaciones adicionales"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Cancelación</label>
+                  <input
+                    type="date"
+                    id="fechacancelacion"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
             </div>
-            
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="button" id="guardar" class="ss-btn ss-btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+                Guardar Cliente
+              </button>
+            </div>
+          </form>
         </div>
-        
-        <div class="flex justify-end mt-4">
-            <button type="button" id="update-button" class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">Actualizar</button>
+      </div>
+
+      <!-- Consult Form -->
+      <div id="consult-form" class="ss-card ss-fade-in" style="display: none">
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-search"></i>
+            Consultar Cliente
+          </h2>
         </div>
-    </div>
-  </form>
-  
+        <div class="ss-card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Documento de Identidad</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-card-text ss-input-icon"></i>
+                  <input
+                    type="text"
+                    id="documentoidentidad-consulta"
+                    class="ss-form-control"
+                    placeholder="Ingrese el documento a consultar"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button
+                type="button"
+                id="consultar"
+                class="ss-btn ss-btn-secondary"
+              >
+                <i class="bi bi-search me-2"></i>
+                Buscar Cliente
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Section -->
+          <div id="consult-results" class="mt-4" style="display: none">
+            <hr />
+            <h4 class="mb-3">Información del Cliente</h4>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Documento de Identidad</label>
+                  <input
+                    type="text"
+                    id="documentoidentidad-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nombre Completo</label>
+                  <input
+                    type="text"
+                    id="nombrecompleto-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Correo Electrónico</label>
+                  <input
+                    type="email"
+                    id="correo-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Cliente</label>
+                  <input
+                    type="text"
+                    id="tipocliente-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Ciudad</label>
+                  <input
+                    type="text"
+                    id="ciudad-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Teléfono</label>
+                  <input
+                    type="text"
+                    id="telefonoaseguradora-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <span id="status-consult" class="ss-badge ss-badge-success"
+                    >Activo</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Aseguradora</label>
+                  <input
+                    type="text"
+                    id="aseguradora-consult"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update Form -->
+      <div id="update-form" class="ss-card ss-fade-in" style="display: none">
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-pencil"></i>
+            Actualizar Cliente
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Documento de Identidad</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-card-text ss-input-icon"></i>
+                  <input
+                    type="text"
+                    id="documentoidentidad-update"
+                    class="ss-form-control"
+                    placeholder="Ingrese el documento a actualizar"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button
+                type="button"
+                id="consultar-update"
+                class="ss-btn ss-btn-warning"
+              >
+                <i class="bi bi-search me-2"></i>
+                Buscar para Actualizar
+              </button>
+            </div>
+          </div>
+          <!-- Update Fields -->
+          <div id="update-fields" class="mt-4" style="display: none">
+            <hr />
+            <h4 class="mb-3">Actualizar Información</h4>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nombre Completo</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-person ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="nombrecompleto-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Correo Electrónico</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-envelope ss-input-icon"></i>
+                    <input
+                      type="email"
+                      id="correo-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Cliente</label>
+                  <select id="tipocliente-update" class="ss-form-control">
+                    <option value="Natural">Natural</option>
+                    <option value="Juridico">Jurídico</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Ciudad</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-geo-alt ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="ciudad-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Dirección</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-house ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="direccion-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Teléfono</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-telephone ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="telefonoaseguradora-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Aseguradora</label>
+                  <select id="aseguradora-update" class="ss-form-control">
+                    <option value="Zurich">Zurich</option>
+                    <option value="Latina">Latina</option>
+                    <option value="AMA">AMA</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="MAFRE">MAFRE</option>
+                    <option value="Equinoccial">Equinoccial</option>
+                    <option value="Hispana">Hispana</option>
+                    <option value="BMI">BMI</option>
+                    <option value="Cofiamed">Cofiamed</option>
+                    <option value="Humanda">Humanda</option>
+                    <option value="Saludsa">Saludsa</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Seguro</label>
+                  <select id="tiposeguro-update" class="ss-form-control">
+                    <option value="Vehículos">Vehículos</option>
+                    <option value="Hogar">Hogar</option>
+                    <option value="Vida">Vida</option>
+                    <option value="Salud">Salud</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Producto</label>
+                  <input
+                    type="text"
+                    id="producto-update"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Póliza</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-file-text ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="poliza-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Deducible</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-currency-dollar ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="deducible-update"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Inicio</label>
+                  <input
+                    type="date"
+                    id="fechainicio-update"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label"
+                    >Fecha de Inicio de Vigencia</label
+                  >
+                  <input
+                    type="date"
+                    id="fechainiciovigencia-update"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Vencimiento</label>
+                  <input
+                    type="date"
+                    id="fechavencimientopoliza-update"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo</label>
+                  <select id="tipo-update" class="ss-form-control">
+                    <option value="Individual">Individual</option>
+                    <option value="Corporativo">Corporativo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <select id="status-update" class="ss-form-control">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Causa de Cancelación</label>
+                  <textarea
+                    id="causacancelacion-update"
+                    class="ss-form-control"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Cancelación</label>
+                  <input
+                    type="date"
+                    id="fechacancelacion-update"
+                    class="ss-form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Observaciones</label>
+                  <textarea
+                    id="observaciones-update"
+                    class="ss-form-control"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button
+                type="button"
+                id="update-button"
+                class="ss-btn ss-btn-warning"
+              >
+                <i class="bi bi-check-circle me-2"></i>
+                Actualizar Cliente
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/clientes.js"></script>
     <script src="../js/common.js"></script>
-</body>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("expanded");
+      }
+
+      function showForm(formType) {
+        hideAllForms();
+        const form = document.getElementById(formType + "-form");
+        if (form) {
+          form.style.display = "block";
+          form.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      function hideAllForms() {
+        const forms = ["register-form", "consult-form", "update-form"];
+        forms.forEach((formId) => {
+          const form = document.getElementById(formId);
+          if (form) form.style.display = "none";
+        });
+      }
+
+      // Mobile sidebar toggle
+      if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.add("collapsed");
+        document.getElementById("mainContent").classList.add("expanded");
+      }
+    </script>
+  </body>
 </html>

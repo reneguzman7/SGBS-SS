@@ -3,221 +3,494 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manejo de Incidentes</title>
+  <title>Manejo de Incidentes - Seguros Sayazu</title>
   <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/utilities.css">
-  <script>
-    function showSection(section) {
-      const sections = ['register', 'consult', 'update'];
-      sections.forEach(s => {
-        document.getElementById(`${s}-form`).classList.add('hidden');
-      });
-      document.getElementById(`${section}-form`).classList.remove('hidden');
-    }
-
-    function hideForm(formId) {
-      document.getElementById(`${formId}-form`).classList.add('hidden');
-    }
-  </script>
 </head>
-<body class="bg-gray-50">
-  <!-- Barra de Navegaci�n Horizontal -->
-  <header class="bg-blue-800 text-white shadow-lg">
-    <div class="container mx-auto flex items-center justify-between p-6">
-      <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
-      <nav>
-        <ul class="flex space-x-6">
-                    <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
-          <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gestión de Pagos</a></li>
-          <li><a href="manejoIncidentes.html" class="nav-active px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Administración del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesión</button></li>
-        </ul>
-      </nav>
+<body>
+  <!-- Sidebar -->
+  <nav class="ss-sidebar" id="sidebar">
+    <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+    
+    <div class="ss-sidebar-header">
+      <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo">
+      <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
     </div>
-  </header>
+    
+    <ul class="ss-sidebar-nav">
+      <li class="ss-nav-item">
+        <a href="clientes.html" class="ss-nav-link">
+          <i class="bi bi-people ss-nav-icon"></i>
+          <span class="ss-nav-text">Clientes</span>
+        </a>
+      </li>
+      <li class="ss-nav-item">
+        <a href="aseguradoras.html" class="ss-nav-link">
+          <i class="bi bi-building ss-nav-icon"></i>
+          <span class="ss-nav-text">Aseguradoras</span>
+        </a>
+      </li>
+      <li class="ss-nav-item">
+        <a href="gestionPagos.html" class="ss-nav-link">
+          <i class="bi bi-credit-card ss-nav-icon"></i>
+          <span class="ss-nav-text">Gestión de Pagos</span>
+        </a>
+      </li>
+      <li class="ss-nav-item">
+        <a href="manejoIncidentes.html" class="ss-nav-link active">
+          <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
+          <span class="ss-nav-text">Manejo de Incidentes</span>
+        </a>
+      </li>
+      <li class="ss-nav-item">
+        <a href="administracionSistema.html" class="ss-nav-link">
+          <i class="bi bi-gear ss-nav-icon"></i>
+          <span class="ss-nav-text">Administración</span>
+        </a>
+      </li>
+      <li class="ss-nav-item mt-auto">
+        <a href="index.html" class="ss-nav-link text-danger">
+          <i class="bi bi-box-arrow-right ss-nav-icon"></i>
+          <span class="ss-nav-text">Cerrar Sesión</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-  <!-- Contenido Principal -->
-  <main class="container mx-auto p-8">
-    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Manejo de Incidentes</h1>
-    <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showSection('register'); hideForm('consult'); hideForm('update');" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-      <button onclick="showSection('consult'); hideForm('register'); hideForm('update');" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Consultar</button>
-      <button onclick="showSection('update'); hideForm('register'); hideForm('consult');" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Actualizar</button>
-    </div>
-
-    <div id="form-container" class="space-y-4">
-      <!-- Formulario de Registrar Incidente -->
-      <form id="register-form" class="hidden grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-        <h3 class="text-2xl font-bold col-span-full mb-4">Registrar Incidente</h3>
-        
-        <div class="col-span-full">
-          <label for="register-document-id" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-          <input type="text" id="register-document-id" name="document_id" placeholder="Ingrese el documento de identidad"  class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          <span id="register-document-id-validation" class="text-sm"></span>
+  <!-- Main Content -->
+  <main class="ss-main-content" id="mainContent">
+    <!-- Header -->
+    <div class="ss-header">
+      <div>
+        <h1 class="ss-header-title">Manejo de Incidentes</h1>
+        <p class="ss-header-subtitle">Gestiona y da seguimiento a los incidentes</p>
       </div>
-        <div>
-          <label for="register-date" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
-          <input type="date" id="register-date" name="incident_date"  class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+      <div class="ss-header-actions">
+        <div class="ss-user-info">
+          <div class="ss-user-avatar">
+            <i class="bi bi-person"></i>
+          </div>
+          <div>
+            <div class="fw-bold">Usuario Admin</div>
+            <small class="text-muted">Administrador</small>
+          </div>
         </div>
-        <div>
-          <label for="register-description" class="block text-gray-700 font-semibold mb-2">Descripción:</label>
-          <textarea id="register-description" name="description" placeholder="Ingrese la descripción" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-        </div>
-        <div>
-          <label for="register-location" class="block text-gray-700 font-semibold mb-2">Lugar del Incidente:</label>
-          <input type="text" id="register-location" name="incident_location" placeholder="Ingrese el lugar del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div>
-        <div>
-          <label for="register-evidence" class="block text-gray-700 font-semibold mb-2">Evidencia:</label>
-          <textarea id="register-evidence" name="evidence" placeholder="Ingrese la evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-        </div>
-        <div>
-          <label for="register-incident-type" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
-          <select id="register-incident-type" name="register-incident-type" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" >
-            <option value="">Seleccione el tipo de incidente</option>
-            <option value="Accidente de tráfico">Accidente de tráfico</option>
-            <option value="Robo">Robo</option>
-            <option value="Daños materiales">Daños materiales</option>
-            <option value="Lesiones personales">Lesiones personales</option>
-            <option value="Incendio">Incendio</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
-        <div>
-          <label for="register-incident-status" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
-          <select id="register-incident-status" name="incident_status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" >
-            <option value="">Seleccione el estado del incidente</option>
-            <option value="Activo">Activo</option>
-            <option value="Inactivo">Inactivo</option>
-          </select>
-        </div>
-        <div class="col-span-full">
-          <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-        </div>
-      </form>
+      </div>
+    </div>
 
-      <!-- Consultar Incidente -->
-      <div id="consult-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Consulta</h2>
-    
-        <div>
-            <label for="document-id-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-            <input type="text" id="document-id-consult" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+    <!-- Stats Cards -->
+    <div class="ss-stats-grid">
+      <div class="ss-stat-card">
+        <div class="ss-stat-header">
+          <h3 class="ss-stat-title">Total Incidentes</h3>
+          <div class="ss-stat-icon">
+            <i class="bi bi-exclamation-triangle"></i>
+          </div>
         </div>
-        <div class="flex justify-end mt-4">
-            <button type="button" id="consultar" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
+        <h2 class="ss-stat-value">342</h2>
+        <p class="ss-stat-change positive">
+          <i class="bi bi-arrow-up"></i> +7% este mes
+        </p>
+      </div>
+      
+      <div class="ss-stat-card">
+        <div class="ss-stat-header">
+          <h3 class="ss-stat-title">Incidentes Activos</h3>
+          <div class="ss-stat-icon" style="background: var(--ss-gradient-accent);">
+            <i class="bi bi-clock"></i>
+          </div>
         </div>
-    
-        <form id="consult-form" class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">
-          <!-- <div>
-            <label for="document-id-consult" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-            <input type="text" id="document-id-consult" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        </div> -->
-            <div>
-                <label for="incident-date-consult" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
-                <input type="text" id="incident-date-consult" placeholder="Fecha del Incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+        <h2 class="ss-stat-value">28</h2>
+        <p class="ss-stat-change negative">
+          <i class="bi bi-arrow-down"></i> -12% este mes
+        </p>
+      </div>
+      
+      <div class="ss-stat-card">
+        <div class="ss-stat-header">
+          <h3 class="ss-stat-title">Resueltos Hoy</h3>
+          <div class="ss-stat-icon" style="background: var(--ss-gradient-secondary);">
+            <i class="bi bi-check-circle"></i>
+          </div>
+        </div>
+        <h2 class="ss-stat-value">15</h2>
+        <p class="ss-stat-change positive">
+          <i class="bi bi-arrow-up"></i> +25% vs ayer
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="ss-action-buttons">
+      <button onclick="showForm('register')" class="ss-btn ss-btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>
+        Registrar Incidente
+      </button>
+      <button onclick="showForm('consult')" class="ss-btn ss-btn-secondary">
+        <i class="bi bi-search me-2"></i>
+        Consultar Incidente
+      </button>
+      <button onclick="showForm('update')" class="ss-btn ss-btn-warning">
+        <i class="bi bi-pencil me-2"></i>
+        Actualizar Incidente
+      </button>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" class="ss-card ss-fade-in" style="display: none;">
+      <div class="ss-card-header">
+        <h2 class="ss-card-title">
+          <i class="bi bi-plus-circle"></i>
+          Registrar Nuevo Incidente
+        </h2>
+      </div>
+      <div class="ss-card-body">
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Documento de Identidad</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-card-text ss-input-icon"></i>
+                  <input type="text" id="register-document-id" class="ss-form-control" placeholder="Documento del cliente" required>
+                </div>
+                <span id="register-document-id-validation" class="text-danger small"></span>
+              </div>
             </div>
-    
-            <div>
-                <label for="description-consult" class="block text-gray-700 font-semibold mb-2">Descripci�n:</label>
-                <input id="description-consult" placeholder="Descripci�n del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+            
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Fecha del Incidente</label>
+                <input type="date" id="register-date" class="ss-form-control" required>
+              </div>
             </div>
-    
-            <div>
-                <label for="location-consult" class="block text-gray-700 font-semibold mb-2">Lugar del Incidente:</label>
-                <input type="text" id="location-consult" placeholder="Lugar del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+            
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Lugar del Incidente</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-geo-alt ss-input-icon"></i>
+                  <input type="text" id="register-location" class="ss-form-control" placeholder="Ubicación del incidente" required>
+                </div>
+              </div>
             </div>
-    
-            <div>
-                <label for="evidence-consult" class="block text-gray-700 font-semibold mb-2">Evidencia:</label>
-                <input id="evidence-consult" placeholder="Evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+            
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Tipo de Incidente</label>
+                <select id="register-incident-type" class="ss-form-control" required>
+                  <option value="">Seleccione el tipo</option>
+                  <option value="Accidente de tráfico">Accidente de tráfico</option>
+                  <option value="Robo">Robo</option>
+                  <option value="Daños materiales">Daños materiales</option>
+                  <option value="Lesiones personales">Lesiones personales</option>
+                  <option value="Incendio">Incendio</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
             </div>
-    
-            <div>
-                <label for="incident-type-consult" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
-                <input id="incident-type-consult"placeholder="Tipo de incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+            
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Estado del Incidente</label>
+                <select id="register-incident-status" class="ss-form-control" required>
+                  <option value="">Seleccione el estado</option>
+                  <option value="Activo">Activo</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Resuelto">Resuelto</option>
+                  <option value="Cerrado">Cerrado</option>
+                </select>
+              </div>
             </div>
-    
-            <div>
-                <label for="incident-status-consult" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
-                <input id="incident-status-consult" placeholder="Estado del incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"readonly>
+            
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Prioridad</label>
+                <select id="register-priority" class="ss-form-control" required>
+                  <option value="">Seleccione prioridad</option>
+                  <option value="Baja">Baja</option>
+                  <option value="Media">Media</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Crítica">Crítica</option>
+                </select>
+              </div>
             </div>
+            
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Descripción del Incidente</label>
+                <textarea id="register-description" class="ss-form-control" rows="4" placeholder="Describa detalladamente lo ocurrido" required></textarea>
+              </div>
+            </div>
+            
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Evidencia</label>
+                <textarea id="register-evidence" class="ss-form-control" rows="3" placeholder="Describa la evidencia disponible"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-end gap-3 mt-4">
+            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
+              <i class="bi bi-x-circle me-2"></i>
+              Cancelar
+            </button>
+            <button type="submit" class="ss-btn ss-btn-primary">
+              <i class="bi bi-check-circle me-2"></i>
+              Registrar Incidente
+            </button>
+          </div>
         </form>
+      </div>
     </div>
-    
 
-      <!-- Actualizar Incidente -->
-      <div id="update-form" class="hidden max-w-6xl mx-auto bg-white p-8 border border-gray-300 rounded-lg shadow-lg space-y-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">Formulario de Actualizaci�n</h2>
-        
-        <!-- Documento de Identidad -->
-        <label for="documentoidentidad-update" class="block text-gray-700 font-semibold mb-2">Documento de Identidad:</label>
-        <input type="text" id="documentoidentidad-update" placeholder="Documento de Identidad" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-        
-        <div class="flex justify-end mt-4">
-            <button type="button" id="consultar-update" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">Consultar</button>
+    <!-- Consult Form -->
+    <div id="consult-form" class="ss-card ss-fade-in" style="display: none;">
+      <div class="ss-card-header">
+        <h2 class="ss-card-title">
+          <i class="bi bi-search"></i>
+          Consultar Incidente
+        </h2>
+      </div>
+      <div class="ss-card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="ss-form-group">
+              <label class="ss-form-label">Documento de Identidad</label>
+              <div class="ss-input-group">
+                <i class="bi bi-card-text ss-input-icon"></i>
+                <input type="text" id="document-id-consult" class="ss-form-control" placeholder="Documento a consultar">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-end">
+            <button type="button" id="consultar" onclick="consultIncident()" class="ss-btn ss-btn-secondary">
+              <i class="bi bi-search me-2"></i>
+              Buscar Incidentes
+            </button>
+          </div>
         </div>
         
-        <!-- Grid Layout for Update Fields -->
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <!-- Otros campos del formulario de actualizaci�n aqu� -->
-    
-            <div>
-                <label for="incident-date-update" class="block text-gray-700 font-semibold mb-2">Fecha del Incidente:</label>
-                <input type="text" id="incident-date-update" placeholder="Fecha del incidente"class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+        <!-- Results Section -->
+        <div id="consult-results" class="mt-4" style="display: none;">
+          <hr>
+          <h4 class="mb-3">Información del Incidente</h4>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Fecha del Incidente</label>
+                <input type="text" id="incident-date-consult" class="ss-form-control" readonly>
+              </div>
             </div>
-    
-            <div>
-                <label for="location-update" class="block text-gray-700 font-semibold mb-2">Lugar del Incidente:</label>
-                <input type="text" id="location-update" placeholder="Lugar del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Lugar del Incidente</label>
+                <input type="text" id="location-consult" class="ss-form-control" readonly>
+              </div>
             </div>
-    
-            <div class="col-span-2">
-                <label for="description-update" class="block text-gray-700 font-semibold mb-2">Descripci�n:</label>
-                <textarea id="description-update" placeholder="Descripci�n del incidente" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Tipo de Incidente</label>
+                <input type="text" id="incident-type-consult" class="ss-form-control" readonly>
+              </div>
             </div>
-    
-            <div>
-                <label for="evidence-update" class="block text-gray-700 font-semibold mb-2">Evidencia:</label>
-                <textarea id="evidence-update" placeholder="Evidencia" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Estado</label>
+                <span id="incident-status-consult" class="ss-badge ss-badge-warning">En Proceso</span>
+              </div>
             </div>
-    
-            <div>
-                <label for="incident-type-update" class="block text-gray-700 font-semibold mb-2">Tipo de Incidente:</label>
-                <select id="incident-type-update" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    <option value="">Seleccione el tipo de incidente</option>
-                    <option value="Accidente de tráfico">Accidente de tráfico</option>
-                    <option value="Robo">Robo</option>
-                    <option value="Daños materiales">Daños materiales</option>
-                    <option value="Lesiones personales">Lesiones personales</option>
-                    <option value="Incendio">Incendio</option>
-                    <option value="Otro">Otro</option>
-                </select>
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Descripción</label>
+                <textarea id="description-consult" class="ss-form-control" rows="3" readonly></textarea>
+              </div>
             </div>
-    
-            <div>
-                <label for="incident-status-update" class="block text-gray-700 font-semibold mb-2">Estado del Incidente:</label>
-                <select id="incident-status-update" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-                    <option value="">Seleccione el estado del incidente</option>
-                    <option value="Activo">Activo</option>
-                    <option value="Inactivo">Inactivo</option>
-                </select>
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Evidencia</label>
+                <textarea id="evidence-consult" class="ss-form-control" rows="3" readonly></textarea>
+              </div>
             </div>
+          </div>
         </div>
-    
-        <div class="flex justify-end mt-4">
-            <button type="button" id="update-button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Actualizar</button>
-        </div>
+      </div>
     </div>
-    
-    
-    
-    
+
+    <!-- Update Form -->
+    <div id="update-form" class="ss-card ss-fade-in" style="display: none;">
+      <div class="ss-card-header">
+        <h2 class="ss-card-title">
+          <i class="bi bi-pencil"></i>
+          Actualizar Incidente
+        </h2>
+      </div>
+      <div class="ss-card-body">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="ss-form-group">
+              <label class="ss-form-label">Documento de Identidad</label>
+              <div class="ss-input-group">
+                <i class="bi bi-card-text ss-input-icon"></i>
+                <input type="text" id="documentoidentidad-update" class="ss-form-control" placeholder="Documento a actualizar">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex align-items-end">
+            <button type="button" id="consultar-update" onclick="searchForUpdate()" class="ss-btn ss-btn-warning">
+              <i class="bi bi-search me-2"></i>
+              Buscar para Actualizar
+            </button>
+          </div>
+        </div>
+        
+        <!-- Update Fields -->
+        <div id="update-fields" class="mt-4" style="display: none;">
+          <hr>
+          <h4 class="mb-3">Actualizar Información</h4>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Fecha del Incidente</label>
+                <input type="date" id="incident-date-update" class="ss-form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Lugar del Incidente</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-geo-alt ss-input-icon"></i>
+                  <input type="text" id="location-update" class="ss-form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Tipo de Incidente</label>
+                <select id="incident-type-update" class="ss-form-control">
+                  <option value="">Seleccione el tipo</option>
+                  <option value="Accidente de tráfico">Accidente de tráfico</option>
+                  <option value="Robo">Robo</option>
+                  <option value="Daños materiales">Daños materiales</option>
+                  <option value="Lesiones personales">Lesiones personales</option>
+                  <option value="Incendio">Incendio</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Estado del Incidente</label>
+                <select id="incident-status-update" class="ss-form-control">
+                  <option value="">Seleccione el estado</option>
+                  <option value="Activo">Activo</option>
+                  <option value="En Proceso">En Proceso</option>
+                  <option value="Resuelto">Resuelto</option>
+                  <option value="Cerrado">Cerrado</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Descripción</label>
+                <textarea id="description-update" class="ss-form-control" rows="4"></textarea>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Evidencia</label>
+                <textarea id="evidence-update" class="ss-form-control" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-end gap-3 mt-4">
+            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
+              <i class="bi bi-x-circle me-2"></i>
+              Cancelar
+            </button>
+            <button type="button" id="update-button" class="ss-btn ss-btn-warning">
+              <i class="bi bi-check-circle me-2"></i>
+              Actualizar Incidente
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/manejoIncidentes.js"></script>
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const mainContent = document.getElementById('mainContent');
+      
+      sidebar.classList.toggle('collapsed');
+      mainContent.classList.toggle('expanded');
+    }
+    
+    function showForm(formType) {
+      hideAllForms();
+      const form = document.getElementById(formType + '-form');
+      if (form) {
+        form.style.display = 'block';
+        form.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    
+    function hideAllForms() {
+      const forms = ['register-form', 'consult-form', 'update-form'];
+      forms.forEach(formId => {
+        const form = document.getElementById(formId);
+        if (form) form.style.display = 'none';
+      });
+    }
+    
+    function consultIncident() {
+      const documentId = document.getElementById('document-id-consult').value;
+      if (!documentId) {
+        alert('Por favor ingrese un documento de identidad');
+        return;
+      }
+      
+      // Show results section
+      document.getElementById('consult-results').style.display = 'block';
+      
+      // Populate with sample data
+      document.getElementById('incident-date-consult').value = '2024-01-15';
+      document.getElementById('location-consult').value = 'Av. Amazonas y Naciones Unidas';
+      document.getElementById('incident-type-consult').value = 'Accidente de tráfico';
+      document.getElementById('description-consult').value = 'Colisión menor en intersección durante hora pico';
+      document.getElementById('evidence-consult').value = 'Fotos del vehículo, reporte policial, testimonios';
+    }
+    
+    function searchForUpdate() {
+      const documentId = document.getElementById('documentoidentidad-update').value;
+      if (!documentId) {
+        alert('Por favor ingrese un documento de identidad');
+        return;
+      }
+      
+      // Show update fields
+      document.getElementById('update-fields').style.display = 'block';
+      
+      // Populate with current data
+      document.getElementById('incident-date-update').value = '2024-01-15';
+      document.getElementById('location-update').value = 'Av. Amazonas y Naciones Unidas';
+      document.getElementById('incident-type-update').value = 'Accidente de tráfico';
+      document.getElementById('incident-status-update').value = 'En Proceso';
+      document.getElementById('description-update').value = 'Colisión menor en intersección durante hora pico';
+      document.getElementById('evidence-update').value = 'Fotos del vehículo, reporte policial, testimonios';
+    }
+    
+    // Mobile sidebar toggle
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.add('collapsed');
+      document.getElementById('mainContent').classList.add('expanded');
+    }
+  </script>
 </body>
 </html>

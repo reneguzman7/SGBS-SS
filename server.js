@@ -42,6 +42,28 @@ app.get('/', (req, res) => {
   res.sendFile(process.cwd() + '/public/html/index.html');
 });
 
+// Ruta para el menú principal
+app.get('/menu.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/menu.html');
+});
+
+// Rutas explícitas para cada HTML principal
+app.get('/clientes.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/clientes.html');
+});
+app.get('/aseguradoras.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/aseguradoras.html');
+});
+app.get('/gestionPagos.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/gestionPagos.html');
+});
+app.get('/manejoIncidentes.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/manejoIncidentes.html');
+});
+app.get('/administracionSistema.html', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/administracionSistema.html');
+});
+
 // Rutas
 app.use(loginRoutes);
 app.use(clientesRoutes);
