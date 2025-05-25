@@ -1,174 +1,403 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gesti�n de Aseguradoras</title>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body class="bg-gray-50">
-  <header class="bg-blue-800 text-white shadow-lg">
-    <div class="container mx-auto flex items-center justify-between p-6">
-      <img src="../images/logo.png" alt="Logo" class="w-32 h-auto">
-      <nav>
-        <ul class="flex space-x-6">
-                    <li><a href="clientes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Clientes</a></li>
-          <li><a href="aseguradoras.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Aseguradoras</a></li>
-          <li><a href="gestionPagos.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Gesti�n de Pagos</a></li>
-          <li><a href="manejoIncidentes.html" class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md">Manejo de Incidentes</a></li>
-          <li><a href="administracionSistema.html" class="nav-active px-4 py-2 rounded-md">Administraci�n del Sistema</a></li>
-          <li><button onclick="window.location.href='index.html'" class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300">Cerrar sesi�n</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-    
-  <main class="container mx-auto p-8">
-    <h1 class="text-3xl font-extrabold text-gray-800 mb-6">Administraci�n del Sistema</h1>
-    
-    <div class="mb-6 flex flex-wrap gap-4">
-      <button onclick="showForm('user-management')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Gesti�n de usuarios</button>
-      <button onclick="showForm('parameter-management')" class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300">Gesti�n de parámetros</button>
-      <button onclick="showForm('auditory')" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300">Auditoria</button>
-    </div>
-
-    <!-- Formulario de Gesti�n de Usuarios -->
-    <form id="user-management" class="hidden space-y-4">
-      <div>
-        <button type="button" onclick="showForm('create-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Crear Usuario</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Aseguradoras</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-blue-800 text-white shadow-lg">
+      <div class="container mx-auto flex items-center justify-between p-6">
+        <img src="../images/logo.png" alt="Logo" class="w-32 h-auto" />
+        <nav>
+          <ul class="flex space-x-6">
+            <li>
+              <a
+                href="clientes.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Clientes</a
+              >
+            </li>
+            <li>
+              <a
+                href="aseguradoras.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Aseguradoras</a
+              >
+            </li>
+            <li>
+              <a
+                href="gestionPagos.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Gestión de Pagos</a
+              >
+            </li>
+            <li>
+              <a
+                href="manejoIncidentes.html"
+                class="text-gray-200 hover:bg-blue-700 hover:text-white px-4 py-2 rounded-md"
+                >Manejo de Incidentes</a
+              >
+            </li>
+            <li>
+              <a
+                href="administracionSistema.html"
+                class="nav-active px-4 py-2 rounded-md"
+                >Administración del Sistema</a
+              >
+            </li>
+            <li>
+              <button
+                onclick="window.location.href='index.html'"
+                class="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700 transition duration-300"
+              >
+                Cerrar sesión
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
-      
-      <div>
-        <button type="button" onclick="showForm('update-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Actualizar Usuario</button>
-      </div>
-      
-      <div>
-        <button type="button" onclick="showForm('show-user-form')" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Ver Usuarios</button>
-      </div>
-    </form>
+    </header>
 
-    <!-- Formulario para Ver Usuarios -->
-    <form id="show-user-form" class="hidden space-y-4 mt-4">
-      <h3 class="text-2xl font-bold mb-4">Ver Usuarios</h3>
+    <main class="container mx-auto p-8">
+      <h1 class="text-3xl font-extrabold text-gray-800 mb-6">
+        Administración del Sistema
+      </h1>
 
-      <div>
-        <label for="user-list" class="block text-gray-700 font-semibold mb-2">Lista de Usuarios:</label>
-        <select id="user-list" name="user-list" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-          <!-- Opciones de usuarios se cargar�n din�micamente -->
-        </select>
-      </div>
-
-      <div>
-        <button type="button" onclick="fetchUserDetails()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Ver Detalles</button>
-      </div>
-    </form>
-
-    <!-- Formulario para Actualizar Usuario -->
-    <form id="update-user-form" class="hidden space-y-4 mt-4">
-      <h3 class="text-2xl font-bold mb-4">Actualizar Usuario</h3>
-
-      <div>
-        <label for="user-id" class="block text-gray-700 font-semibold mb-2">ID del Usuario:</label>
-        <input type="text" id="user-id" name="user-id" placeholder="Ingrese el ID del usuario" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" required>
-        <button type="button" onclick="fetchUserDetailsById()" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 mt-2">Buscar Usuario</button>
+      <div class="mb-6 flex flex-wrap gap-4">
+        <button
+          onclick="showForm('user-management')"
+          class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+        >
+          Gestión de usuarios
+        </button>
+        <button
+          onclick="showForm('parameter-management')"
+          class="bg-gray-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-gray-700 transition duration-300"
+        >
+          Gestión de parámetros
+        </button>
+        <button
+          onclick="showForm('auditory')"
+          class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-green-700 transition duration-300"
+        >
+          Auditoria
+        </button>
       </div>
 
-      <div id="user-details" class="hidden space-y-4">
+      <!-- Formulario de Gestión de Usuarios -->
+      <form id="user-management" class="hidden space-y-4">
         <div>
-          <label for="update-email" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
-          <input type="email" id="update-email" name="email" placeholder="Ingrese el correo electr�nico" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <button
+            type="button"
+            onclick="showForm('create-user-form')"
+            class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Crear Usuario
+          </button>
         </div>
 
         <div>
-          <label for="update-password" class="block text-gray-700 font-semibold mb-2">Contraseña:</label>
-          <input type="password" id="update-password" name="password" placeholder="Ingrese la nueva contraseña" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <button
+            type="button"
+            onclick="showForm('update-user-form')"
+            class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Actualizar Usuario
+          </button>
         </div>
 
         <div>
-          <label for="update-conf-password" class="block text-gray-700 font-semibold mb-2">Confirme su Contraseña:</label>
-          <input type="password" id="update-conf-password" name="conf-password" placeholder="Confirme la nueva contraseña" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
+          <button
+            type="button"
+            onclick="showForm('show-user-form')"
+            class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Ver Usuarios
+          </button>
         </div>
+      </form>
+
+      <!-- Formulario para Ver Usuarios -->
+      <form id="show-user-form" class="hidden space-y-4 mt-4">
+        <h3 class="text-2xl font-bold mb-4">Ver Usuarios</h3>
 
         <div>
-          <label for="update-status" class="block text-gray-700 font-semibold mb-2">Estado:</label>
-          <select id="update-status" name="status" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-            <option value="" disabled selected>Seleccione el estado</option>
-            <option value="activo">Activo</option>
-            <option value="inactivo">Inactivo</option>
+          <label for="user-list" class="block text-gray-700 font-semibold mb-2"
+            >Lista de Usuarios:</label
+          >
+          <select
+            id="user-list"
+            name="user-list"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          >
+            <!-- Opciones de usuarios se cargarán dinámicamente -->
           </select>
         </div>
 
         <div>
-          <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Actualizar</button>
+          <button
+            type="button"
+            onclick="fetchUserDetails()"
+            class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Ver Detalles
+          </button>
         </div>
-      </div>
-    </form>
+      </form>
 
-    <!-- Formulario de Registro de Usuario -->
-    <form id="create-user-form" class="hidden space-y-4 mt-4">
-      <h3 class="text-2xl font-bold mb-4">Registrar Usuario</h3>
+      <!-- Formulario para Actualizar Usuario -->
+      <form id="update-user-form" class="hidden space-y-4 mt-4">
+        <h3 class="text-2xl font-bold mb-4">Actualizar Usuario</h3>
 
-      <div>
-        <label for="email-register" class="block text-gray-700 font-semibold mb-2">Correo Electr�nico:</label>
-        <input type="email" id="email-register" name="email" placeholder="Ingrese el correo electr�nico" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
+        <div>
+          <label for="user-id" class="block text-gray-700 font-semibold mb-2"
+            >ID del Usuario:</label
+          >
+          <input
+            type="text"
+            id="user-id"
+            name="user-id"
+            placeholder="Ingrese el ID del usuario"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+            required
+          />
+          <button
+            type="button"
+            onclick="fetchUserDetailsById()"
+            class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 mt-2"
+          >
+            Buscar Usuario
+          </button>
+        </div>
 
-      <div>
-        <label for="password-register" class="block text-gray-700 font-semibold mb-2">Contraseña:</label>
-        <input type="password" id="password-register" name="password" placeholder="Ingrese la contraseña" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
+        <div id="user-details" class="hidden space-y-4">
+          <div>
+            <label
+              for="update-email"
+              class="block text-gray-700 font-semibold mb-2"
+              >Correo Electrónico:</label
+            >
+            <input
+              type="email"
+              id="update-email"
+              name="email"
+              placeholder="Ingrese el correo electrónico"
+              class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+            />
+          </div>
 
-      <div>
-        <label for="password-confirmation" class="block text-gray-700 font-semibold mb-2">Confirme su Contraseña:</label>
-        <input type="password" id="conf-password" name="conf-password" placeholder="Confirme la contraseña" required class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
+          <div>
+            <label
+              for="update-password"
+              class="block text-gray-700 font-semibold mb-2"
+              >Contraseña:</label
+            >
+            <input
+              type="password"
+              id="update-password"
+              name="password"
+              placeholder="Ingrese la nueva contraseña"
+              class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+            />
+          </div>
 
-      <div>
-        <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Registrar</button>
-      </div>
-    </form>
+          <div>
+            <label
+              for="update-conf-password"
+              class="block text-gray-700 font-semibold mb-2"
+              >Confirme su Contraseña:</label
+            >
+            <input
+              type="password"
+              id="update-conf-password"
+              name="conf-password"
+              placeholder="Confirme la nueva contraseña"
+              class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+            />
+          </div>
 
-    <!-- Formulario de Gesti�n de Parámetros -->
-    <form id="parameter-management" class="hidden space-y-4 mt-4">
-      <h3 class="text-2xl font-bold mb-4">Gesti�n de Parámetros</h3>
-      <div>
-        <label for="parameter-name" class="block text-gray-700 font-semibold mb-2">Nombre del Parámetro:</label>
-        <input type="text" id="parameter-name" name="parameter-name" placeholder="Ingrese el nombre del parámetro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
-      <div>
-        <label for="parameter-value" class="block text-gray-700 font-semibold mb-2">Valor del Parámetro:</label>
-        <input type="text" id="parameter-value" name="parameter-value" placeholder="Ingrese el valor del parámetro" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-      </div>
-      <div>
-        <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Guardar Parámetro</button>
-      </div>
-    </form>
+          <div>
+            <label
+              for="update-status"
+              class="block text-gray-700 font-semibold mb-2"
+              >Estado:</label
+            >
+            <select
+              id="update-status"
+              name="status"
+              class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+            >
+              <option value="" disabled selected>Seleccione el estado</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
 
- <!-- CORREGIR i con tilde -->
+          <div>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+            >
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </form>
 
- <!-- Formulario de Auditoría -->
- <form id="auditory" class="hidden space-y-4 mt-4">
-  <h3 class="text-2xl font-bold mb-4">Auditoria</h3>
-  <div>
-    <label for="audit-date" class="block text-gray-700 font-semibold mb-2">Fecha de Auditoria:</label>
-    <input type="date" id="audit-date" name="audit-date" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
-  </div>
-  <div>
-    <label for="audit-details" class="block text-gray-700 font-semibold mb-2">Detalles de la Auditoria:</label>
-    <textarea id="audit-details" name="audit-details" rows="4" placeholder="Ingrese los detalles de la auditoria" class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"></textarea>
-  </div>
-  <div>
-    <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Guardar Auditoria</button>
-  </div>
-</form>
+      <!-- Formulario de Registro de Usuario -->
+      <form id="create-user-form" class="hidden space-y-4 mt-4">
+        <h3 class="text-2xl font-bold mb-4">Registrar Usuario</h3>
 
-  </main>
+        <div>
+          <label
+            for="email-register"
+            class="block text-gray-700 font-semibold mb-2"
+            >Correo Electrónico:</label
+          >
+          <input
+            type="email"
+            id="email-register"
+            name="email"
+            placeholder="Ingrese el correo electrónico"
+            required
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
 
-  <script src="../js/administracionSistema.js"></script>
-</body>
+        <div>
+          <label
+            for="password-register"
+            class="block text-gray-700 font-semibold mb-2"
+            >Contraseña:</label
+          >
+          <input
+            type="password"
+            id="password-register"
+            name="password"
+            placeholder="Ingrese la contraseña"
+            required
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
+
+        <div>
+          <label
+            for="password-confirmation"
+            class="block text-gray-700 font-semibold mb-2"
+            >Confirme su Contraseña:</label
+          >
+          <input
+            type="password"
+            id="conf-password"
+            name="conf-password"
+            placeholder="Confirme la contraseña"
+            required
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Registrar
+          </button>
+        </div>
+      </form>
+
+      <!-- Formulario de Gestión de Parámetros -->
+      <form id="parameter-management" class="hidden space-y-4 mt-4">
+        <h3 class="text-2xl font-bold mb-4">Gestión de Parámetros</h3>
+        <div>
+          <label
+            for="parameter-name"
+            class="block text-gray-700 font-semibold mb-2"
+            >Nombre del Parámetro:</label
+          >
+          <input
+            type="text"
+            id="parameter-name"
+            name="parameter-name"
+            placeholder="Ingrese el nombre del parámetro"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
+        <div>
+          <label
+            for="parameter-value"
+            class="block text-gray-700 font-semibold mb-2"
+            >Valor del Parámetro:</label
+          >
+          <input
+            type="text"
+            id="parameter-value"
+            name="parameter-value"
+            placeholder="Ingrese el valor del parámetro"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Guardar Parámetro
+          </button>
+        </div>
+      </form>
+
+      <!-- CORREGIR i con tilde -->
+
+      <!-- Formulario de Auditoría -->
+      <form id="auditory" class="hidden space-y-4 mt-4">
+        <h3 class="text-2xl font-bold mb-4">Auditoria</h3>
+        <div>
+          <label for="audit-date" class="block text-gray-700 font-semibold mb-2"
+            >Fecha de Auditoria:</label
+          >
+          <input
+            type="date"
+            id="audit-date"
+            name="audit-date"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          />
+        </div>
+        <div>
+          <label
+            for="audit-details"
+            class="block text-gray-700 font-semibold mb-2"
+            >Detalles de la Auditoria:</label
+          >
+          <textarea
+            id="audit-details"
+            name="audit-details"
+            rows="4"
+            placeholder="Ingrese los detalles de la auditoria"
+            class="block w-full bg-white border border-gray-300 rounded-lg py-2 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          ></textarea>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+          >
+            Guardar Auditoria
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <script src="../js/administracionSistema.js"></script>
+  </body>
 </html>
