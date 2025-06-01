@@ -19,7 +19,10 @@ const pool = new Pool({
   ssl: {
     require: true,
     rejectUnauthorized: false // For development only
-  }
+  },
+  connectionTimeoutMillis: 10000, // Aumentar el tiempo de espera a 10 segundos
+  idleTimeoutMillis: 30000, // Tiempo máximo de inactividad de una conexión
+  max: 20 // Máximo número de clientes en el pool
 });
 
 // Verificar la conexi�n a la base de datos
@@ -39,6 +42,11 @@ app.use(express.static('public'));
 
 // Ruta para el endpoint raíz
 app.get('/', (req, res) => {
+  res.sendFile(process.cwd() + '/public/html/index.html');
+});
+
+// Ruta explícita para index.html
+app.get('/index.html', (req, res) => {
   res.sendFile(process.cwd() + '/public/html/index.html');
 });
 

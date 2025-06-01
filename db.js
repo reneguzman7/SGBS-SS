@@ -7,11 +7,14 @@ const pool = new Pool({
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: process.env.PORT,
+  port: parseInt(process.env.PORT, 10),
   ssl: {
     require: true,
     rejectUnauthorized: false // For development only
-  }
+  },
+  connectionTimeoutMillis: 10000, // Aumentar el tiempo de espera a 10 segundos
+  idleTimeoutMillis: 30000, // Tiempo máximo de inactividad de una conexión
+  max: 20 // Máximo número de clientes en el pool
 });
 
 pool.query('SELECT NOW()', (err, res) => {
