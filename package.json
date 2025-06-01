@@ -1,33 +1,39 @@
 {
-	"name": "sgbs-ss",
-	"version": "1.0.0",
-	"main": "index.js",
-	"type": "module",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "postcss assets/css/main.css -o public/css/main.css --watch"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"description": "",
-	"dependencies": {
-		"@prisma/adapter-pg": "^5.17.0",
-		"@prisma/client": "^5.17.0",
-		"bcrypt": "^5.1.1",
-		"bootstrap": "^5.3.3",
-		"cors": "^2.8.5",
-		"dotenv": "^16.4.5",
-		"express": "^4.19.2",
-		"pg": "^8.12.0"
-	},
-	"devDependencies": {
-		"@iconify/json": "^2.2.230",
-		"@iconify/tailwind": "^1.1.1",
-		"autoprefixer": "^10.4.19",
-		"postcss": "^8.4.39",
-		"postcss-cli": "^11.0.0",
-		"prisma": "^5.17.0",
-		"tailwindcss": "^3.4.6"
-	}
+  "name": "sgbs-ss",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "postcss assets/css/main.css -o public/css/main.css --watch",
+    "build": "echo 'Build completed - CSS files already in public/css'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build": "docker build -t sgbs-ss .",
+    "docker:run": "docker run -p 3000:3000 sgbs-ss",
+    "deploy:vercel": "vercel --prod",
+    "lint": "echo \"Linting not configured\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/adapter-pg": "^5.17.0",
+    "@prisma/client": "^5.17.0",
+    "bcrypt": "^5.1.1",
+    "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.230",
+    "@iconify/tailwind": "^1.1.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.39",
+    "postcss-cli": "^11.0.0",
+    "prisma": "^5.17.0",
+    "tailwindcss": "^3.4.6"
+  }
 }

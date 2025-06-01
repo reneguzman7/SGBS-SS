@@ -1,376 +1,455 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestión de Pagos - Seguros Sayazu</title>
-  <link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
-  <!-- Sidebar -->
-  <nav class="ss-sidebar" id="sidebar">
-    <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
-      <i class="bi bi-list"></i>
-    </button>
-    
-    <div class="ss-sidebar-header">
-      <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo">
-      <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
-    </div>
-    
-    <ul class="ss-sidebar-nav">
-      <li class="ss-nav-item">
-        <a href="clientes.html" class="ss-nav-link">
-          <i class="bi bi-people ss-nav-icon"></i>
-          <span class="ss-nav-text">Clientes</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="aseguradoras.html" class="ss-nav-link">
-          <i class="bi bi-building ss-nav-icon"></i>
-          <span class="ss-nav-text">Aseguradoras</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="gestionPagos.html" class="ss-nav-link active">
-          <i class="bi bi-credit-card ss-nav-icon"></i>
-          <span class="ss-nav-text">Gestión de Pagos</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="manejoIncidentes.html" class="ss-nav-link">
-          <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
-          <span class="ss-nav-text">Manejo de Incidentes</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="administracionSistema.html" class="ss-nav-link">
-          <i class="bi bi-gear ss-nav-icon"></i>
-          <span class="ss-nav-text">Administración</span>
-        </a>
-      </li>
-      <li class="ss-nav-item mt-auto">
-        <a href="index.html" class="ss-nav-link text-danger">
-          <i class="bi bi-box-arrow-right ss-nav-icon"></i>
-          <span class="ss-nav-text">Cerrar Sesión</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="ss-main-content" id="mainContent">
-    <!-- Header -->
-    <div class="ss-header">
-      <div>
-        <h1 class="ss-header-title">Gestión de Pagos</h1>
-        <p class="ss-header-subtitle">Administra los pagos y transacciones</p>
-      </div>
-      <div class="ss-header-actions">
-        <div class="ss-user-info">
-          <div class="ss-user-avatar">
-            <i class="bi bi-person"></i>
-          </div>
-          <div>
-            <div class="fw-bold">Usuario Admin</div>
-            <small class="text-muted">Administrador</small>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats Cards -->
-    <div class="ss-stats-grid">
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Total Pagos</h3>
-          <div class="ss-stat-icon">
-            <i class="bi bi-credit-card"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">$2,847,392</h2>
-        <p class="ss-stat-change positive">
-          <i class="bi bi-arrow-up"></i> +15% este mes
-        </p>
-      </div>
-      
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Pagos Pendientes</h3>
-          <div class="ss-stat-icon" style="background: var(--ss-gradient-accent);">
-            <i class="bi bi-clock"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">$156,420</h2>
-        <p class="ss-stat-change negative">
-          <i class="bi bi-arrow-down"></i> -5% este mes
-        </p>
-      </div>
-      
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Transacciones Hoy</h3>
-          <div class="ss-stat-icon" style="background: var(--ss-gradient-secondary);">
-            <i class="bi bi-graph-up"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">247</h2>
-        <p class="ss-stat-change positive">
-          <i class="bi bi-arrow-up"></i> +8% vs ayer
-        </p>
-      </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="ss-action-buttons">
-      <button onclick="showSection('register')" class="ss-btn ss-btn-primary">
-        <i class="bi bi-plus-circle me-2"></i>
-        Registrar Pago
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Pagos - Seguros Sayazu</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav class="ss-sidebar" id="sidebar">
+      <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
       </button>
-      <button onclick="showSection('consult')" class="ss-btn ss-btn-secondary">
-        <i class="bi bi-search me-2"></i>
-        Consultar Pagos
-      </button>
-    </div>
 
-    <!-- Register Section -->
-    <div id="register-section" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-plus-circle"></i>
-          Registrar Nuevo Pago
-        </h2>
+      <div class="ss-sidebar-header">
+        <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo" />
+        <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
       </div>
-      <div class="ss-card-body">
-        <form id="register-form">
+
+      <ul class="ss-sidebar-nav">
+        <li class="ss-nav-item">
+          <a href="clientes.html" class="ss-nav-link">
+            <i class="bi bi-people ss-nav-icon"></i>
+            <span class="ss-nav-text">Clientes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="aseguradoras.html" class="ss-nav-link">
+            <i class="bi bi-building ss-nav-icon"></i>
+            <span class="ss-nav-text">Aseguradoras</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="gestionPagos.html" class="ss-nav-link active">
+            <i class="bi bi-credit-card ss-nav-icon"></i>
+            <span class="ss-nav-text">Gestión de Pagos</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="manejoIncidentes.html" class="ss-nav-link">
+            <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
+            <span class="ss-nav-text">Manejo de Incidentes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="administracionSistema.html" class="ss-nav-link">
+            <i class="bi bi-gear ss-nav-icon"></i>
+            <span class="ss-nav-text">Administración</span>
+          </a>
+        </li>
+        <li class="ss-nav-item mt-auto">
+          <a href="index.html" class="ss-nav-link text-danger">
+            <i class="bi bi-box-arrow-right ss-nav-icon"></i>
+            <span class="ss-nav-text">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ss-main-content" id="mainContent">
+      <!-- Header -->
+      <div class="ss-header">
+        <div>
+          <h1 class="ss-header-title">Gestión de Pagos</h1>
+          <p class="ss-header-subtitle">Administra los pagos y transacciones</p>
+        </div>
+        <div class="ss-header-actions">
+          <div class="ss-user-info">
+            <div class="ss-user-avatar">
+              <i class="bi bi-person"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Usuario Admin</div>
+              <small class="text-muted">Administrador</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="ss-stats-grid">
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Total Pagos</h3>
+            <div class="ss-stat-icon">
+              <i class="bi bi-credit-card"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">$2,847,392</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +15% este mes
+          </p>
+        </div>
+
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Pagos Pendientes</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-accent)"
+            >
+              <i class="bi bi-clock"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">$156,420</h2>
+          <p class="ss-stat-change negative">
+            <i class="bi bi-arrow-down"></i> -5% este mes
+          </p>
+        </div>
+
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Transacciones Hoy</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-secondary)"
+            >
+              <i class="bi bi-graph-up"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">247</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +8% vs ayer
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="ss-action-buttons">
+        <button onclick="showSection('register')" class="ss-btn ss-btn-primary">
+          <i class="bi bi-plus-circle me-2"></i>
+          Registrar Pago
+        </button>
+        <button
+          onclick="showSection('consult')"
+          class="ss-btn ss-btn-secondary"
+        >
+          <i class="bi bi-search me-2"></i>
+          Consultar Pagos
+        </button>
+      </div>
+
+      <!-- Register Section -->
+      <div
+        id="register-section"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-plus-circle"></i>
+            Registrar Nuevo Pago
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <form id="register-form">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">RUC</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-card-text ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="registerRUC"
+                      class="ss-form-control"
+                      placeholder="Ingrese el RUC"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Monto</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-currency-dollar ss-input-icon"></i>
+                    <input
+                      type="number"
+                      id="registerAmount"
+                      class="ss-form-control"
+                      placeholder="0.00"
+                      step="0.01"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Número de Contrato</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-file-earmark-text ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="registerContractNumber"
+                      class="ss-form-control"
+                      placeholder="Número de contrato"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Pago</label>
+                  <input
+                    type="date"
+                    id="registerPaymentDate"
+                    class="ss-form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Método de Pago</label>
+                  <select
+                    id="registerPaymentMethod"
+                    class="ss-form-control"
+                    required
+                  >
+                    <option value="">Seleccione método</option>
+                    <option value="transferencia">
+                      Transferencia Bancaria
+                    </option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="cheque">Cheque</option>
+                    <option value="tarjeta">Tarjeta de Crédito</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <select id="registerStatus" class="ss-form-control" required>
+                    <option value="">Seleccione estado</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="procesado">Procesado</option>
+                    <option value="completado">Completado</option>
+                    <option value="rechazado">Rechazado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Observaciones</label>
+                  <textarea
+                    id="registerObservations"
+                    class="ss-form-control"
+                    rows="3"
+                    placeholder="Observaciones adicionales"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllSections()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="submit" class="ss-btn ss-btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+                Registrar Pago
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Consult Section -->
+      <div
+        id="consult-section"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-search"></i>
+            Consultar Pagos
+          </h2>
+        </div>
+        <div class="ss-card-body">
           <div class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="ss-form-group">
-                <label class="ss-form-label">RUC</label>
+                <label class="ss-form-label">Cédula/RUC</label>
                 <div class="ss-input-group">
                   <i class="bi bi-card-text ss-input-icon"></i>
-                  <input type="text" id="registerRUC" class="ss-form-control" placeholder="Ingrese el RUC" required>
+                  <input
+                    type="text"
+                    id="consultSearchId"
+                    class="ss-form-control"
+                    placeholder="Ingrese cédula o RUC"
+                  />
                 </div>
               </div>
             </div>
-            
-            <div class="col-md-4">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Monto</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-currency-dollar ss-input-icon"></i>
-                  <input type="number" id="registerAmount" class="ss-form-control" placeholder="0.00" step="0.01" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Número de Contrato</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-file-earmark-text ss-input-icon"></i>
-                  <input type="text" id="registerContractNumber" class="ss-form-control" placeholder="Número de contrato" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Fecha de Pago</label>
-                <input type="date" id="registerPaymentDate" class="ss-form-control" required>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Método de Pago</label>
-                <select id="registerPaymentMethod" class="ss-form-control" required>
-                  <option value="">Seleccione método</option>
-                  <option value="transferencia">Transferencia Bancaria</option>
-                  <option value="efectivo">Efectivo</option>
-                  <option value="cheque">Cheque</option>
-                  <option value="tarjeta">Tarjeta de Crédito</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Estado</label>
-                <select id="registerStatus" class="ss-form-control" required>
-                  <option value="">Seleccione estado</option>
-                  <option value="pendiente">Pendiente</option>
-                  <option value="procesado">Procesado</option>
-                  <option value="completado">Completado</option>
-                  <option value="rechazado">Rechazado</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="col-12">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Observaciones</label>
-                <textarea id="registerObservations" class="ss-form-control" rows="3" placeholder="Observaciones adicionales"></textarea>
-              </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button
+                type="button"
+                onclick="consultPayments()"
+                class="ss-btn ss-btn-secondary"
+              >
+                <i class="bi bi-search me-2"></i>
+                Buscar Pagos
+              </button>
             </div>
           </div>
-          
-          <div class="d-flex justify-content-end gap-3 mt-4">
-            <button type="button" onclick="hideAllSections()" class="ss-btn ss-btn-outline">
-              <i class="bi bi-x-circle me-2"></i>
-              Cancelar
-            </button>
-            <button type="submit" class="ss-btn ss-btn-primary">
-              <i class="bi bi-check-circle me-2"></i>
-              Registrar Pago
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
 
-    <!-- Consult Section -->
-    <div id="consult-section" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-search"></i>
-          Consultar Pagos
-        </h2>
-      </div>
-      <div class="ss-card-body">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="ss-form-group">
-              <label class="ss-form-label">Cédula/RUC</label>
-              <div class="ss-input-group">
-                <i class="bi bi-card-text ss-input-icon"></i>
-                <input type="text" id="consultSearchId" class="ss-form-control" placeholder="Ingrese cédula o RUC">
+          <!-- Results Section -->
+          <div id="consult-results" class="mt-4" style="display: none">
+            <hr />
+            <h4 class="mb-3">Información de Pagos</h4>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">RUC</label>
+                  <input
+                    type="text"
+                    id="consultRUC"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Monto Total</label>
+                  <input
+                    type="text"
+                    id="consultAmount"
+                    class="ss-form-control"
+                    readonly
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-end">
-            <button type="button" onclick="consultPayments()" class="ss-btn ss-btn-secondary">
-              <i class="bi bi-search me-2"></i>
-              Buscar Pagos
-            </button>
-          </div>
-        </div>
-        
-        <!-- Results Section -->
-        <div id="consult-results" class="mt-4" style="display: none;">
-          <hr>
-          <h4 class="mb-3">Información de Pagos</h4>
-          
-          <div class="row g-3 mb-4">
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">RUC</label>
-                <input type="text" id="consultRUC" class="ss-form-control" readonly>
-              </div>
+
+            <!-- Payments Table -->
+            <div class="ss-table-container">
+              <table class="ss-table table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Contrato</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="payments-table-body">
+                  <!-- Sample data -->
+                  <tr>
+                    <td>2024-01-15</td>
+                    <td>CON-2024-001</td>
+                    <td>$1,250.00</td>
+                    <td>Transferencia</td>
+                    <td>
+                      <span class="ss-badge ss-badge-success">Completado</span>
+                    </td>
+                    <td>
+                      <button class="ss-btn ss-btn-sm ss-btn-outline">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2024-01-10</td>
+                    <td>CON-2024-002</td>
+                    <td>$850.00</td>
+                    <td>Efectivo</td>
+                    <td>
+                      <span class="ss-badge ss-badge-warning">Pendiente</span>
+                    </td>
+                    <td>
+                      <button class="ss-btn ss-btn-sm ss-btn-outline">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Monto Total</label>
-                <input type="text" id="consultAmount" class="ss-form-control" readonly>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Payments Table -->
-          <div class="ss-table-container">
-            <table class="ss-table table">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Contrato</th>
-                  <th>Monto</th>
-                  <th>Método</th>
-                  <th>Estado</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="payments-table-body">
-                <!-- Sample data -->
-                <tr>
-                  <td>2024-01-15</td>
-                  <td>CON-2024-001</td>
-                  <td>$1,250.00</td>
-                  <td>Transferencia</td>
-                  <td><span class="ss-badge ss-badge-success">Completado</span></td>
-                  <td>
-                    <button class="ss-btn ss-btn-sm ss-btn-outline">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2024-01-10</td>
-                  <td>CON-2024-002</td>
-                  <td>$850.00</td>
-                  <td>Efectivo</td>
-                  <td><span class="ss-badge ss-badge-warning">Pendiente</span></td>
-                  <td>
-                    <button class="ss-btn ss-btn-sm ss-btn-outline">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/gestionPagos.js"></script>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/gestionPagos.js"></script>
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const mainContent = document.getElementById('mainContent');
-      
-      sidebar.classList.toggle('collapsed');
-      mainContent.classList.toggle('expanded');
-    }
-    
-    function showSection(sectionType) {
-      hideAllSections();
-      const section = document.getElementById(sectionType + '-section');
-      if (section) {
-        section.style.display = 'block';
-        section.scrollIntoView({ behavior: 'smooth' });
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("expanded");
       }
-    }
-    
-    function hideAllSections() {
-      const sections = ['register-section', 'consult-section'];
-      sections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) section.style.display = 'none';
-      });
-    }
-    
-    function consultPayments() {
-      const searchId = document.getElementById('consultSearchId').value;
-      if (!searchId) {
-        alert('Por favor ingrese un RUC o cédula');
-        return;
+
+      function showSection(sectionType) {
+        hideAllSections();
+        const section = document.getElementById(sectionType + "-section");
+        if (section) {
+          section.style.display = "block";
+          section.scrollIntoView({ behavior: "smooth" });
+        }
       }
-      
-      // Show results section
-      document.getElementById('consult-results').style.display = 'block';
-      
-      // Populate with sample data
-      document.getElementById('consultRUC').value = searchId;
-      document.getElementById('consultAmount').value = '$2,100.00';
-    }
-    
-    // Mobile sidebar toggle
-    if (window.innerWidth <= 768) {
-      document.getElementById('sidebar').classList.add('collapsed');
-      document.getElementById('mainContent').classList.add('expanded');
-    }
-  </script>
-</body>
+
+      function hideAllSections() {
+        const sections = ["register-section", "consult-section"];
+        sections.forEach((sectionId) => {
+          const section = document.getElementById(sectionId);
+          if (section) section.style.display = "none";
+        });
+      }
+
+      function consultPayments() {
+        const searchId = document.getElementById("consultSearchId").value;
+        if (!searchId) {
+          alert("Por favor ingrese un RUC o cédula");
+          return;
+        }
+
+        // Show results section
+        document.getElementById("consult-results").style.display = "block";
+
+        // Populate with sample data
+        document.getElementById("consultRUC").value = searchId;
+        document.getElementById("consultAmount").value = "$2,100.00";
+      }
+
+      // Mobile sidebar toggle
+      if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.add("collapsed");
+        document.getElementById("mainContent").classList.add("expanded");
+      }
+    </script>
+  </body>
 </html>

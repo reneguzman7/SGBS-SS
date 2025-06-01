@@ -1,17 +1,31 @@
-# Usa Node.js LTS oficial (no Alpine)
-FROM node:18
+# Usa Node.js LTS oficial
+FROM node:18-alpine
 
+# Crea directorio de la aplicación
 WORKDIR /usr/src/app
 
-# Copia los archivos de dependencias primero
+# Copia los archivos de dependencias
 COPY package*.json ./
 
-# Instala dependencias limpias (NO copies node_modules desde tu máquina)
-RUN npm install --production
+# Instala dependencias de producción
+RUN npm ci --only=production && npm cache clean --force
 
-# Copia el resto del código, pero ignora node_modules si existe
+# Copia el resto del código
 COPY . .
 
-EXPOSE 3001
+# Crea usuario no root para seguridad
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
 
+# Cambia propiedad de archivos
+RUN chown -R nextjs:nodejs /usr/src/app
+USER nextjs
+
+# Expone el puerto
+EXPOSE 3000
+
+# Variables de entorno
+ENV NODE_ENV=production
+
+# Comando para iniciar la aplicación
 CMD ["node", "server.js"]

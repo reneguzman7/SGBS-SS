@@ -66,7 +66,7 @@ function resetForm() {
       cancelarButtonClienteForm.style.display = 'inline-block'; // Or 'block'
     }
   }
-  
+
   // Obsolete sections cleanup can be removed if HTML is also cleaned
   // const consultSection = document.getElementById('consult-section');
   // if (consultSection) { ... }
@@ -145,9 +145,8 @@ document.getElementById("guardar").addEventListener("click", function () {
     fechacancelacion,
     observaciones,
   };
-
   // Enviar el objeto JSON al servidor mediante POST
-  fetch("http://localhost:3000/clientes", {
+  fetch("/clientes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -186,9 +185,8 @@ form.addEventListener("submit", function (event) {
   formData.forEach((value, key) => {
     jsonData[key] = value;
   });
-
   // Enviar los datos al servidor
-  fetch("http://localhost:3000/clientes", {
+  fetch("/clientes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -220,9 +218,8 @@ document.getElementById("consultar").addEventListener("click", async () => {
   }
 
   try {
-    console.log(`Consultando cliente con ID: ${documentoidentidad}`);
-    const response = await fetch(
-      `http://localhost:3000/clientes/${documentoidentidad}`
+    console.log(`Consultando cliente con ID: ${documentoidentidad}`); const response = await fetch(
+      `/clientes/${documentoidentidad}`
     );
     console.log("Respuesta recibida:", response.status, response.statusText);
 
@@ -288,11 +285,11 @@ document.getElementById("consultar").addEventListener("click", async () => {
     if (cancelarButtonClienteForm) {
       cancelarButtonClienteForm.style.display = 'none';
     }
-    
+
     // Asegurar que el botón de actualizar (si existe fuera y es relevante) esté oculto
     const updateButtonGlobal = document.getElementById('update-button'); // Asumiendo que este es el ID del botón de actualizar global
     if (updateButtonGlobal) {
-        updateButtonGlobal.style.display = 'none';
+      updateButtonGlobal.style.display = 'none';
     }
 
 
@@ -331,7 +328,7 @@ document.getElementById("consultar-update").addEventListener("click", async () =
 
   try {
     console.log(`Consultando cliente para actualizar con ID: ${documentoidentidad}`);
-    const response = await fetch(`http://localhost:3000/clientes/${documentoidentidad}`);
+    const response = await fetch(`/clientes/${documentoidentidad}`);
     console.log("Respuesta recibida:", response.status, response.statusText);
 
     if (!response.ok) {
@@ -351,7 +348,7 @@ document.getElementById("consultar-update").addEventListener("click", async () =
     const registerForm = document.getElementById('register-form');
     const clienteForm = document.getElementById('cliente-form'); // Main form for data entry
     const updateForm = document.getElementById('update-form'); // Form containing "consultar-update" button
-    
+
     // Ensure cliente-form fields are reset and editable (resetForm should handle this)
     // showForm('register') could be an option if it correctly sets up everything
     // For now, let's assume resetForm has done its job of making fields writable.
@@ -391,8 +388,8 @@ document.getElementById("consultar-update").addEventListener("click", async () =
     // Also hide the specific update-fields div if it exists from old structure
     const updateFields = document.getElementById("update-fields");
     if (updateFields) {
-        updateFields.style.display = "none";
-        updateFields.classList.add("hidden");
+      updateFields.style.display = "none";
+      updateFields.classList.add("hidden");
     }
 
     // Show the register-form (which contains cliente-form)
@@ -414,7 +411,7 @@ document.getElementById("consultar-update").addEventListener("click", async () =
     // Ensure "Cancelar" button in cliente-form is visible (resetForm should handle this)
     const cancelarButtonClienteForm = document.querySelector('#cliente-form .ss-btn-outline');
     if (cancelarButtonClienteForm) {
-        cancelarButtonClienteForm.style.display = 'inline-block'; // or 'block'
+      cancelarButtonClienteForm.style.display = 'inline-block'; // or 'block'
     }
 
   } catch (error) {
@@ -482,7 +479,7 @@ document.getElementById("update-button").addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/clientes/${currentUpdatingClientId}`, {
+    const response = await fetch(`/clientes/${currentUpdatingClientId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -494,17 +491,17 @@ document.getElementById("update-button").addEventListener("click", async () => {
       alert("Registro actualizado con éxito.");
       currentUpdatingClientId = null; // Reset the global ID
       resetForm(); // Resets cliente-form, re-enables fields, hides/shows correct primary buttons
-      
+
       // Hide the main update-form (which contains "documentoidentidad-update" and "consultar-update")
       const updateForm = document.getElementById('update-form');
       if (updateForm) {
-          updateForm.style.display = 'none';
-          updateForm.classList.add('hidden');
+        updateForm.style.display = 'none';
+        updateForm.classList.add('hidden');
       }
       // Show the initial state for update (the form with "consultar-update" button)
       // Or, decide on a neutral state, e.g., hide all specific content forms
       // showForm('update'); // This will show the "update-form" again for a new search.
-      
+
       // Explicitly hide the "Actualizar Cliente" button and show "Guardar Cliente"
       // Note: resetForm already makes 'guardar' visible and 'documentoidentidad' writable.
       const updateButton = document.getElementById('update-button');

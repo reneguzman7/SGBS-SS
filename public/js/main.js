@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loginMessage.classList.add("error");
     } else {
       try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       registerMessage.classList.add("error");
     } else {
       try {
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

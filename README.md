@@ -1,54 +1,119 @@
 # SGBS-SS
 
-SGBS-SS (Sistema de Gestión de Seguros y Siniestros - likely) is a web application designed to manage insurance policies, clients, payments, and incidents. It provides a user interface for administrators and potentially clients to interact with the system.
+SGBS-SS (Sistema de Gestión de Seguros y Siniestros) is a web application designed to manage insurance policies, clients, payments, and incidents. It provides a user interface for administrators and potentially clients to interact with the system.
 
-The backend is built with Node.js and Express.js, utilizing Prisma as an ORM for database interactions with a PostgreSQL database. The frontend components are structured within the `public` directory.
+The backend is built with Node.js and Express.js, with PostgreSQL as the database. The frontend components are structured within the `public` directory.
 
 ## Installation
 
 1.  **Clone the repository:**
+
     ```bash
     git clone <repository-url>
     cd sgbs-ss
     ```
+
 2.  **Install dependencies:**
     Make sure you have Node.js and npm installed.
+
     ```bash
     npm install
     ```
+
 3.  **Set up environment variables:**
-    Create a `.env` file in the root of the project. This file will contain sensitive information and configuration details. Add the following, replacing placeholder values with your actual configuration:
+    Create a `.env` file in the root of the project. Use `.env.example` as a reference:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    Configure your database variables:
+
     ```env
-    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
-    # Add any other environment variables your application might need, for example:
-    # PORT=3000
-    # SECRET_KEY=your_secret_key
+    # Database configuration (use either format)
+    USER=your_db_user
+    HOST=your_db_host
+    DATABASE=your_db_name
+    PASSWORD=your_db_password
+
+    # Or alternative format
+    DB_USER=your_db_user
+    DB_HOST=your_db_host
+    DB_NAME=your_db_name
+    DB_PASSWORD=your_db_password
+    DB_PORT=5432
+
+    # Server configuration
+    PORT=3000
+    NODE_ENV=development
     ```
-    **Note:** Ensure `.env` is listed in your `.gitignore` file to prevent committing sensitive data.
-4.  **Set up the database:**
-    Ensure your PostgreSQL server is running and accessible.
-    The project uses Prisma to manage the database schema. To create the necessary tables, run:
+
+4.  **Build CSS:**
+
     ```bash
-    npx prisma db push
+    npm run build
     ```
-    If you need to apply pending migrations (though `db push` is often used for initial schema creation in development, migrations are better for production and evolving the schema):
-    ```bash
-    npx prisma migrate deploy
-    ```
+
 5.  **Run the application:**
-    To start the development server:
+
+    **Development:**
+
     ```bash
     npm run dev
     ```
-    This command, as defined in `package.json`, also watches for CSS changes using PostCSS.
-    If a production start script exists (e.g., `npm start`), mention it as well. For now, we'll assume `npm run dev` is the primary way to run it.
+
+    **Production:**
+
+    ```bash
+    npm start
+    ```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. **Install Vercel CLI:**
+
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Deploy:**
+
+   ```bash
+   vercel --prod
+   ```
+
+3. **Configure environment variables in Vercel dashboard:**
+   - Go to your project settings
+   - Add the same environment variables from your `.env` file
+
+### Other Platforms
+
+The application is compatible with:
+
+- **Railway**: Connect your GitHub repository
+- **Render**: Configure with build and start commands
+- **Netlify**: For full-stack applications
+- **Heroku**: Using the Node.js buildpack
+
+### Environment Variables for Production
+
+Required environment variables:
+
+- `DB_USER` or `USER` - Database username
+- `DB_HOST` or `HOST` - Database host
+- `DB_NAME` or `DATABASE` - Database name
+- `DB_PASSWORD` or `PASSWORD` - Database password
+- `DB_PORT` - Database port (default: 5432)
+- `NODE_ENV` - Set to "production"
 
 ## Usage
 
-Once the application is installed and running, you can access it by navigating to `http://localhost:PORT` in your web browser (replace `PORT` with the actual port the application is running on, typically 3000 if not specified otherwise in your `.env` or server configuration).
+Once the application is installed and running, you can access it by navigating to `http://localhost:3000` in your web browser.
 
-Further details on how to use specific features of the application will be added here. This may include:
-- How to log in (if authentication is implemented).
+### Features:
+
 - How to navigate different sections (e.g., client management, policy administration, incident reporting).
 - Examples of common workflows.
 
@@ -58,17 +123,20 @@ The application is configured using environment variables. These variables shoul
 
 **Key environment variables:**
 
-*   `DATABASE_URL`: (Required) The connection string for your PostgreSQL database.
-    *   Format: `postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public`
-    *   Example: `DATABASE_URL="postgresql://admin:secret@localhost:5432/sgbs_db?schema=public"`
+- `DATABASE_URL`: (Required) The connection string for your PostgreSQL database.
 
-*   `PORT`: (Optional) The port on which the application server will listen. If not specified, a default port (e.g., 3000) might be used by Express.
-    *   Example: `PORT=8080`
+  - Format: `postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public`
+  - Example: `DATABASE_URL="postgresql://admin:secret@localhost:5432/sgbs_db?schema=public"`
 
-*   `SECRET_KEY`: (Recommended if using sessions or JWTs) A secret key for signing sessions or tokens.
-    *   Example: `SECRET_KEY="your-very-secure-and-random-secret-key"`
+- `PORT`: (Optional) The port on which the application server will listen. If not specified, a default port (e.g., 3000) might be used by Express.
+
+  - Example: `PORT=8080`
+
+- `SECRET_KEY`: (Recommended if using sessions or JWTs) A secret key for signing sessions or tokens.
+  - Example: `SECRET_KEY="your-very-secure-and-random-secret-key"`
 
 **Example `.env` file:**
+
 ```env
 DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
 PORT=3000
@@ -76,8 +144,9 @@ PORT=3000
 ```
 
 **Important:**
-*   Remember to add the `.env` file to your `.gitignore` to prevent committing sensitive credentials to your repository.
-*   The application uses the `dotenv` package to load these variables from the `.env` file into `process.env`.
+
+- Remember to add the `.env` file to your `.gitignore` to prevent committing sensitive credentials to your repository.
+- The application uses the `dotenv` package to load these variables from the `.env` file into `process.env`.
 
 ## License
 
@@ -86,7 +155,8 @@ This project is licensed under the ISC License. See the `LICENSE` file for more 
 ## Credits
 
 This project is maintained by:
-*   [Your Name/Organization Name Here]
+
+- [Your Name/Organization Name Here]
 
 Feel free to add contributors as the project evolves.
 
@@ -94,7 +164,7 @@ Feel free to add contributors as the project evolves.
 
 For more detailed information on specific aspects of the project, such as API documentation, architectural diagrams, or advanced configuration, please refer to the following resources:
 
-*   [Link to Wiki, API Docs, etc. - To be added]
+- [Link to Wiki, API Docs, etc. - To be added]
 
 This section will be updated as more documentation becomes available.
 
@@ -126,13 +196,13 @@ sgbs-ss/
 
 **Key Directories:**
 
-*   **`assets/`**: Contains raw, unprocessed frontend assets. For example, `assets/css/main.css` is likely the input for PostCSS and Tailwind processing.
-*   **`public/`**: This directory holds all the static assets and frontend files that are served directly to users.
-    *   **`public/css/`**: Compiled CSS files ready for use in the browser.
-    *   **`public/html/`**: HTML views for the application.
-    *   **`public/js/`**: Client-side JavaScript files. The `public/js/routes/` might be for client-side routing or API handlers.
-*   **`public/routes/`**: Contains the backend API route definitions managed by Express.js. (Note: The issue report suggested moving this to a top-level `/routes` or `/src/routes` for better separation, this documentation reflects the current state).
-*   **`server.js`**: The main file that starts and configures the Express.js server.
-*   **`prisma/`**: (Implicit, but common with Prisma) If Prisma is fully initialized with migrations, a `prisma` directory containing the schema (`schema.prisma`) and migration files would typically be present. If only `db push` is used, this might be less prominent.
+- **`assets/`**: Contains raw, unprocessed frontend assets. For example, `assets/css/main.css` is likely the input for PostCSS and Tailwind processing.
+- **`public/`**: This directory holds all the static assets and frontend files that are served directly to users.
+  - **`public/css/`**: Compiled CSS files ready for use in the browser.
+  - **`public/html/`**: HTML views for the application.
+  - **`public/js/`**: Client-side JavaScript files. The `public/js/routes/` might be for client-side routing or API handlers.
+- **`public/routes/`**: Contains the backend API route definitions managed by Express.js. (Note: The issue report suggested moving this to a top-level `/routes` or `/src/routes` for better separation, this documentation reflects the current state).
+- **`server.js`**: The main file that starts and configures the Express.js server.
+- **`prisma/`**: (Implicit, but common with Prisma) If Prisma is fully initialized with migrations, a `prisma` directory containing the schema (`schema.prisma`) and migration files would typically be present. If only `db push` is used, this might be less prominent.
 
 This structure is typical for a Node.js application, with a clear separation of public-facing files and server-side logic.

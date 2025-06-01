@@ -46,9 +46,7 @@ class FormHandler {
         } else {
             console.error(`Form with ID '${formId}-form' is missing.`);
         }
-    }
-
-    async consultIncidentFromConsultForm() {
+    } async consultIncidentFromConsultForm() {
         const documentId = document.getElementById('document-id-consult').value;
 
         if (!documentId) {
@@ -57,7 +55,7 @@ class FormHandler {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/incidentes/${documentId}`);
+            const response = await fetch(`/incidentes/${documentId}`);
             if (!response.ok) {
                 throw new Error("Error al consultar los datos");
             }
@@ -82,9 +80,7 @@ class FormHandler {
             console.error("Error al consultar el incidente:", error);
             alert("Error al consultar el incidente.");
         }
-    }
-
-    async consultIncident() {
+    } async consultIncident() {
         const documentId = document.getElementById('documentoidentidad-update').value;
 
         if (!documentId) {
@@ -93,7 +89,7 @@ class FormHandler {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/incidentes/${documentId}`);
+            const response = await fetch(`/incidentes/${documentId}`);
             if (!response.ok) {
                 throw new Error("Error al consultar los datos");
             }
@@ -160,10 +156,8 @@ class FormHandler {
                 evidencia: evidence,
                 tipoincidente: incidentType,
                 estadoincidente: incidentStatus,
-            };
-
-            try {
-                const response = await fetch('http://localhost:3000/incidentes', {
+            }; try {
+                const response = await fetch('/incidentes', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -277,10 +271,8 @@ class FormHandler {
                 evidencia: evidence,
                 tipoincidente: incidentType,
                 estadoincidente: incidentStatus,
-            };
-
-            try {
-                const response = await fetch(`http://localhost:3000/incidentes/${documentoidentidad}`, {
+            }; try {
+                const response = await fetch(`/incidentes/${documentoidentidad}`, {
                     method: 'PATCH',
                     headers: {
                         "Content-Type": "application/json",

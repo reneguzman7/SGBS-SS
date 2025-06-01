@@ -1,647 +1,792 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administración del Sistema - Seguros Sayazu</title>
-  <link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
-  <!-- Sidebar -->
-  <nav class="ss-sidebar" id="sidebar">
-    <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
-      <i class="bi bi-list"></i>
-    </button>
-    
-    <div class="ss-sidebar-header">
-      <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo">
-      <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
-    </div>
-    
-    <ul class="ss-sidebar-nav">
-      <li class="ss-nav-item">
-        <a href="clientes.html" class="ss-nav-link">
-          <i class="bi bi-people ss-nav-icon"></i>
-          <span class="ss-nav-text">Clientes</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="aseguradoras.html" class="ss-nav-link">
-          <i class="bi bi-building ss-nav-icon"></i>
-          <span class="ss-nav-text">Aseguradoras</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="gestionPagos.html" class="ss-nav-link">
-          <i class="bi bi-credit-card ss-nav-icon"></i>
-          <span class="ss-nav-text">Gestión de Pagos</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="manejoIncidentes.html" class="ss-nav-link">
-          <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
-          <span class="ss-nav-text">Manejo de Incidentes</span>
-        </a>
-      </li>
-      <li class="ss-nav-item">
-        <a href="administracionSistema.html" class="ss-nav-link active">
-          <i class="bi bi-gear ss-nav-icon"></i>
-          <span class="ss-nav-text">Administración</span>
-        </a>
-      </li>
-      <li class="ss-nav-item mt-auto">
-        <a href="index.html" class="ss-nav-link text-danger">
-          <i class="bi bi-box-arrow-right ss-nav-icon"></i>
-          <span class="ss-nav-text">Cerrar Sesión</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Main Content -->
-  <main class="ss-main-content" id="mainContent">
-    <!-- Header -->
-    <div class="ss-header">
-      <div>
-        <h1 class="ss-header-title">Administración del Sistema</h1>
-        <p class="ss-header-subtitle">Gestiona usuarios, parámetros y auditoría</p>
-      </div>
-      <div class="ss-header-actions">
-        <div class="ss-user-info">
-          <div class="ss-user-avatar">
-            <i class="bi bi-person"></i>
-          </div>
-          <div>
-            <div class="fw-bold">Super Admin</div>
-            <small class="text-muted">Administrador del Sistema</small>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats Cards -->
-    <div class="ss-stats-grid">
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Usuarios Activos</h3>
-          <div class="ss-stat-icon">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">47</h2>
-        <p class="ss-stat-change positive">
-          <i class="bi bi-arrow-up"></i> +3 este mes
-        </p>
-      </div>
-      
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Sesiones Hoy</h3>
-          <div class="ss-stat-icon" style="background: var(--ss-gradient-secondary);">
-            <i class="bi bi-graph-up"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">156</h2>
-        <p class="ss-stat-change positive">
-          <i class="bi bi-arrow-up"></i> +12% vs ayer
-        </p>
-      </div>
-      
-      <div class="ss-stat-card">
-        <div class="ss-stat-header">
-          <h3 class="ss-stat-title">Eventos de Auditoría</h3>
-          <div class="ss-stat-icon" style="background: var(--ss-gradient-accent);">
-            <i class="bi bi-shield-check"></i>
-          </div>
-        </div>
-        <h2 class="ss-stat-value">1,247</h2>
-        <p class="ss-stat-change positive">
-          <i class="bi bi-arrow-up"></i> +8% este mes
-        </p>
-      </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="ss-action-buttons">
-      <button onclick="showForm('user-management')" class="ss-btn ss-btn-primary">
-        <i class="bi bi-people me-2"></i>
-        Gestión de Usuarios
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración del Sistema - Seguros Sayazu</title>
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <nav class="ss-sidebar" id="sidebar">
+      <button class="ss-sidebar-toggle" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
       </button>
-      <button onclick="showForm('parameter-management')" class="ss-btn ss-btn-secondary">
-        <i class="bi bi-sliders me-2"></i>
-        Gestión de Parámetros
-      </button>
-      <button onclick="showForm('auditory')" class="ss-btn ss-btn-warning">
-        <i class="bi bi-shield-check me-2"></i>
-        Auditoría
-      </button>
-    </div>
 
-    <!-- User Management Section -->
-    <div id="user-management" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-people"></i>
+      <div class="ss-sidebar-header">
+        <img src="../images/logo.png" alt="Logo" class="ss-sidebar-logo" />
+        <h3 class="ss-sidebar-brand">Seguros Sayazu</h3>
+      </div>
+
+      <ul class="ss-sidebar-nav">
+        <li class="ss-nav-item">
+          <a href="clientes.html" class="ss-nav-link">
+            <i class="bi bi-people ss-nav-icon"></i>
+            <span class="ss-nav-text">Clientes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="aseguradoras.html" class="ss-nav-link">
+            <i class="bi bi-building ss-nav-icon"></i>
+            <span class="ss-nav-text">Aseguradoras</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="gestionPagos.html" class="ss-nav-link">
+            <i class="bi bi-credit-card ss-nav-icon"></i>
+            <span class="ss-nav-text">Gestión de Pagos</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="manejoIncidentes.html" class="ss-nav-link">
+            <i class="bi bi-exclamation-triangle ss-nav-icon"></i>
+            <span class="ss-nav-text">Manejo de Incidentes</span>
+          </a>
+        </li>
+        <li class="ss-nav-item">
+          <a href="administracionSistema.html" class="ss-nav-link active">
+            <i class="bi bi-gear ss-nav-icon"></i>
+            <span class="ss-nav-text">Administración</span>
+          </a>
+        </li>
+        <li class="ss-nav-item mt-auto">
+          <a href="index.html" class="ss-nav-link text-danger">
+            <i class="bi bi-box-arrow-right ss-nav-icon"></i>
+            <span class="ss-nav-text">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ss-main-content" id="mainContent">
+      <!-- Header -->
+      <div class="ss-header">
+        <div>
+          <h1 class="ss-header-title">Administración del Sistema</h1>
+          <p class="ss-header-subtitle">
+            Gestiona usuarios, parámetros y auditoría
+          </p>
+        </div>
+        <div class="ss-header-actions">
+          <div class="ss-user-info">
+            <div class="ss-user-avatar">
+              <i class="bi bi-person"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Super Admin</div>
+              <small class="text-muted">Administrador del Sistema</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="ss-stats-grid">
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Usuarios Activos</h3>
+            <div class="ss-stat-icon">
+              <i class="bi bi-people"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">47</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +3 este mes
+          </p>
+        </div>
+
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Sesiones Hoy</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-secondary)"
+            >
+              <i class="bi bi-graph-up"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">156</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +12% vs ayer
+          </p>
+        </div>
+
+        <div class="ss-stat-card">
+          <div class="ss-stat-header">
+            <h3 class="ss-stat-title">Eventos de Auditoría</h3>
+            <div
+              class="ss-stat-icon"
+              style="background: var(--ss-gradient-accent)"
+            >
+              <i class="bi bi-shield-check"></i>
+            </div>
+          </div>
+          <h2 class="ss-stat-value">1,247</h2>
+          <p class="ss-stat-change positive">
+            <i class="bi bi-arrow-up"></i> +8% este mes
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="ss-action-buttons">
+        <button
+          onclick="showForm('user-management')"
+          class="ss-btn ss-btn-primary"
+        >
+          <i class="bi bi-people me-2"></i>
           Gestión de Usuarios
-        </h2>
+        </button>
+        <button
+          onclick="showForm('parameter-management')"
+          class="ss-btn ss-btn-secondary"
+        >
+          <i class="bi bi-sliders me-2"></i>
+          Gestión de Parámetros
+        </button>
+        <button onclick="showForm('auditory')" class="ss-btn ss-btn-warning">
+          <i class="bi bi-shield-check me-2"></i>
+          Auditoría
+        </button>
       </div>
-      <div class="ss-card-body">
-        <div class="ss-action-buttons">
-          <button onclick="showSubForm('create-user-form')" class="ss-btn ss-btn-primary">
-            <i class="bi bi-person-plus me-2"></i>
-            Crear Usuario
-          </button>
-          <button onclick="showSubForm('update-user-form')" class="ss-btn ss-btn-warning">
-            <i class="bi bi-person-gear me-2"></i>
-            Actualizar Usuario
-          </button>
-          <button onclick="showSubForm('show-user-form')" class="ss-btn ss-btn-secondary">
-            <i class="bi bi-person-lines-fill me-2"></i>
-            Ver Usuarios
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <!-- Create User Form -->
-    <div id="create-user-form" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-person-plus"></i>
-          Crear Nuevo Usuario
-        </h2>
-      </div>
-      <div class="ss-card-body">
-        <form>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Correo Electrónico</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-envelope ss-input-icon"></i>
-                  <input type="email" id="email-register" class="ss-form-control" placeholder="usuario@ejemplo.com" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Nombre Completo</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-person ss-input-icon"></i>
-                  <input type="text" id="fullname-register" class="ss-form-control" placeholder="Nombre completo" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Contraseña</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-lock ss-input-icon"></i>
-                  <input type="password" id="password-register" class="ss-form-control" placeholder="Contraseña segura" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Confirmar Contraseña</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-lock-fill ss-input-icon"></i>
-                  <input type="password" id="conf-password" class="ss-form-control" placeholder="Confirmar contraseña" required>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Rol</label>
-                <select id="role-register" class="ss-form-control" required>
-                  <option value="">Seleccione un rol</option>
-                  <option value="admin">Administrador</option>
-                  <option value="operator">Operador</option>
-                  <option value="viewer">Visualizador</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Estado</label>
-                <select id="status-register" class="ss-form-control" required>
-                  <option value="">Seleccione estado</option>
-                  <option value="activo">Activo</option>
-                  <option value="inactivo">Inactivo</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          
-          <div class="d-flex justify-content-end gap-3 mt-4">
-            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
-              <i class="bi bi-x-circle me-2"></i>
-              Cancelar
-            </button>
-            <button type="submit" class="ss-btn ss-btn-primary">
-              <i class="bi bi-check-circle me-2"></i>
+      <!-- User Management Section -->
+      <div
+        id="user-management"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-people"></i>
+            Gestión de Usuarios
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <div class="ss-action-buttons">
+            <button
+              onclick="showSubForm('create-user-form')"
+              class="ss-btn ss-btn-primary"
+            >
+              <i class="bi bi-person-plus me-2"></i>
               Crear Usuario
             </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Update User Form -->
-    <div id="update-user-form" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-person-gear"></i>
-          Actualizar Usuario
-        </h2>
-      </div>
-      <div class="ss-card-body">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="ss-form-group">
-              <label class="ss-form-label">ID del Usuario</label>
-              <div class="ss-input-group">
-                <i class="bi bi-hash ss-input-icon"></i>
-                <input type="text" id="user-id" class="ss-form-control" placeholder="ID del usuario">
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-end">
-            <button type="button" onclick="fetchUserDetailsById()" class="ss-btn ss-btn-warning">
-              <i class="bi bi-search me-2"></i>
-              Buscar Usuario
-            </button>
-          </div>
-        </div>
-        
-        <div id="user-details" class="mt-4" style="display: none;">
-          <hr>
-          <h4 class="mb-3">Actualizar Información</h4>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Correo Electrónico</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-envelope ss-input-icon"></i>
-                  <input type="email" id="update-email" class="ss-form-control">
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Nueva Contraseña</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-lock ss-input-icon"></i>
-                  <input type="password" id="update-password" class="ss-form-control" placeholder="Dejar vacío para mantener">
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Confirmar Contraseña</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-lock-fill ss-input-icon"></i>
-                  <input type="password" id="update-conf-password" class="ss-form-control" placeholder="Confirmar nueva contraseña">
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Estado</label>
-                <select id="update-status" class="ss-form-control">
-                  <option value="activo">Activo</option>
-                  <option value="inactivo">Inactivo</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          
-          <div class="d-flex justify-content-end gap-3 mt-4">
-            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
-              <i class="bi bi-x-circle me-2"></i>
-              Cancelar
-            </button>
-            <button type="button" class="ss-btn ss-btn-warning">
-              <i class="bi bi-check-circle me-2"></i>
+            <button
+              onclick="showSubForm('update-user-form')"
+              class="ss-btn ss-btn-warning"
+            >
+              <i class="bi bi-person-gear me-2"></i>
               Actualizar Usuario
             </button>
+            <button
+              onclick="showSubForm('show-user-form')"
+              class="ss-btn ss-btn-secondary"
+            >
+              <i class="bi bi-person-lines-fill me-2"></i>
+              Ver Usuarios
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Show Users Form -->
-    <div id="show-user-form" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-person-lines-fill"></i>
-          Lista de Usuarios
-        </h2>
-      </div>
-      <div class="ss-card-body">
-        <div class="ss-table-container">
-          <table class="ss-table table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Estado</th>
-                <th>Último Acceso</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>001</td>
-                <td>Juan Pérez</td>
-                <td>juan.perez@sayazu.com</td>
-                <td><span class="ss-badge ss-badge-info">Admin</span></td>
-                <td><span class="ss-badge ss-badge-success">Activo</span></td>
-                <td>2024-01-15 09:30</td>
-                <td>
-                  <button class="ss-btn ss-btn-sm ss-btn-outline me-1">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="ss-btn ss-btn-sm ss-btn-warning me-1">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>002</td>
-                <td>María García</td>
-                <td>maria.garcia@sayazu.com</td>
-                <td><span class="ss-badge ss-badge-warning">Operador</span></td>
-                <td><span class="ss-badge ss-badge-success">Activo</span></td>
-                <td>2024-01-15 08:45</td>
-                <td>
-                  <button class="ss-btn ss-btn-sm ss-btn-outline me-1">
-                    <i class="bi bi-eye"></i>
-                  </button>
-                  <button class="ss-btn ss-btn-sm ss-btn-warning me-1">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- Create User Form -->
+      <div
+        id="create-user-form"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-person-plus"></i>
+            Crear Nuevo Usuario
+          </h2>
         </div>
-      </div>
-    </div>
+        <div class="ss-card-body">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Correo Electrónico</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-envelope ss-input-icon"></i>
+                    <input
+                      type="email"
+                      id="email-register"
+                      class="ss-form-control"
+                      placeholder="usuario@ejemplo.com"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
 
-    <!-- Parameter Management -->
-    <div id="parameter-management" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-sliders"></i>
-          Gestión de Parámetros
-        </h2>
-      </div>
-      <div class="ss-card-body">
-        <form>
-          <div class="row g-3">
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Nombre del Parámetro</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-gear ss-input-icon"></i>
-                  <input type="text" id="parameter-name" class="ss-form-control" placeholder="Nombre del parámetro">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nombre Completo</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-person ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="fullname-register"
+                      class="ss-form-control"
+                      placeholder="Nombre completo"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Contraseña</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-lock ss-input-icon"></i>
+                    <input
+                      type="password"
+                      id="password-register"
+                      class="ss-form-control"
+                      placeholder="Contraseña segura"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Confirmar Contraseña</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-lock-fill ss-input-icon"></i>
+                    <input
+                      type="password"
+                      id="conf-password"
+                      class="ss-form-control"
+                      placeholder="Confirmar contraseña"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Rol</label>
+                  <select id="role-register" class="ss-form-control" required>
+                    <option value="">Seleccione un rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="operator">Operador</option>
+                    <option value="viewer">Visualizador</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <select id="status-register" class="ss-form-control" required>
+                    <option value="">Seleccione estado</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                  </select>
                 </div>
               </div>
             </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Valor del Parámetro</label>
-                <div class="ss-input-group">
-                  <i class="bi bi-code ss-input-icon"></i>
-                  <input type="text" id="parameter-value" class="ss-form-control" placeholder="Valor del parámetro">
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-12">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Descripción</label>
-                <textarea id="parameter-description" class="ss-form-control" rows="3" placeholder="Descripción del parámetro"></textarea>
-              </div>
-            </div>
-          </div>
-          
-          <div class="d-flex justify-content-end gap-3 mt-4">
-            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
-              <i class="bi bi-x-circle me-2"></i>
-              Cancelar
-            </button>
-            <button type="submit" class="ss-btn ss-btn-secondary">
-              <i class="bi bi-check-circle me-2"></i>
-              Guardar Parámetro
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
 
-    <!-- Auditory -->
-    <div id="auditory" class="ss-card ss-fade-in" style="display: none;">
-      <div class="ss-card-header">
-        <h2 class="ss-card-title">
-          <i class="bi bi-shield-check"></i>
-          Auditoría del Sistema
-        </h2>
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="submit" class="ss-btn ss-btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+                Crear Usuario
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="ss-card-body">
-        <div class="row g-3 mb-4">
-          <div class="col-md-4">
-            <div class="ss-form-group">
-              <label class="ss-form-label">Fecha de Inicio</label>
-              <input type="date" id="audit-start-date" class="ss-form-control">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="ss-form-group">
-              <label class="ss-form-label">Fecha de Fin</label>
-              <input type="date" id="audit-end-date" class="ss-form-control">
-            </div>
-          </div>
-          <div class="col-md-4 d-flex align-items-end">
-            <button type="button" class="ss-btn ss-btn-warning">
-              <i class="bi bi-search me-2"></i>
-              Buscar Eventos
-            </button>
-          </div>
+
+      <!-- Update User Form -->
+      <div
+        id="update-user-form"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-person-gear"></i>
+            Actualizar Usuario
+          </h2>
         </div>
-        
-        <!-- Audit Events Table -->
-        <div class="ss-table-container">
-          <table class="ss-table table">
-            <thead>
-              <tr>
-                <th>Fecha/Hora</th>
-                <th>Usuario</th>
-                <th>Acción</th>
-                <th>Módulo</th>
-                <th>IP</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>2024-01-15 09:30:15</td>
-                <td>juan.perez@sayazu.com</td>
-                <td>Login exitoso</td>
-                <td>Autenticación</td>
-                <td>192.168.1.100</td>
-                <td><span class="ss-badge ss-badge-success">Exitoso</span></td>
-              </tr>
-              <tr>
-                <td>2024-01-15 09:25:42</td>
-                <td>maria.garcia@sayazu.com</td>
-                <td>Actualización de cliente</td>
-                <td>Clientes</td>
-                <td>192.168.1.105</td>
-                <td><span class="ss-badge ss-badge-success">Exitoso</span></td>
-              </tr>
-              <tr>
-                <td>2024-01-15 09:20:18</td>
-                <td>admin@sayazu.com</td>
-                <td>Creación de usuario</td>
-                <td>Administración</td>
-                <td>192.168.1.101</td>
-                <td><span class="ss-badge ss-badge-success">Exitoso</span></td>
-              </tr>
-              <tr>
-                <td>2024-01-15 09:15:33</td>
-                <td>unknown</td>
-                <td>Intento de login fallido</td>
-                <td>Autenticación</td>
-                <td>203.45.67.89</td>
-                <td><span class="ss-badge ss-badge-danger">Fallido</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <!-- Manual Audit Entry -->
-        <hr class="my-4">
-        <h4 class="mb-3">Registrar Evento de Auditoría Manual</h4>
-        <form>
+        <div class="ss-card-body">
           <div class="row g-3">
             <div class="col-md-6">
               <div class="ss-form-group">
-                <label class="ss-form-label">Fecha de Auditoría</label>
-                <input type="date" id="audit-date" class="ss-form-control">
+                <label class="ss-form-label">ID del Usuario</label>
+                <div class="ss-input-group">
+                  <i class="bi bi-hash ss-input-icon"></i>
+                  <input
+                    type="text"
+                    id="user-id"
+                    class="ss-form-control"
+                    placeholder="ID del usuario"
+                  />
+                </div>
               </div>
             </div>
-            
-            <div class="col-md-6">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Tipo de Evento</label>
-                <select id="audit-event-type" class="ss-form-control">
-                  <option value="">Seleccione tipo</option>
-                  <option value="sistema">Sistema</option>
-                  <option value="seguridad">Seguridad</option>
-                  <option value="usuario">Usuario</option>
-                  <option value="datos">Datos</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="col-12">
-              <div class="ss-form-group">
-                <label class="ss-form-label">Detalles de la Auditoría</label>
-                <textarea id="audit-details" class="ss-form-control" rows="4" placeholder="Describa los detalles del evento de auditoría"></textarea>
-              </div>
+            <div class="col-md-6 d-flex align-items-end">
+              <button
+                type="button"
+                onclick="fetchUserDetailsById()"
+                class="ss-btn ss-btn-warning"
+              >
+                <i class="bi bi-search me-2"></i>
+                Buscar Usuario
+              </button>
             </div>
           </div>
-          
-          <div class="d-flex justify-content-end gap-3 mt-4">
-            <button type="button" onclick="hideAllForms()" class="ss-btn ss-btn-outline">
-              <i class="bi bi-x-circle me-2"></i>
-              Cancelar
-            </button>
-            <button type="submit" class="ss-btn ss-btn-warning">
-              <i class="bi bi-check-circle me-2"></i>
-              Guardar Auditoría
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/administracionSistema.js"></script>
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const mainContent = document.getElementById('mainContent');
-      
-      sidebar.classList.toggle('collapsed');
-      mainContent.classList.toggle('expanded');
-    }
-    
-    function showForm(formType) {
-      hideAllForms();
-      const form = document.getElementById(formType);
-      if (form) {
-        form.style.display = 'block';
-        form.scrollIntoView({ behavior: 'smooth' });
+          <div id="user-details" class="mt-4" style="display: none">
+            <hr />
+            <h4 class="mb-3">Actualizar Información</h4>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Correo Electrónico</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-envelope ss-input-icon"></i>
+                    <input
+                      type="email"
+                      id="update-email"
+                      class="ss-form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nueva Contraseña</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-lock ss-input-icon"></i>
+                    <input
+                      type="password"
+                      id="update-password"
+                      class="ss-form-control"
+                      placeholder="Dejar vacío para mantener"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Confirmar Contraseña</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-lock-fill ss-input-icon"></i>
+                    <input
+                      type="password"
+                      id="update-conf-password"
+                      class="ss-form-control"
+                      placeholder="Confirmar nueva contraseña"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Estado</label>
+                  <select id="update-status" class="ss-form-control">
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="button" class="ss-btn ss-btn-warning">
+                <i class="bi bi-check-circle me-2"></i>
+                Actualizar Usuario
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Show Users Form -->
+      <div id="show-user-form" class="ss-card ss-fade-in" style="display: none">
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-person-lines-fill"></i>
+            Lista de Usuarios
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <div class="ss-table-container">
+            <table class="ss-table table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Último Acceso</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>001</td>
+                  <td>Juan Pérez</td>
+                  <td>juan.perez@sayazu.com</td>
+                  <td><span class="ss-badge ss-badge-info">Admin</span></td>
+                  <td><span class="ss-badge ss-badge-success">Activo</span></td>
+                  <td>2024-01-15 09:30</td>
+                  <td>
+                    <button class="ss-btn ss-btn-sm ss-btn-outline me-1">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="ss-btn ss-btn-sm ss-btn-warning me-1">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>002</td>
+                  <td>María García</td>
+                  <td>maria.garcia@sayazu.com</td>
+                  <td>
+                    <span class="ss-badge ss-badge-warning">Operador</span>
+                  </td>
+                  <td><span class="ss-badge ss-badge-success">Activo</span></td>
+                  <td>2024-01-15 08:45</td>
+                  <td>
+                    <button class="ss-btn ss-btn-sm ss-btn-outline me-1">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="ss-btn ss-btn-sm ss-btn-warning me-1">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Parameter Management -->
+      <div
+        id="parameter-management"
+        class="ss-card ss-fade-in"
+        style="display: none"
+      >
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-sliders"></i>
+            Gestión de Parámetros
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Nombre del Parámetro</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-gear ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="parameter-name"
+                      class="ss-form-control"
+                      placeholder="Nombre del parámetro"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Valor del Parámetro</label>
+                  <div class="ss-input-group">
+                    <i class="bi bi-code ss-input-icon"></i>
+                    <input
+                      type="text"
+                      id="parameter-value"
+                      class="ss-form-control"
+                      placeholder="Valor del parámetro"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Descripción</label>
+                  <textarea
+                    id="parameter-description"
+                    class="ss-form-control"
+                    rows="3"
+                    placeholder="Descripción del parámetro"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="submit" class="ss-btn ss-btn-secondary">
+                <i class="bi bi-check-circle me-2"></i>
+                Guardar Parámetro
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Auditory -->
+      <div id="auditory" class="ss-card ss-fade-in" style="display: none">
+        <div class="ss-card-header">
+          <h2 class="ss-card-title">
+            <i class="bi bi-shield-check"></i>
+            Auditoría del Sistema
+          </h2>
+        </div>
+        <div class="ss-card-body">
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Fecha de Inicio</label>
+                <input
+                  type="date"
+                  id="audit-start-date"
+                  class="ss-form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="ss-form-group">
+                <label class="ss-form-label">Fecha de Fin</label>
+                <input
+                  type="date"
+                  id="audit-end-date"
+                  class="ss-form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+              <button type="button" class="ss-btn ss-btn-warning">
+                <i class="bi bi-search me-2"></i>
+                Buscar Eventos
+              </button>
+            </div>
+          </div>
+
+          <!-- Audit Events Table -->
+          <div class="ss-table-container">
+            <table class="ss-table table">
+              <thead>
+                <tr>
+                  <th>Fecha/Hora</th>
+                  <th>Usuario</th>
+                  <th>Acción</th>
+                  <th>Módulo</th>
+                  <th>IP</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024-01-15 09:30:15</td>
+                  <td>juan.perez@sayazu.com</td>
+                  <td>Login exitoso</td>
+                  <td>Autenticación</td>
+                  <td>192.168.1.100</td>
+                  <td>
+                    <span class="ss-badge ss-badge-success">Exitoso</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2024-01-15 09:25:42</td>
+                  <td>maria.garcia@sayazu.com</td>
+                  <td>Actualización de cliente</td>
+                  <td>Clientes</td>
+                  <td>192.168.1.105</td>
+                  <td>
+                    <span class="ss-badge ss-badge-success">Exitoso</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2024-01-15 09:20:18</td>
+                  <td>admin@sayazu.com</td>
+                  <td>Creación de usuario</td>
+                  <td>Administración</td>
+                  <td>192.168.1.101</td>
+                  <td>
+                    <span class="ss-badge ss-badge-success">Exitoso</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2024-01-15 09:15:33</td>
+                  <td>unknown</td>
+                  <td>Intento de login fallido</td>
+                  <td>Autenticación</td>
+                  <td>203.45.67.89</td>
+                  <td><span class="ss-badge ss-badge-danger">Fallido</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Manual Audit Entry -->
+          <hr class="my-4" />
+          <h4 class="mb-3">Registrar Evento de Auditoría Manual</h4>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Fecha de Auditoría</label>
+                  <input type="date" id="audit-date" class="ss-form-control" />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Tipo de Evento</label>
+                  <select id="audit-event-type" class="ss-form-control">
+                    <option value="">Seleccione tipo</option>
+                    <option value="sistema">Sistema</option>
+                    <option value="seguridad">Seguridad</option>
+                    <option value="usuario">Usuario</option>
+                    <option value="datos">Datos</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="ss-form-group">
+                  <label class="ss-form-label">Detalles de la Auditoría</label>
+                  <textarea
+                    id="audit-details"
+                    class="ss-form-control"
+                    rows="4"
+                    placeholder="Describa los detalles del evento de auditoría"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 mt-4">
+              <button
+                type="button"
+                onclick="hideAllForms()"
+                class="ss-btn ss-btn-outline"
+              >
+                <i class="bi bi-x-circle me-2"></i>
+                Cancelar
+              </button>
+              <button type="submit" class="ss-btn ss-btn-warning">
+                <i class="bi bi-check-circle me-2"></i>
+                Guardar Auditoría
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/administracionSistema.js"></script>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+
+        sidebar.classList.toggle("collapsed");
+        mainContent.classList.toggle("expanded");
       }
-    }
-    
-    function showSubForm(formType) {
-      hideAllForms();
-      const form = document.getElementById(formType);
-      if (form) {
-        form.style.display = 'block';
-        form.scrollIntoView({ behavior: 'smooth' });
+
+      function showForm(formType) {
+        hideAllForms();
+        const form = document.getElementById(formType);
+        if (form) {
+          form.style.display = "block";
+          form.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    }
-    
-    function hideAllForms() {
-      const forms = ['user-management', 'create-user-form', 'update-user-form', 'show-user-form', 'parameter-management', 'auditory'];
-      forms.forEach(formId => {
-        const form = document.getElementById(formId);
-        if (form) form.style.display = 'none';
-      });
-    }
-    
-    function fetchUserDetailsById() {
-      const userId = document.getElementById('user-id').value;
-      if (!userId) {
-        alert('Por favor ingrese un ID de usuario');
-        return;
+
+      function showSubForm(formType) {
+        hideAllForms();
+        const form = document.getElementById(formType);
+        if (form) {
+          form.style.display = "block";
+          form.scrollIntoView({ behavior: "smooth" });
+        }
       }
-      
-      // Show user details section
-      document.getElementById('user-details').style.display = 'block';
-      
-      // Populate with sample data
-      document.getElementById('update-email').value = 'usuario@ejemplo.com';
-      document.getElementById('update-status').value = 'activo';
-    }
-    
-    function fetchUserDetails() {
-      // Show user details in table format
-      alert('Funcionalidad de ver detalles implementada');
-    }
-    
-    // Mobile sidebar toggle
-    if (window.innerWidth <= 768) {
-      document.getElementById('sidebar').classList.add('collapsed');
-      document.getElementById('mainContent').classList.add('expanded');
-    }
-  </script>
-</body>
+
+      function hideAllForms() {
+        const forms = [
+          "user-management",
+          "create-user-form",
+          "update-user-form",
+          "show-user-form",
+          "parameter-management",
+          "auditory",
+        ];
+        forms.forEach((formId) => {
+          const form = document.getElementById(formId);
+          if (form) form.style.display = "none";
+        });
+      }
+
+      function fetchUserDetailsById() {
+        const userId = document.getElementById("user-id").value;
+        if (!userId) {
+          alert("Por favor ingrese un ID de usuario");
+          return;
+        }
+
+        // Show user details section
+        document.getElementById("user-details").style.display = "block";
+
+        // Populate with sample data
+        document.getElementById("update-email").value = "usuario@ejemplo.com";
+        document.getElementById("update-status").value = "activo";
+      }
+
+      function fetchUserDetails() {
+        // Show user details in table format
+        alert("Funcionalidad de ver detalles implementada");
+      }
+
+      // Mobile sidebar toggle
+      if (window.innerWidth <= 768) {
+        document.getElementById("sidebar").classList.add("collapsed");
+        document.getElementById("mainContent").classList.add("expanded");
+      }
+    </script>
+  </body>
 </html>

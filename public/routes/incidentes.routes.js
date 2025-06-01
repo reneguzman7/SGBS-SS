@@ -15,17 +15,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Configuraci�n de conexi�n a la base de datos
+// Configuración de conexión a la base de datos
 const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: parseInt(process.env.PORT, 10),
-  ssl: {
+  user: process.env.USER || process.env.DB_USER,
+  host: process.env.HOST || process.env.DB_HOST,
+  database: process.env.DATABASE || process.env.DB_NAME,
+  password: process.env.PASSWORD || process.env.DB_PASSWORD,
+  port: parseInt(process.env.DB_PORT || process.env.PORT || '5432', 10),
+  ssl: process.env.NODE_ENV === 'production' ? {
     require: true,
-    rejectUnauthorized: false // For development only
-  }
+    rejectUnauthorized: false
+  } : false
 });
 
 // Endpoint para registrar un nuevo incidente
