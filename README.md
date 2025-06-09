@@ -56,17 +56,25 @@ The backend is built with Node.js and Express.js, with PostgreSQL as the databas
 
 5.  **Run the application:**
 
-    **Development:**
+    **Watch CSS (development):**
 
     ```bash
     npm run dev
     ```
 
-    **Production:**
+    This command only starts the Tailwind/PostCSS watcher to rebuild the CSS
+    files in `public/css` when the sources under `assets/css` change. It does
+    **not** start the Express server.
+
+    **Start the Express server:**
 
     ```bash
     npm start
     ```
+
+    Run this command in another terminal to launch the Express server during
+    development, and use the same command in production after your CSS is
+    built.
 
 ## Deployment
 
