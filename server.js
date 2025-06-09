@@ -88,9 +88,11 @@ app.use(incidentesRoutes);
 // Puerto dinámico para producción
 const PORT = process.env.PORT || 3000;
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en puerto ${PORT}`);
-});
+// Iniciar servidor solo si no estamos en entorno de prueba
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+  });
+}
 
 export default app;
