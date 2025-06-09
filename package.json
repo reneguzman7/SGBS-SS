@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "postcss assets/css/main.css -o public/css/main.css --watch",
     "build": "echo 'Build completed - CSS files already in public/css'",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "docker:build": "docker build -t sgbs-ss .",
     "docker:run": "docker run -p 3000:3000 sgbs-ss",
     "deploy:vercel": "vercel --prod",
@@ -31,9 +31,11 @@
     "@iconify/json": "^2.2.230",
     "@iconify/tailwind": "^1.1.1",
     "autoprefixer": "^10.4.19",
+    "jest": "^29.7.0",
     "postcss": "^8.4.39",
     "postcss-cli": "^11.0.0",
     "prisma": "^5.17.0",
+    "supertest": "^7.1.1",
     "tailwindcss": "^3.4.6"
   }
 }
