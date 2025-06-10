@@ -1,40 +1,40 @@
 const insuranceData = {
   Zurich: {
-    "VehÌculos": ["Seguro Planeta", "Tailor Made"],
+    "Veh√≠culos": ["Seguro Planeta", "Tailor Made"],
     "Responsabilidad Civil": ["Responsabilidad Civil para Empresas"],
     "Seguro Hogar": ["Hogar Total", "Hogar Protegido", "Seguro por Dentro"],
     "Incendio y Desastres Naturales": [],
   },
   Latina: {
-    "VehÌculos": ["B·sicos", "Premium"],
+    "Veh√≠culos": ["B√°sicos", "Premium"],
     Desgravamen: [],
   },
   AMA: {
     "Responsabilidad Civil": ["RC", "Profesional Individual", "Sociedades"],
-    "VehÌculos": ["B·sicos", "Premium"],
+    "Veh√≠culos": ["B√°sicos", "Premium"],
   },
   Sweden: {
-    "VehÌculos": ["VehÌculo", "Motocicleta"],
+    "Veh√≠culos": ["Veh√≠culo", "Motocicleta"],
     Viaje: ["Hogar Seguro Sylver"],
   },
   MAFRE: {
-    "VehÌculos": [],
+    "Veh√≠culos": [],
     "Responsabilidad Civil": [],
     Desgravamen: [],
-    "Incendio y LÌneas Aliadas": [],
+    "Incendio y L√≠neas Aliadas": [],
   },
   Equinoccial: {
     Vida: [],
   },
   Hispana: {
-    "VehÌculos": [],
+    "Veh√≠culos": [],
   },
   BMI: {
     "Medicina Prepagada": ["Individual", "Corporativo"],
     Ahorro: [],
     Vida: [],
     Dental: [],
-    "Cobertura por C·ncer": [],
+    "Cobertura por C√°ncer": [],
   },
   Cofiamed: {
     "Medicina Prepagada": [],
@@ -87,16 +87,16 @@ function updateProducts(insuranceType) {
 
 function validateCI(ci) {
   if (!isNumeric(ci)) {
-    return "La cÈdula debe contener solo n˙meros.";
+    return "La c√©dula debe contener solo n√∫meros.";
   }
   if (ci.length !== 10) {
-    return "La cÈdula debe ser de 10 dÌgitos.";
+    return "La c√©dula debe ser de 10 d√≠gitos.";
   }
   if (parseInt(ci, 10) === 0) {
-    return "La cÈdula ingresada no puede ser cero.";
+    return "La c√©dula ingresada no puede ser cero.";
   }
   if (ci.startsWith("30")) {
-    return "La cÈdula es v·lida.";
+    return "La c√©dula es v√°lida.";
   }
 
   let total = 0;
@@ -115,9 +115,9 @@ function validateCI(ci) {
   let checksum = total % 10 === 0 ? 0 : 10 - (total % 10);
 
   if (checksum === lastDigit) {
-    return "La cÈdula es v·lida.";
+    return "La c√©dula es v√°lida.";
   } else {
-    return "La cÈdula ingresada no es v·lida.";
+    return "La c√©dula ingresada no es v√°lida.";
   }
 }
 
@@ -127,7 +127,7 @@ function isNumeric(value) {
 
 function validateRUC(ruc) {
   if (ruc.length !== 13) {
-    return "El RUC debe ser de 13 dÌgitos.";
+    return "El RUC debe ser de 13 d√≠gitos.";
   }
   if (!ruc.endsWith("001")) {
     return "El RUC debe terminar en '001'.";
@@ -136,19 +136,19 @@ function validateRUC(ruc) {
   let ci = ruc.substring(0, 10);
   let ciValidation = validateCI(ci);
 
-  if (ciValidation === "La cÈdula es v·lida.") {
-    return "El RUC es v·lido.";
+  if (ciValidation === "La c√©dula es v√°lida.") {
+    return "El RUC es v√°lido.";
   } else {
-    return "El RUC ingresado no es v·lido.";
+    return "El RUC ingresado no es v√°lido.";
   }
 }
 
 function validateEmail(email) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (re.test(email)) {
-    return "El correo electrÛnico es v·lido.";
+    return "El correo electr√≥nico es v√°lido.";
   } else {
-    return "El correo electrÛnico no es v·lido.";
+    return "El correo electr√≥nico no es v√°lido.";
   }
 }
 
@@ -166,14 +166,17 @@ document.addEventListener("DOMContentLoaded", function () {
       validationMessage = validateRUC(value);
     } else {
       validationMessage =
-        "El documento debe ser de 10 dÌgitos (cÈdula) o 13 dÌgitos (RUC).";
+        "El documento debe ser de 10 d√≠gitos (c√©dula) o 13 d√≠gitos (RUC).";
     }
 
     const validationMessageElement = document.getElementById("documentoidentidad-validation");
     validationMessageElement.textContent = validationMessage;
-    validationMessageElement.style.color = validationMessage.includes("v·lida")
-      ? "green"
-      : "red";
+    validationMessageElement.classList.remove("success", "error");
+    if (validationMessage.includes("v√°lida")) {
+      validationMessageElement.classList.add("success");
+    } else {
+      validationMessageElement.classList.add("error");
+    }
   });
 
   correoInput.addEventListener("blur", function () {
@@ -182,8 +185,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const validationMessageElement = document.getElementById("correo-validation");
     validationMessageElement.textContent = validationMessage;
-    validationMessageElement.style.color = validationMessage.includes("v·lido")
-      ? "green"
-      : "red";
+    validationMessageElement.classList.remove("success", "error");
+    if (validationMessage.includes("v√°lido")) {
+      validationMessageElement.classList.add("success");
+    } else {
+      validationMessageElement.classList.add("error");
+    }
   });
 });
